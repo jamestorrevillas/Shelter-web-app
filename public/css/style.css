@@ -1,0 +1,457 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('../images/background_home.png');
+    background-size: 50% 120%;
+    background-repeat: no-repeat;   
+    background-attachment: fixed;
+}
+
+header {
+    padding: 10px;
+	display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo-container img {
+    width: 100px; 
+    height: auto; 
+    margin-right: 20px; 
+}
+
+.logo-container span {
+    font-size: 24px; 
+    color: #FFFFFF; 
+    font-family: 'Intel', sans-serif;
+    font-weight: 600;
+}
+.hero {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    width: 100%;
+    height: 35px;
+}
+
+.hero img {
+    width: 60%;
+    height: auto;
+    margin-top:600px;
+	margin-left:380px;
+}
+
+nav {
+    position: fixed;
+    top: 20px;
+    right: 40px;
+    font-size: 20px;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    display: inline;
+}
+nav ul li a {
+	text-decoration: none;
+	color: #6868AE; 
+    margin: 10px 50px;
+	background-color: transparent;
+	border-radius: 20px 20px 20px 20px;
+}
+nav ul {
+	text-decoration: none;
+}
+nav ul li a:hover {
+    color: white;
+    background-color: #6868AE;
+}
+
+nav ul li a.active {
+    color: white;
+    background-color: #6868AE;
+}
+	
+a[href="#learnmore"] {
+    background-color: #FCEEE2;
+    border-radius: 20px;
+    font-family: 'Intel', sans-serif;
+    font-weight: 600;
+}
+
+
+main {
+    padding: 20px;
+}
+
+#home {
+    margin: 0px 50px 20px 20px; /*top, right, bottom, left*/
+}
+
+h1 {
+    font-size: 120px;
+    margin:0;
+	padding:0px;
+    font-family: 'Poppins', sans-serif;
+    white-space: pre-line;
+    color: white;
+}
+
+h2{
+	font-size: 30px;
+	padding:0px 10px 10px 10px;
+	font-family: 'Intel', sans-serif;
+    color: white; 
+}
+
+h1 span {
+    display: block;
+}
+
+p{
+	color: white;
+	font-family: 'Intel', sans-serif;
+	font-size: 25px;
+	padding:0px 10px 10px 10px;
+}
+
+a {
+    color: #7C7CB6; 
+    text-decoration: none;
+    background-color: #FCEEE2;
+    padding: 10px 20px; 
+	border-radius: 20px 20px 20px 20px;
+}
+
+a:hover {
+	padding: 10px 20px; 
+	border-radius: 20px 20px 20px 20px;
+	color: white;
+}
+#registration-container {
+    margin: 20px;
+    padding: 20px;
+    background-color: #FFFFFF;
+    border-radius: 10x;
+    width: 400px;
+    position: fixed;
+    top: 50%;
+    right: 220px;
+    transform: translateY(-50%);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0);
+}
+
+#registration-container h2 {
+	text-align: center;
+    font-size: 18px;
+    color: #352B25;
+	font-weight: 1;
+    margin-bottom: 15px;
+	padding-bottom: 50px;
+}
+#registration-container h1 {
+    font-size: 36px;
+    color: #6868AE;
+	font-weight: bold;
+    margin-bottom: 15px;
+	margin-right:150px;
+}
+
+#registration-container p {
+	text-align: center;
+    font-size: 15px;
+    color: #352B25;
+	font-weight: 1;
+    margin-bottom: 15px;
+	padding-bottom: 50px;
+	margin-top: 20px;
+}
+#registration-container a {
+	text-align: center;
+	background-color: transparent;
+    color: #6868AE;
+	font-weight: bold;
+    margin-bottom: 15px;
+	padding-bottom: 50px;
+	margin-top: 20px;
+}
+form {
+    max-width: 400px;
+    margin: 20 auto;
+
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+}
+input {
+    width: 140%;
+    padding: 15px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+	border: 0px solid #FFFFFF;
+    border-bottom: 5px solid #6868AE; 
+
+}
+#registration-container button {
+    background-color: #82D1D9;
+	font-size: 15px;
+    color: #1C2A33;
+    padding: 15px 230px;
+    border: none;
+    border-radius: 15px;
+	white-space: nowrap;
+    cursor: pointer;
+	margin-top: 20px;	
+}
+#registration-container button:hover{
+	background-color: white;
+	font-size: 15px;
+    color: #1C2A33;
+    padding: 15px 230px;
+    border: 5px solid #82D1D9;
+    border-radius: 15px;
+	white-space: nowrap;
+    cursor: pointer;
+	margin-top: 20px;	
+}
+input::placeholder {
+	font-size: 15px;
+    color: #6868AE;
+}
+#login-container {
+    margin: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10x;
+    width: 400px;
+    position: fixed;
+    top: 50%;
+    right: 220px;
+    transform: translateY(-50%);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0);
+}
+
+#login-container h2 {
+	text-align: center;
+    font-size: 18px;
+    color: #352B25;
+	font-weight: 1;
+    margin-bottom: 15px;
+	padding-bottom: 50px;
+}
+#login-container h1 {
+    font-size: 36px;
+    color: #6868AE;
+	font-weight: bold;
+    margin-bottom: 15px;
+	margin-right:150px;
+}
+
+#login-container p {
+	text-align: center;
+    font-size: 15px;
+    color: #352B25;
+	font-weight: 1;
+    margin-bottom: 15px;
+	padding-bottom: 50px;
+	margin-top: 20px;
+}
+#login-container a {
+	text-align: center;
+	background-color: transparent;
+    color: #6868AE;
+	font-weight: bold;
+    margin-bottom: 15px;
+	padding-bottom: 50px;
+	margin-top: 20px;
+}
+#login-container button {
+    background-color: #82D1D9;
+	font-size: 15px;
+    color: #1C2A33;
+    padding: 15px 260px;
+    border: none;
+    border-radius: 15px;
+	white-space: nowrap;
+    cursor: pointer;
+	margin-top: 20px;	
+}
+#login-container button:hover{
+	background-color: white;
+	font-size: 15px;
+    color: #1C2A33;
+    padding: 15px 260px;
+    border: 5px solid #82D1D9;
+    border-radius: 15px;
+	white-space: nowrap;
+    cursor: pointer;
+	margin-top: 20px;	
+}
+#login-container a[href="forgot_password.html"] {
+    font-size: 15px;
+    color: #352B25;
+    float: right;
+	margin-right: -105px;
+	padding:0;	
+	font-weight: 1; 
+}
+
+#login-container a[href="forgot_password.html"]:hover {
+    font-size: 15px;
+    color: #6868AE;
+}
+#authentication {
+    margin: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10x;
+    width: 600px;
+    position: fixed;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0);
+}
+#authentication button#gg {
+    background-color: #82D1D9; /* Google blue */
+    color:#1C2A33;
+}
+
+#authentication button#fb {
+    background-color: #FCEEE1; /* Facebook blue */
+    color: #1C2A33;
+}
+
+#authentication button#em {
+    background-color: #FFFFFF; /* Your custom color for email */
+    color: #1C2A33;
+}
+
+#authentication button#gg {
+    font-size: 15px;
+    padding: 15px 168px;
+    border: none;
+    border-radius: 15px;
+    white-space: nowrap;
+    cursor: pointer;
+    margin-top: 20px; 
+}
+#authentication button#fb {
+    font-size: 15px;
+    padding: 15px 160px;
+    border: none;
+    border-radius: 15px;
+    white-space: nowrap;
+    cursor: pointer;
+    margin-top: 20px; 
+}
+#authentication button#em {
+    font-size: 15px;
+    padding: 15px 178px;
+    border: none;
+    border-radius: 15px;
+    white-space: nowrap;
+    cursor: pointer;
+    margin-top: 20px; 
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+#authentication button#gg:hover {
+    font-size: 15px;
+    padding: 15px 168px;
+    border: 5px solid #82D1D9;
+    border-radius: 15px;
+    white-space: nowrap;
+    cursor: pointer;
+    margin-top: 20px;   
+}
+#authentication button#fb:hover {
+    font-size: 15px;
+    padding: 15px 160px;
+    border: 5px solid #FCEEE1;
+    border-radius: 15px;
+    white-space: nowrap;
+    cursor: pointer;
+    margin-top: 20px;   
+}
+#authentication button#em:hover {
+    font-size: 15px;
+    padding: 15px 178px;
+    border: 5px solid #E9E9E9;
+    border-radius: 15px;
+    white-space: nowrap;
+    cursor: pointer;
+    margin-top: 20px;   
+}
+
+#authentication p {
+	text-align: center;
+    font-size: 15px;
+    color: #352B25;
+	font-weight: 1;
+    margin-bottom: 15px;
+	padding-bottom: 50px;
+	margin-top: 40px;
+}
+#authentication a {
+	text-align: center;
+	background-color: transparent;
+    color: #6868AE;
+	font-weight: bold;
+    margin-bottom: 15px;
+	padding-bottom: 50px;
+	margin-top: 20px;
+}
+#forgot-container {
+    margin: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10x;
+    width: 400px;
+    position: fixed;
+    top: 50%;
+    right: 220px;
+    transform: translateY(-50%);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0);
+}
+#forgot-container button {
+    background-color: #82D1D9;
+	font-size: 15px;
+    color: #1C2A33;
+    padding: 15px 245px;
+    border: none;
+    border-radius: 15px;
+	white-space: nowrap;
+    cursor: pointer;
+	margin-top: 15px;	
+}
+#forgot-container button:hover{
+	background-color: white;
+	font-size: 15px;
+    color: #1C2A33;
+    padding: 15px 240px;
+    border: 5px solid #82D1D9;
+    border-radius: 15px;
+	white-space: nowrap;
+    cursor: pointer;
+	margin-top: 15px;	
+}
+#forgot-container h2 {
+	text-align: center;
+    font-size: 18px;
+    color: #352B25;
+	font-weight: 1;
+    margin-bottom: 15px;
+	padding-bottom: 50px;
+}
