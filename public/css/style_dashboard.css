@@ -287,7 +287,11 @@ button:hover {
 
 #add-pet-button:hover img {
     content: url('../images/pet_icon2.png'); /* Correct path to the second image */
+<<<<<<< HEAD
     src: url('../images/pet_icon.png2'); /* Correct path to the second image */
+=======
+    src: url('../images/pet_icon2.png'); /* Correct path to the second image */
+>>>>>>> 04ee85aa9c6a9ec26f335e116da20fcefd261c71
 }
 
 #search-bar {
