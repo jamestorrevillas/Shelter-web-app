@@ -303,13 +303,7 @@ button:hover {
 
 #add-pet-button:hover img {
     content: url('../images/pet_icon2.png'); /* Correct path to the second image */
-<<<<<<< HEAD
     src: url('../images/pet_icon2.png'); /* Correct path to the second image */
-=======
-
-    src: url('../images/pet_icon2.png'); /* Correct path to the second image */
-
->>>>>>> bef415a3ac6d10bce0eb9d878d2c6424a167ffba
 }
 
 #search-bar {
