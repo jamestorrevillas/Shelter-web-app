@@ -74,7 +74,7 @@ nav ul li a:hover {
     background-color: #6868AE;
     border-radius: 30px;
     border: 0px solid #6868AE;
-    height: 100vh;
+    height: 92vh;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0);
     /*margin-left: -30px;*/
 }
@@ -95,7 +95,7 @@ nav ul li a:hover {
 .mainpage {
     width: 80%;
     padding: 10px;
-    /*background-color: #FCEEE2;*/
+    
     border-radius: 20px;
     float: right;
     height: 100vh;
@@ -142,10 +142,18 @@ nav ul li a:hover {
     height: 100px;
     margin-top: 0px;
 }
-#addPet-section {
+#Applications_section {
     top: 0px; 
     margin-left: 0px; 
-    /*padding: 20px;*/
+    padding: 10px;
+    background-color: #FCEEE2;
+    border-radius: 20px;
+    height: 690px;
+	margin-top: 0px;
+}
+#addPet-section {
+    top: 0px; 
+    margin-left: 0px;
     background-color: #FCEEE2;
     border-radius: 20px;
 	float: left;
@@ -153,17 +161,7 @@ nav ul li a:hover {
     height: 770px;;
 	margin-top: 0px;
 }
-#Applications_section {
-    top: 0px; 
-    margin-left: 0px; 
-    padding: 20px;
-    background-color: #FCEEE2;
-    border-radius: 20px;
-	float: left;
-	width: 1163px;
-    height: 690px;
-	margin-top: 0px;
-}
+
 .dropdown {
     display: inline-block;
 	margin-right: 150px;
@@ -192,8 +190,8 @@ nav ul li a:hover {
 
 form {
 	float:center;
+    margin-left: 200px;
     max-width: 400px;
-    margin: 20px auto;
     background-color: #FCEEE2;
     padding: 20px;
     border-radius: 10px;
@@ -205,11 +203,13 @@ label {
 	font-family:'Poppins', sans-serif;
 	color: #6868AE;
 	font-weight: bold;
+    margin-left: 200px;
     margin-bottom: 8px;
 }
 
 input,
 textarea {
+    float: center;
     width: 800px;
     padding: 10px;
     margin-bottom: 15px;
@@ -287,15 +287,9 @@ button:hover {
 
 #add-pet-button:hover img {
     content: url('../images/pet_icon2.png'); /* Correct path to the second image */
-<<<<<<< HEAD
-<<<<<<< HEAD
-    src: url('../images/pet_icon.png2'); /* Correct path to the second image */
-=======
+
     src: url('../images/pet_icon2.png'); /* Correct path to the second image */
->>>>>>> 04ee85aa9c6a9ec26f335e116da20fcefd261c71
-=======
-    src: url('../images/pet_icon2.png'); /* Correct path to the second image */
->>>>>>> 04ee85aa9c6a9ec26f335e116da20fcefd261c71
+
 }
 
 #search-bar {
