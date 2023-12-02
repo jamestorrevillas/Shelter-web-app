@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style_dashboard.css">
+    <script type="module" src="../js/add_pets.js"></script> 
     <title>FurryFound</title>
 </head>
 <body>
@@ -15,8 +16,6 @@
     <nav>
         <ul>
 			<li><a href="Dashboard.html" id="current" >Dashboard</a></li>
-           <li><a href="Applications.html">Applications</a></li>
-			<li><a href="Notifications">Notifications</a></li>
 			<li><a href="Settings.html">Settings</a></li>
         </ul>
     </nav>
@@ -30,36 +29,37 @@
             <li><a href="pets.html" id="left-nav-current">Pets</a></li>
             <li><a href="applications.html">Applications</a></li>
         </ul>
-    </nav>
-	<section id="top-section">
-		<a href="addPet.html">
-				<button id="add-pet-button">
-				<img src="C:\Users\ivyabapo\OneDrive\Desktop\APPDEV2\Shelter\public\images\pet_icon.png" alt="Add Pet Image" id="pet-icon">
-				<br> 
-				Add Pet For Adoption
-			</button></a>
-                <input type="text" id="search-bar" placeholder="Search...">
+        </nav>
+        <div class="mainpage">
+            <section id="top-section">
+                <a href="addPet.html">
+                    <button id="add-pet-button">
+                    <img src="../images/pet_icon.png" alt="Add Pet Image" id="pet-icon">
+                    <br> 
+                    Add Pet For Adoption
+                    </button></a>
+                        <input type="text" id="search-bar" placeholder="Search...">
             </section>
-	<section id="below-section">
+            <section id="below-section">
                 <section id="topbelow-section">
                 <div class="dropdown">
-				<button class="dropbtn">DATE ADDED</button>
-				</div>
-				<div class="dropdown">
-				<button class="dropbtn">NAME</button>
-				</div>
-				<div class="dropdown">
-				<button class="dropbtn">BREED</button>
-				</div>
-				<div class="dropdown">
-				<button class="dropbtn">STATUS</button>
-				</div>
-				<button id="trashButton">
-				<img src="C:\Users\ivyabapo\OneDrive\Desktop\APPDEV2\Shelter\public\images\can_icon.png" alt="Add Pet Image" id="pet-icon">
-			</button>
+                <button class="dropbtn">DATE ADDED</button>
+                </div>
+                <div class="dropdown">
+                    <button class="dropbtn">NAME</button>
+                </div>
+                <div class="dropdown">
+                    <button class="dropbtn">BREED</button>
+                </div>
+                <div class="dropdown">
+                    <button class="dropbtn">STATUS</button>
+                </div>
+                <button id="trashButton">
+                <img src="../images/can_icon.png" alt="Trash Can" id="pet-icon">
+                </button>
             </section>
+        </div>
 		</div>
     </main>
-
 </body>
 </html>
