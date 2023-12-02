@@ -78,7 +78,18 @@ nav ul li a:hover {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0);
     /*margin-left: -30px;*/
 }
-
+#dashboard2 {
+    position: relative;
+    left: 0;
+    top: 0;
+    padding-top: 20px;
+    background-color: #6868AE;
+    border-radius: 30px;
+    border: 0px solid #6868AE;
+    height: 120vh;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0);
+    /*margin-left: -30px;*/
+}
 .left-nav {
     position: relative;
 	font-size: 25px;
@@ -191,7 +202,7 @@ nav ul li a:hover {
 form {
 	float:center;
     margin-left: 200px;
-    max-width: 400px;
+    max-width: 500px;
     background-color: #FCEEE2;
     padding: 20px;
     border-radius: 10px;
@@ -221,7 +232,7 @@ textarea {
 #addPetBtn {
 	text-decoration:none;
 	float:center;
-	margin-left:0;
+    margin-left: 300px;
     background-color: #6868AE;
     color: #ffffff;
     padding: 10px 20px;
