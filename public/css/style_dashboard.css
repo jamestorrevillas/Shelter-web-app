@@ -53,30 +53,27 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    color: #BEBEE2;
-    padding: 5px;
-    background-color: #ffffff;
+     background-color: #6868AE;
+    padding:20px;
+    color: #ffffff;	
 }
 
-nav ul li a.active {
-    color: white;
-    background-color: #6868AE;
-}
 
 #current {
     background-color: #6868AE;
-    padding: 25px 50px;
+    padding:20px;
     color: #ffffff;
 }
 
 #dashboard {
+	position: fixed;
     right: -15px;
     padding: 20px;
     background-color: #6868AE;
     border-radius: 30px;
     border: 0px solid #6868AE;
     width: 95%;
-    height: 83vh;
+    height: 720px;
     max-height: 730px;
     position: relative;
     margin-top: 0%;
@@ -133,11 +130,88 @@ nav ul li a.active {
 	float: left;
 	width: 1163px;
     height: 100px;
+	margin-top: 0px;
+}
+#addPet-section {
+    top: 0px; 
+    margin-left: 0px; 
+    padding: 20px;
+    background-color: #FCEEE2;
+    border-radius: 20px;
+	float: left;
+	width: 1163px;
+    height: 690px;
+	margin-top: 0px;
+}
+#Applications_section {
+    top: 0px; 
+    margin-left: 0px; 
+    padding: 20px;
+    background-color: #FCEEE2;
+    border-radius: 20px;
+	float: left;
+	width: 1163px;
+    height: 690px;
+	margin-top: 0px;
+}
+.dropdown {
+    display: inline-block;
+	margin-right: 150px;
+	
+}
+
+.dropbtn {
+    background-color: transparent;
+    color: white;
+    padding: 10px;
+    font-size: 20px;
+    border: none;
+    border-radius: 10px;
+}
+
+.dropdown:hover .dropbtn {
+    cursor: pointer;
 }
 #add-pet-button img {
     width: 75px;
     height: 75px;
 	transition: 0.3s;
+}
+form {
+    max-width: 400px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #6868AE;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #485084;
 }
 
 #below-section {
@@ -151,16 +225,36 @@ nav ul li a.active {
     height: 535px;
 	margin-top: 10px;
 }
+#topbelow-section {
+    top: 0px; 
+    margin-left: -20px; 
+    padding: 20px;
+    background-color: #82D1D9;
+    border-radius: 20px;
+	float: left;
+	width: 1163px;
+    height: 40px;
+	margin-top:-20px;
+}
 #add-pet-button {
     background-color: #FCEEE2;
 	font-weight: bold;
     color: #6868AE; 
-    padding: 10px 15px; 
+    padding: 10px 10px; 
     border: none; 
     border-radius: 5px; 
     cursor: pointer; 
-    margin-top: 0px;
+    margin-top: -7px;
     float: right;
+}
+#trashButton {
+	cursor: pointer; 
+    display: inline-block;
+	margin-top:0px;
+    margin-left: 50px;
+	background-color:transparent;
+	border-radius:10px;
+	border-color:transparent;
 }
 
 #add-pet-button:hover {
@@ -173,12 +267,17 @@ nav ul li a.active {
     content: url('C:/Users/ivyabapo/OneDrive/Desktop/APPDEV2/Shelter/public/images/pet_icon2.png'); /* Correct path to the second image */
     src: url('C:/Users/ivyabapo/OneDrive/Desktop/APPDEV2/Shelter/public/images/pet_icon2.png'); /* Correct path to the second image */
 }
-#add-pet-button img {
-    width: 75px;
-    height: 75px;
-    transition: 0.3s;
-}
+
 #search-bar {
+    padding: 15px;
+	padding-right: 200px;
+    margin-right: 10px; 
+    border: 3px solid #6868AE; 
+    border-radius: 10px; 
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+#search-bar-applications {
+	margin-top:0px;
     padding: 15px;
 	padding-right: 200px;
     margin-right: 10px; 
