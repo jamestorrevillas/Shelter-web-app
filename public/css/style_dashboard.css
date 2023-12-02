@@ -10,7 +10,7 @@ body {
 header {
     background-color: #8F8FCA;
     margin-bottom: 0px;
-    padding: 0%;
+    padding: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -36,7 +36,8 @@ header {
 }
 
 nav {
-    top: 0%;
+    position: fixed;
+    top: 20px;
     right: 40px;
     font-size: 20px;
 }
@@ -48,13 +49,17 @@ nav ul li {
 nav ul li a {
     text-decoration: none;
     color: #FFFFFF;
-    margin: 10px 20px;
+    margin: 10px 50px;
     background-color: transparent;
     border-radius: 20px 20px 20px 20px;
 }
 
+nav ul {
+	text-decoration: none;
+}
+
 nav ul li a:hover {
-     background-color: #6868AE;
+    background-color: #6868AE;
     padding:20px;
     color: #ffffff;	
 }
@@ -287,15 +292,7 @@ button:hover {
 
 #add-pet-button:hover img {
     content: url('../images/pet_icon2.png'); /* Correct path to the second image */
-<<<<<<< HEAD
-<<<<<<< HEAD
-    src: url('../images/pet_icon.png2'); /* Correct path to the second image */
-=======
     src: url('../images/pet_icon2.png'); /* Correct path to the second image */
->>>>>>> 04ee85aa9c6a9ec26f335e116da20fcefd261c71
-=======
-    src: url('../images/pet_icon2.png'); /* Correct path to the second image */
->>>>>>> 04ee85aa9c6a9ec26f335e116da20fcefd261c71
 }
 
 #search-bar {
