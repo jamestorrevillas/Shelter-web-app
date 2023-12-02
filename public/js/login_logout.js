@@ -21,8 +21,9 @@ function loginUser(email, password) {
         .then((userCredential) => {
             const user = userCredential.user;
             console.log("User logged in:", user);
-            alert("Login successful!");
-            // Redirect or perform any other actions after successful login
+
+            // Redirect to another HTML file
+            window.location.href = "../pages/dashboard.html";
         })
         .catch((error) => {
             const errorCode = error.code;
@@ -31,6 +32,7 @@ function loginUser(email, password) {
             alert("Login failed. Please check your email and password.");
         });
 }
+
 
 document.getElementById("login").addEventListener("click", function () {
     const email = document.getElementById("email").value.trim();
@@ -46,4 +48,21 @@ onAuthStateChanged(auth, (user) => {
     } else {
         console.log("No user is signed in.");
     }
+});
+
+
+// Add this function to handle logout
+function logoutUser() {
+    auth.signOut().then(() => {
+        console.log("User logged out");
+        // Redirect to login.html after logout
+        window.location.href = "login.html";
+    }).catch((error) => {
+        console.error("Logout failed", error);
+    });
+}
+
+// Assuming you have an element with id "logout" for the logout link
+document.getElementById("logout").addEventListener("click", function () {
+    logoutUser();
 });

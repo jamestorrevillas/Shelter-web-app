@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    background-image:url('C:/Users/ivyabapo/OneDrive/Desktop/APPDEV/background_home.png');
+    background-image:url('../images/background_home.png');
     background-size: 50% 120%;
     background-repeat: no-repeat;   
     background-attachment: fixed;
@@ -40,13 +40,14 @@ header {
 }
 
 .hero img {
-    width: 60%;
+    width: 50%;
     height: auto;
     margin-top:600px;
 	margin-left:380px;
 }
 
 nav {
+    font-family: 'SEGOE UI', sans-serif;
     position: fixed;
     top: 20px;
     right: 40px;
@@ -80,7 +81,7 @@ nav ul li a.active {
     background-color: #6868AE;
 }
 	
-a[href="#learnmore"] {
+#get_started {
     background-color: #FCEEE2;
     border-radius: 20px;
     font-family: 'Intel', sans-serif;
@@ -97,7 +98,7 @@ main {
 }
 
 h1 {
-    font-size: 120px;
+    font-size: 100px;
     margin:0;
 	padding:0px;
     font-family: 'Poppins', sans-serif;
@@ -118,8 +119,9 @@ h1 span {
 
 p{
 	color: white;
-	font-family: 'Intel', sans-serif;
-	font-size: 25px;
+	font-family: 'SEGOE UI', sans-serif;
+	font-size: 15px;
+    margin-bottom: 30px;
 	padding:0px 10px 10px 10px;
 }
 
@@ -449,9 +451,14 @@ input::placeholder {
 }
 #forgot-container h2 {
 	text-align: center;
+    margin-left:180px;
     font-size: 18px;
     color: #352B25;
 	font-weight: 1;
     margin-bottom: 15px;
 	padding-bottom: 50px;
+}
+#arrow {
+    cursor: pointer;
+    background-color: transparent;
 }

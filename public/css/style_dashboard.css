@@ -264,8 +264,8 @@ button:hover {
 }
 
 #add-pet-button:hover img {
-    content: url('C:/Users/ivyabapo/OneDrive/Desktop/APPDEV2/Shelter/public/images/pet_icon2.png'); /* Correct path to the second image */
-    src: url('C:/Users/ivyabapo/OneDrive/Desktop/APPDEV2/Shelter/public/images/pet_icon2.png'); /* Correct path to the second image */
+    content: url('../images/pet_icon2.png'); /* Correct path to the second image */
+    src: url('../images/pet_icon2.png'); /* Correct path to the second image */
 }
 
 #search-bar {
