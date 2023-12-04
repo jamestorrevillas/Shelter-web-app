@@ -36,7 +36,7 @@ header {
 }
 
 nav {
-    position: fixed;
+    
     top: 20px;
     right: 40px;
     font-size: 20px;
@@ -324,4 +324,33 @@ button:hover {
     border: 3px solid #6868AE; 
     border-radius: 10px; 
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+
+.pet-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    max-width: 300px;
+}
+
+.pet-card img {
+    max-width: 100%;
+    height: auto;
+}
+#pets-table {
+    display: inline-block;
+	margin-right: 150px;
+}
+th{
+    float: left;
+    margin-top:0px;
+    background-color: transparent;
+    color: white;
+    padding: 3px;
+    font-size: 20px;
+    border: none;
+    margin-right:80px;
+    margin-left: 0px;;
+    border-radius: 10px;
 }

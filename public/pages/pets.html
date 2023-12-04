@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style_dashboard.css">
-    <script type="module" src="../js/add_pets.js"></script> 
+    <script type="module" src="../js/pets.js"></script>
     <title>FurryFound</title>
 </head>
 <body>
@@ -43,21 +43,26 @@
             </section>
             <section id="below-section">
                 <section id="topbelow-section">
-                <div class="dropdown">
-                <button class="dropbtn">DATE ADDED</button>
-                </div>
-                <div class="dropdown">
-                    <button class="dropbtn">NAME</button>
-                </div>
-                <div class="dropdown">
-                    <button class="dropbtn">BREED</button>
-                </div>
-                <div class="dropdown">
-                    <button class="dropbtn">STATUS</button>
-                </div>
-                <button id="trashButton">
-                <img src="../images/can_icon.png" alt="Trash Can" id="pet-icon">
-                </button>
+                    <table id="pets-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Type</th>
+                                <th>Age</th>
+                                <th>Color</th>
+                                <th>Weight</th>
+                                <th>Days</th>
+                                <th>Description</th>    
+                            </tr>
+                        </thead>
+                        <tbody id="table-body">
+                            <!-- Table body content will be populated dynamically -->
+                        </tbody>
+                    </table>
+            </section>
+            <section id="belowbelow-section">
+                
+            </section>
             </section>
         </div>
 		</div>
