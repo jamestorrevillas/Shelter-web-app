@@ -1,7 +1,7 @@
 // Import the functions you need from the Firebase SDK
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
 import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
-import { getStorage, ref as storageRef, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-storage.js";
+import { getStorage } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-storage.js";
 
 // Your web app's Firebase configuration
 // Replace this with your actual Firebase configuration
@@ -16,10 +16,8 @@ const firebaseConfig = {
     measurementId: "G-8W6BBZYCHZ"
 };
 
-
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
-const storage = getStorage(app);
 
 // Get reference to the 'pets' node in the database
 const petsRef = ref(database, 'pets');
@@ -28,9 +26,8 @@ const petsRef = ref(database, 'pets');
 function displayPetData() {
     onValue(petsRef, (snapshot) => {
         const petsData = snapshot.val();
-        const petsTable = document.getElementById('pets-table');
-        const tableBody = petsTable.getElementsByTagName('tbody')[0];
-        tableBody.innerHTML = ''; // Clear existing table rows
+        const petsTableBody = document.getElementById('table-body');
+        petsTableBody.innerHTML = ''; // Clear existing table rows
 
         for (const petId in petsData) {
             if (Object.hasOwnProperty.call(petsData, petId)) {
