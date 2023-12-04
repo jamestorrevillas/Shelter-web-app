@@ -62,39 +62,11 @@
                     <label for="petDescription">DESCRIPTION:</label>
                     <textarea id="petDescription" name="petDescription" rows="4" required></textarea>
 					
-                     <button type="button" id="addPetBtn">ADD PET</button>
+                    <button type="button" id="addPetBtn">ADD PET</button>
+
                 </form>
             </section>
         </div>
     </div>
-    </main>
-    <script>
-        document.getElementById('addPetBtn').addEventListener('click', function() {
-
-            var petName = document.getElementById('petName').value;
-            var petType = document.getElementById('petType').value;
-            var petAge = document.getElementById('petAge').value;
-            var petColor = document.getElementById('petColor').value;
-            var petWeight = document.getElementById('petWeight').value;
-            var petDays = document.getElementById('petDays').value;
-            var petDescription = document.getElementById('petDescription').value;
-
-            var petDetails = {
-                name: petName,
-                type: petType,
-                age: petAge,
-                color: petColor,
-                weight: petWeight,
-                days: petDays,
-                description: petDescription
-            };
-
-            var jsonString = JSON.stringify(petDetails);
-
-            localStorage.setItem('newPet', jsonString);
-
-            window.location.href = 'pets.html';
-        });
-    </script>
-</body>
+    </main></body>
 </html>

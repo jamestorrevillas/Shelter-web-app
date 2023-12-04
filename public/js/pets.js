@@ -1,7 +1,6 @@
 // Import the functions you need from the Firebase SDK
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
 import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
-import { getStorage } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-storage.js";
 
 // Your web app's Firebase configuration
 // Replace this with your actual Firebase configuration
