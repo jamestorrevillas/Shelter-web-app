@@ -267,12 +267,49 @@ button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    /*margin-left: -20px; */
+    margin-left: 0px; 
     padding: 20px;
     background-color: #82D1D9;
     border-radius: 20px;
     height: 40px;
 	margin-top: -20px;
+}
+#topbelow-section th{
+    float: left;
+    margin-top:0px;
+    background-color: transparent;
+    color: white;
+    padding: 3px;
+    font-size: 20px;
+    border: none;
+    margin-right:130px;
+    margin-left: 0px;;
+    border-radius: 10px;
+}
+#belowbelow-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*margin-left: -20px; */
+    padding: 20px;
+    border-radius: 20px;
+    height: 40px;
+	margin-top: -20px;
+}
+#belowbelow-section td{
+    float: left;
+    margin-top:0px;
+    background-color: gray;
+    color: white;
+    padding: 3px;
+    font-size: 20px;
+    border: none;
+    margin-right:130px;
+    margin-left:0px;;
+    border-radius: 0    px;
+}
+#pet{
+    background-color: gray;
 }
 #add-pet-button {
     background-color: #FCEEE2;
@@ -342,15 +379,4 @@ button:hover {
     display: inline-block;
 	margin-right: 150px;
 }
-th{
-    float: left;
-    margin-top:0px;
-    background-color: transparent;
-    color: white;
-    padding: 3px;
-    font-size: 20px;
-    border: none;
-    margin-right:70px;
-    margin-left: 0px;;
-    border-radius: 10px;
-}
+
