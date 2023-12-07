@@ -20,8 +20,12 @@
     // Get reference to the 'pets' node in the database
     const petsRef = ref(database, 'pets');
 
-    // Function to display pet data in a table format
-    function displayPetData() {
+// Function to display pet data in a table format
+function displayPetData() {
+    onValue(petsRef, (snapshot) => {
+        const petsData = snapshot.val();
+        const petsTableBody = document.getElementById('table-body-below');
+        petsTableBody.innerHTML = ''; // Clear existing table rows
 
         
 
@@ -36,14 +40,56 @@
                     displayNewPet(pet, petId);
                 }
             }
-        });
-    }
+        }
+    });
+}
 
-    // Function to display the newly added pet immediately on the page
-    // Function to display the newly added pet immediately on the page
-    function displayNewPet(petDetails, petId) {
-        const tableBody = document.getElementById('table-body');
-        const tableRow = document.createElement('tr');
+// Function to display the newly added pet immediately on the page
+function displayNewPet(petDetails, petId) {
+    const tableBody = document.getElementById('table-body-below');
+
+    // Extract individual fields from petDetails
+    const { name, age, weight, color, type, daysAtShelter, description} = petDetails;
+
+    // Store each field in separate variables
+    const petName = name;
+    const petAge = age;
+    const petWeight = weight;
+    const petColor = color;
+    const petType = type;
+    const petDays = daysAtShelter;
+    const petDescription = description;
+    // Add other variables for additional fields
+
+    // Create HTML elements for the new pet
+    const tableRow = document.createElement('tr');
+
+    // Create table cells for each pet detail
+    const nameCell = document.createElement('td');
+    nameCell.textContent = petName;
+    const ageCell = document.createElement('td');
+    ageCell.textContent = petAge;
+    const weightCell = document.createElement('td');
+    weightCell.textContent = petWeight;
+    const colorCell = document.createElement('td');
+    colorCell.textContent = petColor;
+    const typeCell = document.createElement('td');
+    typeCell.textContent = petType;
+    const daysCell = document.createElement('td');
+    daysCell.textContent = petDays;
+    const descriptionCell = document.createElement('td');
+    descriptionCell.textContent = petDescription;
+    // Add other cells for additional fields
+
+    // Add table cells to the table row
+    tableRow.appendChild(nameCell);
+    tableRow.appendChild(ageCell);
+    tableRow.appendChild(weightCell);
+    // tableRow.appendChild(colorCell);
+    // tableRow.appendChild(typeCell);
+    tableRow.appendChild(daysCell);
+    tableRow.appendChild(descriptionCell);
+    // Add other cells for additional fields
 
         const displayOrder = ['petImage', 'petName', 'petType', 'petDays'];
 

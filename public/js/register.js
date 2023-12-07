@@ -35,7 +35,8 @@
             // Signed up 
             const user = userCredential.user;
 
-            set(ref(database, 'shelters/' + user.uid),{
+            set(ref(database, 'shelters/' + sheltername),{
+                user_id: user.uid,
                 email: email,
                 shelter_name: sheltername,
                 password: password

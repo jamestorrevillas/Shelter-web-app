@@ -1,4 +1,9 @@
-// Initialize Firebase
+// Import the functions you need from the SDKs
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-storage.js";
+
+// Your web app's Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyCBuYPKdZmVNe8BNMClJlNcK_ZkZ89qh1Q",
     authDomain: "furry-found.firebaseapp.com",
@@ -10,53 +15,54 @@ const firebaseConfig = {
     measurementId: "G-8W6BBZYCHZ"
   };
 
-  firebase.initializeApp(firebaseConfig);
-  const database = firebase.database();
-  const storage = firebase.storage(); 
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
+const storage = getStorage(app);
+
+// Function to handle form submission
+function addPet() {
+    const petImage = document.getElementById('petImage').files[0];
+    const petName = document.getElementById('petName').value;
+    const petType = document.getElementById('petType').value;
+    const petAge = document.getElementById('petAge').value;
+    const petColor = document.getElementById('petColor').value;
+    const petWeight = document.getElementById('petWeight').value;
+    const petDays = document.getElementById('petDays').value;
+    const petDescription = document.getElementById('petDescription').value;
   
-  function save() {
-      var petImage = document.getElementById('petImage').files[0];
-      var petName = document.getElementById('petName').value;
-      var petType = document.getElementById('petType').value;
-      var petAge = document.getElementById('petAge').value;
-      var petColor = document.getElementById('petColor').value;
-      var petWeight = document.getElementById('petWeight').value;
-      var petDays = document.getElementById('petDays').value;
-      var petDescription = document.getElementById('petDescription').value;
+    // Upload pet image to Firebase Storage
+    const storageRefPath = storageRef(storage, `pet_images/${petImage.name}`);
+    const uploadTask = uploadBytes(storageRefPath, petImage);
   
-      // Generate a unique ID for the pet
-      var pet_id = database.ref().child('pets').push().key;
+    // Handle the completion of the image upload
+    uploadTask.then((snapshot) => {
+        // Get the reference to the uploaded image file
+        const imageRef = snapshot.ref; // Define imageRef here
+        return getDownloadURL(imageRef);
+    }).then((downloadURL) => {
+        // Save pet data to the Firebase Realtime Database
+        const petData = {
+            name: petName,
+            type: petType,
+            age: petAge,
+            color: petColor,
+            weight: petWeight,
+            daysAtShelter: petDays,
+            description: petDescription,
+            imageUrl: downloadURL
+        };
   
-      // Upload image to Firebase Storage
-      var storageRef = storage.ref('pet_images/' + pet_id);
-      var uploadTask = storageRef.put(petImage);
-  
-      uploadTask.on('state_changed',
-          function (snapshot) {
-              // Observe state change events such as progress, pause, and resume
-          },
-          function (error) {
-              // Handle unsuccessful uploads
-              console.error('Error uploading image:', error);
-          },
-          function () {
-              // Handle successful uploads on complete
-              // For example, get the download URL: https://firebasestorage.googleapis.com/...
-              uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
-                  // Save pet data to the database
-                  database.ref('pets/' + petName).set({
-                      petImage: downloadURL,
-                      petName: petName,
-                      petType: petType,
-                      petColor: petColor,
-                      petWeight: petWeight,
-                      petDays: petDays,
-                      petDescription: petDescription
-                  });
-  
-                  alert('Pet Saved to DATABASE');
-              });
-          }
-      );
-  }
-  document.getElementById('addPetBtn').addEventListener('click', save);
+        // Push the pet data to the "pets" node in the database
+        const newPetRef = push(ref(database, 'pets'));
+        return set(newPetRef, petData);
+    }).then(() => {
+        alert('Pet added successfully!');
+        // Optionally, you can redirect or perform additional actions here
+    }).catch((error) => {
+        console.error('Error adding pet to the database:', error.message);
+    });
+}
+
+// Event listener for the "ADD PET" button
+document.getElementById('addPetBtn').addEventListener('click', addPet);
