@@ -22,6 +22,8 @@ const storage = getStorage(app);
 
 // Function to handle form submission
 function addPet() {
+
+    console.log('Button clicked!');
     const petImage = document.getElementById('petImage').files[0];
     const petName = document.getElementById('petName').value;
     const petType = document.getElementById('petType').value;
@@ -30,7 +32,23 @@ function addPet() {
     const petWeight = document.getElementById('petWeight').value;
     const petDays = document.getElementById('petDays').value;
     const petDescription = document.getElementById('petDescription').value;
-  
+
+    // const existingPet = Array.from(document.getElementById('table-body-below').children).find((row) => {
+    //     const nameCell = row.children[0];
+    //     const ageCell = row.children[1];
+    //     const weightCell = row.children[2];
+    //     return (
+    //         nameCell.textContent === petName &&
+    //         ageCell.textContent === petAge &&
+    //         weightCell.textContent === petWeight
+    //     );
+    // });
+
+    // // If the pet already exists, display an error message and return
+    // if (existingPet) {
+    //     alert('Error: This pet already exists.');
+    //     return;
+    // }
     // Upload pet image to Firebase Storage
     const storageRefPath = storageRef(storage, `pet_images/${petImage.name}`);
     const uploadTask = uploadBytes(storageRefPath, petImage);
@@ -57,6 +75,7 @@ function addPet() {
         const newPetRef = push(ref(database, 'pets'));
         return set(newPetRef, petData);
     }).then(() => {
+        window.location.href = 'pets.html';
         alert('Pet added successfully!');
         // Optionally, you can redirect or perform additional actions here
     }).catch((error) => {
@@ -66,3 +85,4 @@ function addPet() {
 
 // Event listener for the "ADD PET" button
 document.getElementById('addPetBtn').addEventListener('click', addPet);
+

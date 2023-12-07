@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style_dashboard.css">
+    <link rel="stylesheet" type="text/css" href="../css/style_dashboard.css">
     <script type="module" src="../js/pets.js"></script>
 
     <title>FurryFound</title>
@@ -45,10 +45,9 @@
                 </section>
                 <section id="below-section">
                     <section id="topbelow-section">
-                        <table id="pets-table">
+                        <table id="pets-table-top"> 
                             <thead>
                                 <tr>
-                                    <th>Image</th>
                                     <th>Name</th>
                                     <th>Age</th>
                                     <th>Weight</th>
@@ -56,22 +55,14 @@
                                     <th>Description</th>    
                                 </tr>
                             </thead>
-                            <tbody id="table-body">
-                              
-                                    <tr>
-                                    </tr>
-                          
-                            </tbody>
                         </table>
                     </section>
                     <section id="belowbelow-section">
-                        <table id="pets-table">
-                           
+                        <table id="pets-table-below"> <!-- Changed ID to avoid conflicts -->
                             <tbody id="table-body-below">
-                              <div id="pet">
-                                    <tr>
-                                    </tr>
-                                </div>
+                                <tr>
+                                    <!-- Your data will be added here dynamically -->
+                                </tr>
                             </tbody>
                         </table>
                     </section>

@@ -3,41 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style_dashboard.css">
+    <link rel="stylesheet" type="text/css" href="../css/style_dashboard.css">
+    <script type="module" src="../js/pets.js"></script>
+
     <title>FurryFound</title>
 </head>
 <body>
     <header>
-    <div class="logo-container">
-        <img src="../images/logo.png" alt="Logo">
-        <span>FURRYFOUND</span>
-    </div>
-    <nav>
-        <ul>
-			<li><a href="dashboard.html"id="current">Dashboard</a></li>
-			<li><a href="settings.html">Settings</a></li>
-            <li><a href="login.html" id="logout">Logout</a></li>
-        </ul>
-    </nav>
-</header>
+        <div class="logo-container">
+            <img src="../images/logo.png" alt="Logo">
+            <span>FURRYFOUND</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="Dashboard.html" id="current">Dashboard</a></li>
+                <li><a href="Settings.html">Settings</a></li>
+                <li><a href="login.html" id="logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <main>
         <div id="dashboard">
-		<nav class="left-nav">
-        <ul>
-            <li><a href="dashboard.html">Home</a></li>
-            <li><a href="pets.html">Pets</a></li>
-            <li><a href="applications.html"id="left-nav-current">Applications</a></li>
-        </ul>
-    </nav>
-    <div class="mainpage">
-	<section id="Applications_section">
-               
-            </section>
-			
-            </section>
-		</div>
+            <nav class="left-nav">
+                <ul>
+                    <li><a href="dashboard.html">Home</a></li>
+                    <li><a href="pets.html" id="left-nav-current">Pets</a></li>
+                    <li><a href="applications.html">Applications</a></li>
+                </ul>
+            </nav>
+            <div class="mainpage">
+                <section id="top-section">
+                    <a href="addPet.html">
+                        <button id="add-pet-button">
+                            <img src="../images/pet_icon.png" alt="Add Pet Image" id="pet-icon">
+                            <br> 
+                            Add Pet For Adoption
+                        </button>
+                    </a>
+                    <input type="text" id="search-bar" placeholder="Search...">
+                </section>
+                <section id="below-section">
+                    <section id="topbelow-section">
+                        <table id="pets-table-top"> 
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Age</th>
+                                    <th>Weight</th>
+                                    <th>Days</th>
+                                    <th>Description</th>    
+                                </tr>
+                            </thead>
+                        </table>
+                    </section>
+                    <section id="belowbelow-section">
+                        <table id="pets-table-below"> <!-- Changed ID to avoid conflicts -->
+                            <tbody id="table-body-below">
+                                <tr>
+                                    <!-- Your data will be added here dynamically -->
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </section>
+            </div>
+        </div>
     </main>
-
 </body>
 </html>
