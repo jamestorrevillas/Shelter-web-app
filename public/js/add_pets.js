@@ -1,7 +1,4 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
-import { getDatabase, set, ref } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
-import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-storage.js";
-
+// Initialize Firebase
 const firebaseConfig = {
     apiKey: "AIzaSyCBuYPKdZmVNe8BNMClJlNcK_ZkZ89qh1Q",
     authDomain: "furry-found.firebaseapp.com",
@@ -13,86 +10,53 @@ const firebaseConfig = {
     measurementId: "G-8W6BBZYCHZ"
   };
 
+  firebase.initializeApp(firebaseConfig);
+  const database = firebase.database();
+  const storage = firebase.storage(); 
   
-const app = initializeApp(firebaseConfig);
-const database = getDatabase(app);
-
-
-
-document.getElementById('addPetBtn').addEventListener('click', async (event) => {
-    event.preventDefault();
-
-    var petImage = document.getElementById('petImage').files[0];
-    var petName = document.getElementById('petName').value;
-    var petType = document.getElementById('petType').value;
-    var petAge = document.getElementById('petAge').value;
-    var petColor = document.getElementById('petColor').value;
-    var petWeight = document.getElementById('petWeight').value;
-    var petDays = document.getElementById('petDays').value;
-    var petDescription = document.getElementById('petDescription').value;
-
-    if (!petName || !petType || !petAge || !petColor || !petWeight || !petDays || !petDescription || !petImage) {
-        alert('Please fill in all the pet details');
-        return;
-    }
-
-    const formattedDays = new Date(petDays).toISOString();
-    const petId = generateUniqueId();
-
-    try {
-        await saveImageToStorage(petImage, petId);
-        const imageUrl = await getDownloadURL(storageRef(getStorage(app), `pet_images/${petId}`));
-
-        const petDetails = {
-            petImage: imageUrl,
-            petName: petName,
-            petType: petType,
-            petAge: petAge,
-            petColor: petColor,
-            petWeight: petWeight,
-            petDays: formattedDays,
-            petDescription: petDescription
-        };
-
-        await set(ref(database, `pets/${petId}`), petDetails);
-
-        alert('Pet added successfully!');
-        window.location.href = 'pets.html';
-    } catch (error) {
-        console.error('Error adding pet:', error.message);
-
-        if (error.code === 'storage/unauthorized') {
-            alert('Error: Unauthorized access to storage. Please check your permissions.');
-        } else {
-            alert('Error adding pet. Please try again. Check the console for more details.');
-        }
-    }
-});
-
-
-function generateUniqueId() {
-    const randomString = Math.random().toString(36).substring(2);
-    const timestamp = (new Date()).getTime().toString(36);
-    const uniqueId = randomString + timestamp;
-    console.log('Generated ID:', uniqueId);
-    return uniqueId;
-}
-
-function saveImageToStorage(image, petId) {
-    return new Promise((resolve, reject) => {
-        const storage = getStorage(app);
-        const storageRef = storageRef(storage, `pet_images/${petId}`);
-
-        uploadBytes(storageRef, image)
-            .then(snapshot => {
-                getDownloadURL(storageRef)
-                    .then(downloadURL => resolve(downloadURL))
-                    .catch(error => reject(error));
-            })
-            .catch(error => {
-                console.error('Error uploading image:', error.message);
-                reject(error);
-            });
-            
-    });
-}
+  function save() {
+      var petImage = document.getElementById('petImage').files[0];
+      var petName = document.getElementById('petName').value;
+      var petType = document.getElementById('petType').value;
+      var petAge = document.getElementById('petAge').value;
+      var petColor = document.getElementById('petColor').value;
+      var petWeight = document.getElementById('petWeight').value;
+      var petDays = document.getElementById('petDays').value;
+      var petDescription = document.getElementById('petDescription').value;
+  
+      // Generate a unique ID for the pet
+      var pet_id = database.ref().child('pets').push().key;
+  
+      // Upload image to Firebase Storage
+      var storageRef = storage.ref('pet_images/' + pet_id);
+      var uploadTask = storageRef.put(petImage);
+  
+      uploadTask.on('state_changed',
+          function (snapshot) {
+              // Observe state change events such as progress, pause, and resume
+          },
+          function (error) {
+              // Handle unsuccessful uploads
+              console.error('Error uploading image:', error);
+          },
+          function () {
+              // Handle successful uploads on complete
+              // For example, get the download URL: https://firebasestorage.googleapis.com/...
+              uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+                  // Save pet data to the database
+                  database.ref('pets/' + petName).set({
+                      petImage: downloadURL,
+                      petName: petName,
+                      petType: petType,
+                      petColor: petColor,
+                      petWeight: petWeight,
+                      petDays: petDays,
+                      petDescription: petDescription
+                  });
+  
+                  alert('Pet Saved to DATABASE');
+              });
+          }
+      );
+  }
+  document.getElementById('addPetBtn').addEventListener('click', save);

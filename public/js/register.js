@@ -25,6 +25,7 @@
 
   signUp.addEventListener('click', (e) => {
 
+
     var email = document.getElementById('email').value;
     var password = document.getElementById('password').value;
     var sheltername = document.getElementById('sheltername').value;

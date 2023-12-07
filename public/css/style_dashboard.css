@@ -111,7 +111,7 @@ nav ul li a:hover {
 .mainpage {
     width: 80%;
     padding: 10px;
-    
+
     border-radius: 20px;
     float: right;
     height: 100vh;
@@ -342,6 +342,11 @@ button:hover {
     display: inline-block;
 	margin-right: 150px;
 }
+thead{
+    margin-left: 20px;
+    float: left;
+    margin-left:-250px;
+}
 th{
     float: left;
     margin-top:0px;
@@ -350,7 +355,148 @@ th{
     padding: 3px;
     font-size: 20px;
     border: none;
-    margin-right:70px;
+    margin-right:100px;
     margin-left: 0px;;
     border-radius: 10px;
+}
+#settings_section {
+    top: 0px; 
+    margin-left: 0px;
+    background-color: #FCEEE2;
+    border-radius: 20px;
+	float: left;
+	width: 1163px;
+    height: 770px;;
+	margin-top: 0px;   
+}
+#photo-upload {
+    display: none; /* Hide the default file input */
+}
+
+.upload-button {
+
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #3498db;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+#settings_section {
+    text-align: left;
+}
+
+#settings_section img,
+#settings_section h2 {
+    font-family: 'Intel', sans-serif;
+    color: #6868AE;
+    margin-left:60px;
+    margin-bottom: 40px;
+}
+#settings_section label {
+	text-align:left;
+    display: block;
+	font-family:'Intel', sans-serif;
+	color: #6868AE;
+	font-weight: bold;
+    margin-left: 60px;
+    margin-top: 20PX;
+    margin-bottom: 8px;
+}
+
+#settings_section input,
+#settings_section textarea {
+    float: center;
+    width: 600px;
+    padding: 10px;
+    margin-bottom: 15px;
+	margin-left: 60px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.edit-button {
+    
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #6868AE;
+    color: white;
+    font-family:'Intel', sans-serif;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-left: 60px;
+}
+.go-to-profile-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #6868AE;
+    color: white;
+    font-family:'Intel', sans-serif;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-left: 60px;
+}
+
+
+#change-password_section {
+    top: 0px; 
+    margin-left: 0px;
+    background-color: #FCEEE2;
+    border-radius: 20px;
+	float: left;
+	width: 1163px;
+    height: 770px;;
+	margin-top: 0px;   
+}
+
+#change-password_section {
+    text-align: left;
+}
+
+#change-password_section h2 {
+    font-family: 'Intel', sans-serif;
+    color: #6868AE;
+    margin-left: 60px;
+    margin-bottom: 40px;
+}
+#change-password_section label {
+	text-align:left;
+    display: block;
+	font-family:'Intel', sans-serif;
+	color: #6868AE;
+	font-weight: bold;
+    margin-left: -160px;
+    margin-top: 20PX;
+    margin-bottom: 8px;
+}
+
+#change-password_section input,
+#change-password_section textarea {
+    float: center;
+    width: 600px;
+    padding: 10px;
+    margin-bottom: 15px;
+	margin-left: -160px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+#change-pass-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #6868AE;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-left: -160px;
+    font-family:'Intel', sans-serif;
+    border-color: transparent;
 }
