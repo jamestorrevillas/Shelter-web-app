@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
-import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+import { getDatabase, ref, push, set, get } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
 import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-storage.js";
 
 // Your web app's Firebase configuration
@@ -20,11 +20,38 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 const storage = getStorage(app);
 
-// Function to handle form submission
-function addPet() {
+// Function to check if a pet with the same details already exists
+async function doesPetExist(petName, petType, petAge, petColor, petWeight, petDays) {
+    const petsRef = ref(database, 'pets');
+    const snapshot = await get(petsRef);
 
+    if (snapshot.exists()) {
+        const pets = snapshot.val();
+        return Object.values(pets).some((pet) => {
+            return pet.name.toLowerCase() === petName.toLowerCase() &&
+                   pet.type.toLowerCase() === petType.toLowerCase() &&
+                   pet.age.toLowerCase() === petAge.toLowerCase() &&
+                   pet.color.toLowerCase() === petColor.toLowerCase() &&
+                   pet.weight.toLowerCase() === petWeight.toLowerCase() &&
+                   pet.daysAtShelter.toLowerCase() === petDays.toLowerCase();
+        });
+    }
+
+    return false;
+}
+
+// Function to handle form submission
+async function addPet() {
     console.log('Button clicked!');
-    const petImage = document.getElementById('petImage').files[0];
+    const petImageInput = document.getElementById('petImage');
+    const petImage = petImageInput.files[0];
+
+    // Check if a file has been selected
+    if (!petImage) {
+        alert('Error: Please select a pet image.');
+        return;
+    }
+
     const petName = document.getElementById('petName').value;
     const petType = document.getElementById('petType').value;
     const petAge = document.getElementById('petAge').value;
@@ -32,27 +59,18 @@ function addPet() {
     const petWeight = document.getElementById('petWeight').value;
     const petDays = document.getElementById('petDays').value;
     const petDescription = document.getElementById('petDescription').value;
+    const petStatus = 'IN SHELTER';
 
-    // const existingPet = Array.from(document.getElementById('table-body-below').children).find((row) => {
-    //     const nameCell = row.children[0];
-    //     const ageCell = row.children[1];
-    //     const weightCell = row.children[2];
-    //     return (
-    //         nameCell.textContent === petName &&
-    //         ageCell.textContent === petAge &&
-    //         weightCell.textContent === petWeight
-    //     );
-    // });
+    const petAlreadyExists = await doesPetExist(petName, petType, petAge, petColor, petWeight, petDays);
 
-    // // If the pet already exists, display an error message and return
-    // if (existingPet) {
-    //     alert('Error: This pet already exists.');
-    //     return;
-    // }
-    // Upload pet image to Firebase Storage
+    if (petAlreadyExists) {
+        alert('Error: This pet already exists.');
+        return;
+    }
+
     const storageRefPath = storageRef(storage, `pet_images/${petImage.name}`);
     const uploadTask = uploadBytes(storageRefPath, petImage);
-  
+
     // Handle the completion of the image upload
     uploadTask.then((snapshot) => {
         // Get the reference to the uploaded image file
@@ -68,16 +86,15 @@ function addPet() {
             weight: petWeight,
             daysAtShelter: petDays,
             description: petDescription,
-            imageUrl: downloadURL
+            imageUrl: downloadURL,
+            status: petStatus
         };
-  
+
         // Push the pet data to the "pets" node in the database
         const newPetRef = push(ref(database, 'pets'));
         return set(newPetRef, petData);
     }).then(() => {
         window.location.href = 'pets.html';
-        // alert('Pet added successfully!');
-        // Optionally, you can redirect or perform additional actions here
     }).catch((error) => {
         console.error('Error adding pet to the database:', error.message);
     });
@@ -85,4 +102,3 @@ function addPet() {
 
 // Event listener for the "ADD PET" button
 document.getElementById('addPetBtn').addEventListener('click', addPet);
-

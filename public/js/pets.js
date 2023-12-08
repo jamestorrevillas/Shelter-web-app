@@ -28,16 +28,16 @@ function displayPetData() {
         const petsTableBody = document.getElementById('table-body-below');
         petsTableBody.innerHTML = '';
  
-
-
-
+ 
+ 
+ 
         for (const petId in petsData) {
             if (Object.hasOwnProperty.call(petsData, petId)) {
                 const pet = petsData[petId];
                 displayNewPet(pet, petId);
             }
         }
-
+ 
     });
 }
  
@@ -45,10 +45,10 @@ function displayPetData() {
 // Function to display the newly added pet immediately on the page
 function displayNewPet(petDetails, petId) {
     const tableBody = document.getElementById('table-body-below');
-
-    
+ 
+   
     // Extract individual fields from petDetails
-    const { name, age, weight, color, type, daysAtShelter, description} = petDetails;
+    const { name, age, weight, color, type, daysAtShelter, status, description} = petDetails;
  
     // Store each field in separate variables
     const petName = name;
@@ -57,6 +57,7 @@ function displayNewPet(petDetails, petId) {
     const petColor = color;
     const petType = type;
     const petDays = daysAtShelter;
+    const petStatus = status;
     const petDescription = description;
     // Add other variables for additional fields
  
@@ -76,18 +77,24 @@ function displayNewPet(petDetails, petId) {
     typeCell.textContent = petType;
     const daysCell = document.createElement('td');
     daysCell.textContent = petDays;
+ 
+ 
+    const statusCell = document.createElement('td');
+    statusCell.textContent = petStatus;
+ 
+ 
     const descriptionCell = document.createElement('td');
     descriptionCell.textContent = petDescription;
-
+ 
     // Add other cells for additional fields
  
     const button1 = document.createElement('td');
-
+ 
         const image1 = document.createElement('img');
         image1.src = "../images/pen_icon.png"; // Replace with the actual path
         button1.appendChild(image1);
-
-
+ 
+ 
     // Add table cells to the table row
     tableRow.appendChild(nameCell);
     tableRow.appendChild(ageCell);
@@ -95,15 +102,16 @@ function displayNewPet(petDetails, petId) {
     // tableRow.appendChild(colorCell);
     // tableRow.appendChild(typeCell);
     tableRow.appendChild(daysCell);
-    tableRow.appendChild(descriptionCell);
+    // tableRow.appendChild(descriptionCell);
+    tableRow.appendChild(statusCell);
     tableRow.appendChild(button1);
     // Add other cells for additional fields
-
+ 
     tableRow.classList.add('colored-row');
  
     // Append the table row to the table body
     tableBody.appendChild(tableRow);
 }
-
+ 
 // Call the function to display pet data when the page loads
 displayPetData();
