@@ -94,6 +94,7 @@ nav ul li a:hover {
     border-radius: 30px;
     border: 0px solid #6868AE;
     height: 120vh;
+    width: 1530px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0);
     /*margin-left: -30px;*/
 }
@@ -111,9 +112,8 @@ nav ul li a:hover {
 }
 
 .mainpage {
-    width: 1530;
+    width: 1220px;
     padding: 10px;
-
     border-radius: 20px;
     float: right;
     height: 100vh;
@@ -170,11 +170,9 @@ nav ul li a:hover {
 	margin-top: 0px;
 }
 #addPet-section {
-    top: 0px; 
     margin-left: 0px;
     background-color: #FCEEE2;
     border-radius: 20px;
-	float: left;
 	width: 1163px;
     height: 770px;;
 	margin-top: 0px;

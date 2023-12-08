@@ -76,7 +76,7 @@ function addPet() {
         return set(newPetRef, petData);
     }).then(() => {
         window.location.href = 'pets.html';
-        alert('Pet added successfully!');
+        // alert('Pet added successfully!');
         // Optionally, you can redirect or perform additional actions here
     }).catch((error) => {
         console.error('Error adding pet to the database:', error.message);
