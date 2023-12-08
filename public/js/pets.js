@@ -82,7 +82,7 @@ function displayNewPet(petDetails, petId) {
     const statusCell = document.createElement('td');
     statusCell.textContent = petStatus;
 
-    
+
     const descriptionCell = document.createElement('td');
     descriptionCell.textContent = petDescription;
 
