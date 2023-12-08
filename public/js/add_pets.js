@@ -68,6 +68,7 @@ function addPet() {
             weight: petWeight,
             daysAtShelter: petDays,
             description: petDescription,
+            status: 'IN SHELTER',
             imageUrl: downloadURL
         };
   

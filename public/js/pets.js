@@ -48,7 +48,7 @@ function displayNewPet(petDetails, petId) {
 
     
     // Extract individual fields from petDetails
-    const { name, age, weight, color, type, daysAtShelter, description} = petDetails;
+    const { name, age, weight, color, type, daysAtShelter, status, description} = petDetails;
  
     // Store each field in separate variables
     const petName = name;
@@ -57,6 +57,7 @@ function displayNewPet(petDetails, petId) {
     const petColor = color;
     const petType = type;
     const petDays = daysAtShelter;
+    const petStatus = status;
     const petDescription = description;
     // Add other variables for additional fields
  
@@ -76,6 +77,12 @@ function displayNewPet(petDetails, petId) {
     typeCell.textContent = petType;
     const daysCell = document.createElement('td');
     daysCell.textContent = petDays;
+
+
+    const statusCell = document.createElement('td');
+    statusCell.textContent = petStatus;
+
+    
     const descriptionCell = document.createElement('td');
     descriptionCell.textContent = petDescription;
 
@@ -95,7 +102,8 @@ function displayNewPet(petDetails, petId) {
     // tableRow.appendChild(colorCell);
     // tableRow.appendChild(typeCell);
     tableRow.appendChild(daysCell);
-    tableRow.appendChild(descriptionCell);
+    // tableRow.appendChild(descriptionCell);
+    tableRow.appendChild(statusCell);
     tableRow.appendChild(button1);
     // Add other cells for additional fields
 
