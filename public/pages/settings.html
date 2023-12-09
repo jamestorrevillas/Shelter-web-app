@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style_dashboard.css">
-    <script type="module" src="../js/profile.js"></script>
+    <script type="module" src="../js/editProfile.js"></script>
     <title>FurryFound</title>
 </head>
 <body>
@@ -21,7 +21,6 @@
             </ul>
         </nav>
     </header>
-
     <main>
         <div id="dashboard">
             <nav class="left-nav">
@@ -34,24 +33,30 @@
                 <section id="settings_section">
                     <h2>PROFILE</h2>
 
+                    <div id="image-profile">
+                        <img src="../images/image-profile.png" id="profile-pic">
+                        <label for="input-file">Upload Image</label>
+                        <input type="file" accept="image/jpeg, image/png, image/jpg" id="input-file">
+                    </div>
 
-                            <button id="Change-profile-picture">
-                            <img src="../images/icons8-cat-profile-100.png" alt="Profile Picture" id="profile-picture">
-                        </button>
-
-                   <div id="editprofile-text">   
                     <label for="shelter-name-input">Name:</label>
-                    <input type="text" id="shelter-name-input">
-    
+                    <input type="text" id="shelter-name-input" value="" placeholder="">
                     <label for="email-input">Email:</label>
-                    <input type="text" id="email-input">
+                    <input type="text" id="email-input" value="" placeholder="">
                     <br>
-                    <a href="editProfile.html" class="edit-button">Edit Profile</a>
+                    <button id="save-profile-btn">Save Profile</button>
 
-                </div>  
                 </section>
             </div>
         </div>
     </main>
+<script>
+    let profilePic = document.getElementById("profile-pic");
+    let inputFile = document.getElementById("input-file");
+
+    inputFile.onchange = function(){
+        profilePic.src = URL.createObjectURL(inputFile.files[0]);
+    }
+</script>
 </body>
 </html>

@@ -641,8 +641,8 @@ thead th {
 }
 
 #image-profile img{
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 180px;
     border: 3px solid #6868AE;
 
 }
@@ -656,5 +656,19 @@ thead th {
     padding: 10px;
     color: #6868AE;
     border-radius: 5px;
+    cursor: pointer;
+}
+#save-profile-btn{
+    margin-top: 0px;
+    margin-bottom: 20px;
+    text-align: center;
+    display:block;
+    width:150px;
+    background-color: #6868AE;
+    padding: 10px;
+    color: white;
+    border-radius: 5px;
+    margin-left: 60px;
+    border: 3px solid transparent;
     cursor: pointer;
 }
