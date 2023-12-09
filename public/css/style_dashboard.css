@@ -639,48 +639,22 @@ thead th {
     height: 690px;
 	margin-top: 0px;
 }
-#Change-profile-picture img{
-    width: 150px;
-    height: 150px;
-    cursor: pointer;
+
+#image-profile img{
+    width: 200px;
+    height: 200px;
     border: 3px solid #6868AE;
-    opacity: 1;
-}
-#Change-profile-picture {
-    background-color: #FCEEE2;
-	font-weight: bold;
-    color: #6868AE; 
-    padding: 10px; 
-    border: none; 
-    border-radius: 5px; 
-    cursor: pointer; 
-    position: relative;
-    margin-top: -7px;
-    float: left;
-}
-#editprofile-text{
-    margin-top: 260px;
-}
 
-
-#Change-profile-picture:hover {
-    color: #ffffff;
-    border-radius: 20px;
 }
-
-#Change-profile-picture:hover img {
-    opacity: 0;
-}
-/* ........... */
-#Change-profile-picture .hover-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 1; /* Initially hide the second image */
-    transition: all 0.3s; /* Smooth transition for the hover effect */
-}
-#Change-profile-picture:hover .hover-image {
-    opacity: 1; /* Show the second image on hover */
+#image-profile label{
+    margin-top: 0px;
+    margin-bottom: 20px;
+    text-align: center;
+    display:block;
+    width:150px;
+    background-color: white;
+    padding: 10px;
+    color: #6868AE;
+    border-radius: 5px;
+    cursor: pointer;
 }
