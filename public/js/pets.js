@@ -90,9 +90,14 @@ function displayNewPet(petDetails, petId) {
  
     const button1 = document.createElement('td');
  
-        const image1 = document.createElement('img');
-        image1.src = "../images/pen_icon.png"; // Replace with the actual path
-        button1.appendChild(image1);
+    const image1 = document.createElement('img');
+    image1.src = "../images/pen_icon.png"; 
+    
+    image1.addEventListener('click', function() {
+        window.location.href = `editPetDetails.html?id=${petId}&imageURL=${petDetails.imageURL}`;
+    });
+    
+    button1.appendChild(image1);    
  
  
     // Add table cells to the table row

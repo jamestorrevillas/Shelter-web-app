@@ -100,5 +100,5 @@ async function addPet() {
     });
 }
 
-// Event listener for the "ADD PET" button
+
 document.getElementById('addPetBtn').addEventListener('click', addPet);
