@@ -45,7 +45,7 @@ function displayApplicationDetails() {
                 shelterNameInput.value = application.fullname;
                 shelterEmailInput.value = application.email;
                 addressInput.value = application.address;
-                contactNumberInput.value = application.phonenum;
+                contactNumberInput.value = application.phone_number;
 
                 // Append the new set of fields to the document
                 document.body.appendChild(newSetOfFields);

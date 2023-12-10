@@ -409,8 +409,8 @@ button:hover {
 }
 #application-table-top {
     display: inline-block;
-	margin-right: -190px;
-    margin-left: -235px;;
+	margin-right: -200px;
+    margin-left: -200px;
 
 }
 #application-table-top th {
@@ -777,7 +777,7 @@ thead th {
     border-radius: 5px;
 }
 .responsebtn{
-    margin-top: 10px;
+    margin-top: 0px;
     margin-left: 460px;
 }
 
