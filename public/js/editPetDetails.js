@@ -25,6 +25,7 @@ const petId = params.get('id');
 const petRef = ref(database, `pets/${petId}`);
 
 const editPetForm = document.getElementById('editPetForm');
+
 editPetForm.addEventListener('submit', function (event) {
     event.preventDefault();
 

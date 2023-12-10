@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style_dashboard.css">
-    <script type="module" src="../js/settings.js"></script>
+    <script type="module" src="../js/editShelterProfile.js"></script>
     <title>FurryFound</title>
 </head>
 <body>
@@ -32,27 +32,28 @@
          <div class="mainpage2">
              <section id="settings_section">
                 <div id="prof">
-                    
+                    <form id="edit-profile-form">
                     <div id="image-profile">
                         <img src="../images/image-profile.png" id="profile-pic">
                     </div>
             
                     <label for="editShelterName">Name:</label>
-                    <input type="text" id="editShelterName" name="editShelterName" readonly>
+                    <input type="text" id="editShelterName" name="editShelterName" required>
             
                     <label for="editShelterEmail">Email:</label>
-                    <input type="text" id="editShelterEmail" name="editShelterEmail" readonly>
+                    <input type="text" id="editShelterEmail" name="editShelterEmail" required>
             
                     <label for="editAddress">Address:</label>
-                    <input type="text" id="editAddress" name="editAddress" readonly>
+                    <input type="text" id="editAddress" name="editAddress" required>
             
                     <label for="editContactNumber">Contact Number:</label>
-                    <input type="text" id="editContactNumber" name="editContactNumber" readonly>
+                    <input type="text" id="editContactNumber" name="editContactNumber" required>
 
                     <br>
                     <a href="editShelterProfile.html">
-                    <button id="save-profile-btn">EDIT PROFILE</button>
+                    <button id="save-profile-btn">SAVE PROFILE</button>
                     </a>
+                </form>
                 </div>
             </section>
         </div>
