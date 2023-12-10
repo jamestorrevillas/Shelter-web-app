@@ -100,7 +100,17 @@ function displayNewApplication(applicationDetails) {
     tableRow.classList.add('colored-row');
  
     // Append the table row to the table body
-    tableBody.appendChild(tableRow);
+    const rowButton = document.createElement('a');
+    rowButton.href = '#';  // Set the desired URL or use '#' for placeholder
+    rowButton.addEventListener('click', function() {
+        window.location.href = 'response.html';
+       
+    });
+
+    rowButton.appendChild(tableRow);
+
+    // Append the anchor element to the table body
+    tableBody.appendChild(rowButton);
 }
  
 // Call the function to display pet data when the page loads
