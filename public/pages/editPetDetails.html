@@ -36,9 +36,11 @@
                 <section id="editPetDetails_section">
                     <form id="editPetForm" action="pets.html" method="post" enctype="multipart/form-data">
 
-                        <label for="editPetImage">IMAGE:</label>
-                        <input type="file" id="editPetImage" name="editPetImage" accept="image/*" required>
-
+                        <div id="pet-profile">
+                            <img src="../images/default_profile_picture.png" id="petPic"></br>
+    
+                            <button id="change-petpic-btn">Upload Picture</button>
+                        </div>
 
                         <label for="editPetName">NAME:</label>
                         <input type="text" id="editPetName" name="editPetName" required>

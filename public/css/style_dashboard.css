@@ -696,6 +696,8 @@ thead th {
 }
 
 #image-profile img{
+    display: flex;
+    align-items: center;
     margin-left: 500px;
     margin-top: 20px;
     width: 160px;
@@ -735,7 +737,6 @@ thead th {
 #save-profile-btn{
     margin-top: 0px;
     margin-bottom: 20px;
-    text-align: center;
     display:block;
     width:150px;
     background-color: #6868AE;
@@ -743,7 +744,7 @@ thead th {
     font-weight: bold;
     color: white;
     border-radius: 5px;
-    margin-left:300px;
+    margin-left:520px;
     border: 3px solid transparent;
     cursor: pointer;
 }
@@ -853,4 +854,40 @@ thead th {
     border: 1px solid #D9D9D9;
     border-radius: 15px;
     box-sizing: border-box;
+}
+#change-profile-pic-btn{
+    margin-left: 500px;
+    padding: 10px;
+    font-weight: bold;
+    color:white;
+    background-color: #6868AE;
+    font-family:'Intel', sans-serif;
+}
+#backbtn{
+    margin-top: 10px;
+    margin-left: 20px;
+    padding: 5px;
+    font-weight: bold;
+    color:white;
+    background-color: #6868AE;
+    font-family:'Intel', sans-serif;
+}
+#pet-profile img{
+    width:120px;
+    height:120px;
+}
+#pet-profile {
+    margin-left: 285px;
+}
+#pet-profile button{
+    margin-left: 10px;
+}
+#change-petpic-btn{
+    background-color: #6868AE;
+    color:white;
+    margin-bottom: 20px;
+}
+#editPetDetails_section{
+    overflow-y: auto;
+    max-height: 80vh;
 }
