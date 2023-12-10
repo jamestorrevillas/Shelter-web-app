@@ -564,10 +564,14 @@ thead th {
     background-color: #D9D9D9;
     color: #42428D;
     text-transform: uppercase;
+    text-decoration: none !important    ;
     font-weight: thin;
     margin: 5px;
     border-color: white;
 }
+.colored-row td {
+    text-decoration: none;
+  }
 
 #pets-table {
     margin-top: 140px;; /* 1px solid black represents border style, thickness, and color */

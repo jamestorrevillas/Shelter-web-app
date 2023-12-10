@@ -97,7 +97,7 @@ function displayNewApplication(applicationDetails) {
     // tableRow.appendChild(button1);
     // Add other cells for additional fields
  
-    tableRow.classList.add('colored-row');
+ 
  
     // Append the table row to the table body
     const rowButton = document.createElement('a');
@@ -106,7 +106,7 @@ function displayNewApplication(applicationDetails) {
         window.location.href = 'response.html';
        
     });
-
+    tableRow.classList.add('colored-row');
     rowButton.appendChild(tableRow);
 
     // Append the anchor element to the table body
