@@ -32,17 +32,19 @@
     var address = document.getElementById('address').value;
     var contactnum= document.getElementById('contactnum').value;
     
+    var profile_picture = "NOT SET";
 
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             // Signed up 
             const user = userCredential.user;
 
-            set(ref(database, 'shelters/' + sheltername),{
-                user_id: user.uid,
+            set(ref(database, 'shelters/' + user.uid),{
+                shelter_id: user.uid,
                 email: email,
                 shelter_name: sheltername,
-                password: password
+                password: password,
+                profile_picture: profile_picture
             })
             alert('user created!');
         // ...
