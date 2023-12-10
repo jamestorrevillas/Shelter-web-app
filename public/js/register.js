@@ -29,6 +29,9 @@
     var email = document.getElementById('email').value;
     var password = document.getElementById('password').value;
     var sheltername = document.getElementById('sheltername').value;
+    var address = document.getElementById('address').value;
+    var contactnum= document.getElementById('contactnum').value;
+    
     var profile_picture = "NOT SET";
 
     createUserWithEmailAndPassword(auth, email, password)
