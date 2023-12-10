@@ -51,7 +51,7 @@
                 profile_picture: profile_picture
             })
             alert('user created!');
-            window.location.href = 'login.html';
+            // window.location.href = 'login.html';
         })    
         .catch((error) => {
             const errorCode = error.code;
