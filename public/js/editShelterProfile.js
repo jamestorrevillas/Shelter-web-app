@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Function to pre-fill the form with existing user details
         async function preFillForm(userDetails) {
-            document.getElementById('editShelterName').value = userDetails.displayName || '';
+            document.getElementById('editShelterName').value = userDetails.shelter_name || '';
             document.getElementById('editShelterEmail').value = userDetails.email || '';
             // Pre-fill other fields as needed
 

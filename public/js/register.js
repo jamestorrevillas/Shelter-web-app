@@ -29,17 +29,19 @@
     var email = document.getElementById('email').value;
     var password = document.getElementById('password').value;
     var sheltername = document.getElementById('sheltername').value;
+    var profile_picture = "NOT SET";
 
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             // Signed up 
             const user = userCredential.user;
 
-            set(ref(database, 'shelters/' + sheltername),{
-                user_id: user.uid,
+            set(ref(database, 'shelters/' + user.uid),{
+                shelter_id: user.uid,
                 email: email,
                 shelter_name: sheltername,
-                password: password
+                password: password,
+                profile_picture: profile_picture
             })
             alert('user created!');
         // ...
