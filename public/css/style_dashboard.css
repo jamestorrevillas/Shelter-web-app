@@ -418,6 +418,17 @@ button:hover {
     padding-right: 0px; /* Adjust the value as needed */
     padding-left: 40px;
 }
+#history-table-top {
+    display: inline-block;
+	margin-right: -410px;
+    margin-left: -350px;
+
+}
+#history-table-top th {
+    text-align: right;
+    padding-right: 0px; /* Adjust the value as needed */
+    padding-left: 10px;
+}
 thead th {
     float: left;
     margin-top: 0px;
@@ -468,12 +479,12 @@ thead th {
     margin-bottom: 40px;
 }
 #settings_section label {
-	text-align:left;
+	/* text-align:left;
     display: block;
 	font-family:'Intel', sans-serif;
 	color: #6868AE;
 	font-weight: bold;
-    margin-left: 60px;
+    margin-left: 60px; */
     margin-top: 20PX;
     margin-bottom: 8px;
 }
@@ -531,18 +542,20 @@ thead th {
 }
 
 #change-password_section h2 {
+    text-align: center;
     font-family: 'Intel', sans-serif;
     color: #6868AE;
-    margin-left: 60px;
+    margin-top: 40px;
+    margin-left: 40px;
     margin-bottom: 40px;
 }
 #change-password_section label {
-	text-align:left;
+	text-align:center;
     display: block;
 	font-family:'Intel', sans-serif;
 	color: #6868AE;
 	font-weight: bold;
-    margin-left: -160px;    
+    margin-left: 250px;    
     margin-top: 20PX;
     margin-bottom: 8px;
 }
@@ -551,11 +564,13 @@ thead th {
 #change-password_section textarea {
     float: center;
     width: 600px;
+    height:45px;
     padding: 10px;
     margin-bottom: 15px;
-	margin-left: -160px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+	margin-left: 70px;
+    border: 1px solid #D9D9D9;
+    background-color: #D9D9D9;
+    border-radius: 20px;
     box-sizing: border-box;
 }
 
@@ -566,8 +581,9 @@ thead th {
     color: white;
     text-decoration: none;
     border-radius: 5px;
-    margin-top: 10px;
-    margin-left: -160px;
+    margin-top: 80px;
+    margin-left: 285px;
+    font-weight: bold;
     font-family:'Intel', sans-serif;
     border-color: transparent;
 }
@@ -578,6 +594,7 @@ thead th {
     text-decoration: none !important;
     font-weight: thin;
     margin: 5px;
+    padding:10px;
     border-color: white;
 }
 .colored-row td {
@@ -679,7 +696,7 @@ thead th {
 }
 
 #image-profile img{
-    margin-left: 480px;
+    margin-left: 500px;
     margin-top: 20px;
     width: 160px;
     margin-bottom: 0px;
@@ -687,6 +704,20 @@ thead th {
     border: 3px solid #D9D9D9;
 
 }
+.editimage-profile img{
+    margin-left:200px;
+    margin-top: 0px;
+    width: 160px;
+    height: 160px;
+    border: 3px solid #D9D9D9;
+}
+#edit-profile-form img{
+        margin-left: 280px;
+}
+/* #edit-profile-form label{
+    margin-left: 0px;
+    margin-top: 200px;
+} */
 #image-profile label{
     margin-top: 0px;
     margin-bottom: 20px;
@@ -700,6 +731,7 @@ thead th {
     border-radius: 5px;
     cursor: pointer;
 }
+
 #save-profile-btn{
     margin-top: 0px;
     margin-bottom: 20px;
@@ -711,22 +743,52 @@ thead th {
     font-weight: bold;
     color: white;
     border-radius: 5px;
-    margin-left:490px;
+    margin-left:300px;
+    border: 3px solid transparent;
+    cursor: pointer;
+}
+#edit-profile-btn{
+    margin-top: 0px;
+    margin-bottom: 20px;
+    text-align: center;
+    display:block;
+    width:150px;
+    background-color: #6868AE;
+    padding: 10px;
+    font-weight: bold;
+    color: white;
+    border-radius: 5px;
+    margin-left:520px;
     border: 3px solid transparent;
     cursor: pointer;
 }
 #prof label{
-    margin-left: 260px;
-    color: black;
-    text-align: left;
+    margin-left: 20px;
+    color: #6868AE;
+    text-align: center;
 }
 #prof input{
-    margin-left:250px;
+    margin-left:275px;
     border: 3px solid transparent;
     border-radius: 20px;
     background-color: #D9D9D9;
 }
+#editprof{
+    margin-top: -50px;
+}
+#editProf input{
+    margin-left:50px;
+    border: 3px solid #D9D9D9;
+    border-radius: 20px;
+    background-color: #D9D9D9;
+}
 
+#editProf label{
+    margin-bottom: 10px;
+    margin-left: 250px;
+    color: #6868AE;
+    text-align: center;
+}
 #settings-section {
     overflow-y: auto;
     margin-left: 0px;
