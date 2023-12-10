@@ -116,7 +116,29 @@ function displayNewPet(petDetails, petId) {
  
     // Append the table row to the table body
     tableBody.appendChild(tableRow);
+    document.getElementById('search-bar').addEventListener('input', filterTable);
 }
- 
+function filterTable() {
+    const searchInput = document.getElementById('search-bar').value.toLowerCase();
+    const tableRows = document.querySelectorAll('.colored-row');
+
+    tableRows.forEach(row => {
+        const nameCell = row.querySelector('td:nth-child(1)'); // Assuming Full Name is in the third column
+        const statusCell = row.querySelector('td:nth-child(5)'); // Assuming Address is in the first column
+        
+
+        // Check if any of the fields contain the search input
+        const nameMatch = nameCell.textContent.toLowerCase().includes(searchInput);
+        const statusMatch = statusCell.textContent.toLowerCase().includes(searchInput);
+     
+
+        // Show the row if any of the fields match the search
+        if (nameMatch || statusMatch) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none'; // Hide the row if none of the fields match the search
+        }
+    });
+}
 // Call the function to display pet data when the page loads
 displayPetData();

@@ -41,6 +41,7 @@ function displayApplicationData() {
 // Function to display the newly added pet immediately on the page
 // Function to display the newly added pet immediately on the page
 function displayNewApplication(applicationDetails) {
+    
     const tableBody = document.getElementById('table-body-below');
  
     // Extract individual fields from petDetails
@@ -111,7 +112,29 @@ function displayNewApplication(applicationDetails) {
 
     // Append the anchor element to the table body
     tableBody.appendChild(rowButton);
+    document.getElementById('search-bar').addEventListener('input', filterTable);
 }
- 
+function filterTable() {
+    const searchInput = document.getElementById('search-bar').value.toLowerCase();
+    const tableRows = document.querySelectorAll('.colored-row');
+
+    tableRows.forEach(row => {
+        const fullNameCell = row.querySelector('td:nth-child(3)'); // Assuming Full Name is in the third column
+        const addressCell = row.querySelector('td:nth-child(1)'); // Assuming Address is in the first column
+        const emailCell = row.querySelector('td:nth-child(2)'); // Assuming Email is in the second column
+
+        // Check if any of the fields contain the search input
+        const fullNameMatch = fullNameCell.textContent.toLowerCase().includes(searchInput);
+        const addressMatch = addressCell.textContent.toLowerCase().includes(searchInput);
+        const emailMatch = emailCell.textContent.toLowerCase().includes(searchInput);
+
+        // Show the row if any of the fields match the search
+        if (fullNameMatch || addressMatch || emailMatch) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none'; // Hide the row if none of the fields match the search
+        }
+    });
+}
 // Call the function to display pet data when the page loads
 displayApplicationData();   

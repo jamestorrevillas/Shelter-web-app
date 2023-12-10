@@ -398,11 +398,22 @@ button:hover {
 }
 #pets-table-top {
     display: inline-block;
-	margin-right: -200px;
+	margin-right: -20px;
     margin-left: -235px;;
 
 }
 #pets-table-top th {
+    text-align: right;
+    padding-right: 0px; /* Adjust the value as needed */
+    padding-left: 30px;
+}
+#application-table-top {
+    display: inline-block;
+	margin-right: -190px;
+    margin-left: -235px;;
+
+}
+#application-table-top th {
     text-align: right;
     padding-right: 0px; /* Adjust the value as needed */
     padding-left: 40px;
@@ -564,14 +575,14 @@ thead th {
     background-color: #D9D9D9;
     color: #42428D;
     text-transform: uppercase;
-    text-decoration: none !important    ;
+    text-decoration: none !important;
     font-weight: thin;
     margin: 5px;
     border-color: white;
 }
 .colored-row td {
     text-decoration: none;
-  }
+}
 
 #pets-table {
     margin-top: 140px;; /* 1px solid black represents border style, thickness, and color */
@@ -620,6 +631,15 @@ thead th {
     border-radius:30px;
 }
 #pets-table-below td {
+    padding: 8px;
+}
+#application-table-below {
+    table-layout: fixed;
+    width: 100%; /* Adjust as needed */
+    margin-top: 20px;
+    border-radius:30px;
+}
+#application-table-below td {
     padding: 8px;
 }
 #table-body-below {
