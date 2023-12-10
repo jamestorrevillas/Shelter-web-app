@@ -108,6 +108,7 @@ function displayNewApplication(applicationDetails) {
        
     });
     tableRow.classList.add('colored-row');
+    
     rowButton.appendChild(tableRow);
 
     // Append the anchor element to the table body
