@@ -737,3 +737,42 @@ thead th {
     max-height: 100vh;
 	margin-top: 0px;
 }
+#setting-section {
+    overflow-y: auto;
+    margin-left: 0px;
+    background-color: #FCEEE2;
+    border-radius: 20px;
+	width: 1163px;
+    height: 970px;
+    max-height: 100vh;
+	margin-top: 0px;
+}
+#application-details h2{
+    margin-top:50px;
+    text-align: center;
+    color:#6868AE;
+    margin-left:20px;
+}
+#application-details label{
+    margin-left: 20px;
+    margin-top: 30px;
+}
+#application-details input{
+    background-color: #D9D9D9;
+    margin-left: 280px;
+    width:600px;
+}
+#approveButton,
+#disapproveButton{
+    background-color: #6868AE;
+    color:white;
+    padding:20px 30px;
+    margin-right: 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.responsebtn{
+    margin-top: 50px;
+    margin-left: 460px;
+}

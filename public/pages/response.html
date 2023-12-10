@@ -31,9 +31,29 @@
                 </ul>
             </nav>
          <div class="mainpage2">
-             <section id="settings_section">
+             <div id="setting-section">
+                <section id="application-details">
+                    <h2>APPLICATION DETAILS</h2>
+                    <label for="editShelterName">Name:</label>
+                    <input type="text" id="editShelterName" name="editShelterName" required>
+            
+                    <label for="editShelterEmail">Email:</label>
+                    <input type="text" id="editShelterEmail" name="editShelterEmail" required>
+            
+                    <label for="editAddress">Address:</label>
+                    <input type="text" id="editAddress" name="editAddress" required>
+            
+                    <label for="editContactNumber">Contact Number:</label>
+                    <input type="text" id="editContactNumber" name="editContactNumber" required>
 
-            </section>
+                    <div class="responsebtn">
+                        <button id="approveButton" onclick="approveApplication()">Approve</button>
+                        <button id="disapproveButton" onclick="disapproveApplication()">Disapprove</button>
+                        
+                    </div>
+
+                </section>
+            </div>
         </div>
      </div>
  </main>
