@@ -45,13 +45,13 @@ function displayNewApplication(applicationDetails) {
     const tableBody = document.getElementById('table-body-below');
  
     // Extract individual fields from petDetails
-    const {address, email, fullname, phonenum, reason} = applicationDetails;
+    const {address, email, fullname, phone_number, reason} = applicationDetails;
  
     // Store each field in separate variables
     const adopterAddress = address;
     const adopterEmail = email;
     const adopterFullname = fullname;
-    const adopterPhoneNum = phonenum;
+    const adopterPhoneNum = phone_number;
     const adopterReason = reason;
     
  
