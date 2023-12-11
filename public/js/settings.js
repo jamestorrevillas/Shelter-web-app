@@ -28,6 +28,7 @@ let loggedInShelterRef;
 // Function to get the logged-in user's shelter ID
 function getLoggedInShelterId() {
     const user = auth.currentUser;
+    
     return user ? user.uid : null;
 }
 

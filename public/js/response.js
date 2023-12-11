@@ -1,8 +1,10 @@
-// Import the necessary Firebase functions
+// Import the functions you need from the Firebase SDK
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
-import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+import { getDatabase, ref, onValue, get } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
 
-// Replace with your actual Firebase configuration
+// Your web app's Firebase configuration
+// Replace this with your actual Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyCBuYPKdZmVNe8BNMClJlNcK_ZkZ89qh1Q",
     authDomain: "furry-found.firebaseapp.com",
@@ -13,60 +15,128 @@ const firebaseConfig = {
     appId: "1:283444505486:web:b0f69ce6e33a28aa46d2df",
     measurementId: "G-8W6BBZYCHZ"
 };
-// Initialize Firebase
+
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
+const auth = getAuth();
 
-// Get a reference to the 'applicationform' node in the database
-const applicationformRef = ref(database, 'applicationform');
+const adoptersRef = ref(database, 'adopters');
+const sheltersRef = ref(database, 'shelters');
+const applicationFormRef = ref(database, 'applicationform');
 
-// Function to display application details in the input fields
-function displayApplicationDetails() {
-    
-    const shelterNameInput = document.getElementById('ShelterName');
-    const shelterEmailInput = document.getElementById('ShelterEmail');
-    const addressInput = document.getElementById('Address');
-    const contactNumberInput = document.getElementById('ContactNumber');
+function displayApplicationsData() {
+    onValue(applicationFormRef, (snapshot) => {
+        const applicationsData = snapshot.val();
+        const applicationsTableBody = document.getElementById('table-body-below');
+        applicationsTableBody.innerHTML = '';
 
-    // Fetch the application details from the database
-    onValue(applicationformRef, (snapshot) => {
-        const applicationData = snapshot.val();
+        const loggedInShelterId = getLoggedInShelterId();
 
-        // Check if the application details exist
-        if (applicationData) {
-            // Iterate over each application
-            for (const applicationKey in applicationData) {
-                const application = applicationData[applicationKey];
+        for (const applicationId in applicationsData) {
+            if (Object.hasOwnProperty.call(applicationsData, applicationId)) {
+                const application = applicationsData[applicationId];
 
-                // Create a new set of input fields for each application
-                const newSetOfFields = document.createElement('div');
-
-                // Use the application data to populate the input fields
-                shelterNameInput.value = application.fullname;
-                shelterEmailInput.value = application.email;
-                addressInput.value = application.address;
-                contactNumberInput.value = application.phone_number;
-
-                // Append the new set of fields to the document
-                document.body.appendChild(newSetOfFields);
+                if (application.shelter_id && application.shelter_id === loggedInShelterId && application.status !== 'completed') {
+                    displayApplicationDetails(application, applicationId);
+                }
             }
-        } else {
-            console.error('Application details not found');
         }
     });
 }
 
-// Function to be called when the 'Approve' button is clicked
-function approveApplication() {
-    // Add logic to update the application status or perform other actions
-    alert('Application approved!');
+function getLoggedInShelterId() {
+    const user = auth.currentUser;
+
+    return user ? user.uid : null;
 }
 
-// Function to be called when the 'Disapprove' button is clicked
-function disapproveApplication() {
-    // Add logic to update the application status or perform other actions
-    alert('Application disapproved!');
+async function displayApplicationDetails(application, applicationId) {
+    const tableBody = document.getElementById('table-body-below');
+
+    // Fetch adopter details
+    const adopterDetails = await fetchUserData(adoptersRef, application.adopter_id);
+
+    // Extract adopter details
+    const { first_name, last_name, phone_number, email, address } = adopterDetails;
+
+    // Extract other application details
+    const { reason } = application;
+
+    const tableRow = document.createElement('tr');
+
+    const adopterNameCell = document.createElement('td');
+    adopterNameCell.textContent = first_name + ' ' + last_name;
+
+    const contactNumberCell = document.createElement('td');
+    contactNumberCell.textContent = phone_number;
+
+    const emailCell = document.createElement('td');
+    emailCell.textContent = email;
+
+    const addressCell = document.createElement('td');
+    addressCell.textContent = address;
+
+    const reasonCell = document.createElement('td');
+    reasonCell.textContent = reason;
+
+    // Add table cells to the table row
+    tableRow.appendChild(addressCell);
+    tableRow.appendChild(emailCell);
+    tableRow.appendChild(adopterNameCell);
+    tableRow.appendChild(contactNumberCell);
+    tableRow.appendChild(reasonCell);
+
+    tableRow.classList.add('colored-row');
+
+    // Create an anchor element
+    const rowAnchor = document.createElement('a');
+    rowAnchor.href = '#';  // Set the desired URL or use '#' for placeholder
+    rowAnchor.addEventListener('click', function() {
+        // Handle click event, you can navigate to another page or perform any action here
+        window.location.href = 'response.html';
+    });
+
+    // Append the table row to the anchor element
+    rowAnchor.appendChild(tableRow);
+
+    // Append the anchor element to the table body
+    tableBody.appendChild(rowAnchor);
+    document.getElementById('search-bar').addEventListener('input', filterTable);
 }
 
-// Call the function to display application details when the page loads
-displayApplicationDetails();
+
+// Function to fetch user data from a specific node in the database
+async function fetchUserData(nodeRef, userId) {
+    try {
+        const snapshot = await get(nodeRef);
+        const userData = snapshot.child(userId).val();
+        if (userData) {
+            return userData;
+        } else {
+            throw new Error("User not found");
+        }
+    } catch (error) {
+        throw error;
+    }
+}
+
+function filterTable() {
+    const searchInput = document.getElementById('search-bar').value.toLowerCase();
+    const tableRows = document.querySelectorAll('.colored-row');
+
+    tableRows.forEach(row => {
+        const adopterNameCell = row.querySelector('td:nth-child(1)');
+        const statusCell = row.querySelector('td:nth-child(5)');
+
+        const adopterNameMatch = adopterNameCell.textContent.toLowerCase().includes(searchInput);
+        const statusMatch = statusCell.textContent.toLowerCase().includes(searchInput);
+
+        if (adopterNameMatch || statusMatch) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+}
+
+displayApplicationsData();

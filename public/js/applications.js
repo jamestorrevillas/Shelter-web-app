@@ -1,7 +1,8 @@
 // Import the functions you need from the Firebase SDK
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
-import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
- 
+import { getDatabase, ref, onValue, get } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
+
 // Your web app's Firebase configuration
 // Replace this with your actual Firebase configuration
 const firebaseConfig = {
@@ -14,128 +15,128 @@ const firebaseConfig = {
     appId: "1:283444505486:web:b0f69ce6e33a28aa46d2df",
     measurementId: "G-8W6BBZYCHZ"
 };
- 
+
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
- 
-// Get reference to the 'pets' node in the database
-const applicationformRef = ref(database, 'applicationform');
- 
-// Function to display pet data in a table format
-function displayApplicationData() {
-    onValue(applicationformRef, (snapshot) => {
-        const applicationData = snapshot.val();
-        const applicationTableBody = document.getElementById('table-body-below');
-        applicationTableBody.innerHTML = '';
- 
-        for (const fullname in applicationData) {
-            if (Object.hasOwnProperty.call(applicationData, fullname)) {
-                const application = applicationData[fullname];
-                displayNewApplication(application, fullname);
+const auth = getAuth();
+
+const adoptersRef = ref(database, 'adopters');
+const sheltersRef = ref(database, 'shelters');
+const applicationFormRef = ref(database, 'applicationform');
+
+function displayApplicationsData() {
+    onValue(applicationFormRef, (snapshot) => {
+        const applicationsData = snapshot.val();
+        const applicationsTableBody = document.getElementById('table-body-below');
+        applicationsTableBody.innerHTML = '';
+
+        const loggedInShelterId = getLoggedInShelterId();
+
+        for (const applicationId in applicationsData) {
+            if (Object.hasOwnProperty.call(applicationsData, applicationId)) {
+                const application = applicationsData[applicationId];
+
+                if (application.shelter_id && application.shelter_id === loggedInShelterId && application.status !== 'completed') {
+                    displayApplicationDetails(application, applicationId);
+                }
             }
         }
- 
     });
 }
- 
-// Function to display the newly added pet immediately on the page
-// Function to display the newly added pet immediately on the page
-function displayNewApplication(applicationDetails) {
-    
-    const tableBody = document.getElementById('table-body-below');
- 
-    // Extract individual fields from petDetails
-    const {address, email, fullname, phone_number, reason} = applicationDetails;
- 
-    // Store each field in separate variables
-    const adopterAddress = address;
-    const adopterEmail = email;
-    const adopterFullname = fullname;
-    const adopterPhoneNum = phone_number;
-    const adopterReason = reason;
-    
- 
-    // Create HTML elements for the new pet
-    const tableRow = document.createElement('tr');
- 
-    // Create table cells for each pet detail
-    const addressCell = document.createElement('td');
-    addressCell.textContent = adopterAddress;
-    const emailCell = document.createElement('td');
-    emailCell.textContent = adopterEmail;
-    const fullnameCell = document.createElement('td');
-    fullnameCell.textContent = adopterFullname;
-    const phonenumCell = document.createElement('td');
-    phonenumCell.textContent = adopterPhoneNum;
-    const reasonCell = document.createElement('td');
-    reasonCell.textContent = adopterReason;
-    
-    // const daysCell = document.createElement('td');
-    // daysCell.textContent = petDays;
-    // const statusCell = document.createElement('td');
-    // statusCell.textContent = petStatus;
-    // const descriptionCell = document.createElement('td');
-    // descriptionCell.textContent = petDescription;
 
-    // const button1 = document.createElement('td');
- 
-    // const image1 = document.createElement('img');
-    // image1.src = "../images/pen_icon.png"; 
-    
-    // image1.addEventListener('click', function() {
-    //     window.location.href = `editPetDetails.html?id=${petId}&imageURL=${petDetails.imageURL}`;
-    // });
-    
-    // button1.appendChild(image1);    
- 
- 
+function getLoggedInShelterId() {
+    const user = auth.currentUser;
+
+    return user ? user.uid : null;
+}
+
+async function displayApplicationDetails(application, applicationId) {
+    const tableBody = document.getElementById('table-body-below');
+
+    // Fetch adopter details
+    const adopterDetails = await fetchUserData(adoptersRef, application.adopter_id);
+
+    // Extract adopter details
+    const { first_name, last_name, phone_number, email, address } = adopterDetails;
+
+    // Extract other application details
+    const { reason } = application;
+
+    const tableRow = document.createElement('tr');
+
+    const adopterNameCell = document.createElement('td');
+    adopterNameCell.textContent = first_name + ' ' + last_name;
+
+    const contactNumberCell = document.createElement('td');
+    contactNumberCell.textContent = phone_number;
+
+    const emailCell = document.createElement('td');
+    emailCell.textContent = email;
+
+    const addressCell = document.createElement('td');
+    addressCell.textContent = address;
+
+    const reasonCell = document.createElement('td');
+    reasonCell.textContent = reason;
+
     // Add table cells to the table row
     tableRow.appendChild(addressCell);
     tableRow.appendChild(emailCell);
-    tableRow.appendChild(fullnameCell);
-    tableRow.appendChild(phonenumCell);
-    tableRow.appendChild(reasonCell);
-    // tableRow.appendChild(button1);
-    // Add other cells for additional fields
- 
- 
- 
-    // Append the table row to the table body
-    const rowButton = document.createElement('a');
-    rowButton.href = '#';  // Set the desired URL or use '#' for placeholder
-    rowButton.addEventListener('click', function() {
-        window.location.href = 'response.html';
-       
-    });
+    tableRow.appendChild(adopterNameCell);
+    tableRow.appendChild(contactNumberCell);
+    // tableRow.appendChild(reasonCell);
+
     tableRow.classList.add('colored-row');
-    
-    rowButton.appendChild(tableRow);
+
+    // Create an anchor element
+    const rowAnchor = document.createElement('a');
+    rowAnchor.href = '#';  // Set the desired URL or use '#' for placeholder
+    rowAnchor.addEventListener('click', function() {
+        // Handle click event, you can navigate to another page or perform any action here
+        window.location.href = 'response.html';
+    });
+
+    // Append the table row to the anchor element
+    rowAnchor.appendChild(tableRow);
 
     // Append the anchor element to the table body
-    tableBody.appendChild(rowButton);
+    tableBody.appendChild(rowAnchor);
     document.getElementById('search-bar').addEventListener('input', filterTable);
 }
+
+
+// Function to fetch user data from a specific node in the database
+async function fetchUserData(nodeRef, userId) {
+    try {
+        const snapshot = await get(nodeRef);
+        const userData = snapshot.child(userId).val();
+        if (userData) {
+            return userData;
+        } else {
+            throw new Error("User not found");
+        }
+    } catch (error) {
+        throw error;
+    }
+}
+
 function filterTable() {
     const searchInput = document.getElementById('search-bar').value.toLowerCase();
     const tableRows = document.querySelectorAll('.colored-row');
 
     tableRows.forEach(row => {
-        const fullNameCell = row.querySelector('td:nth-child(3)'); // Assuming Full Name is in the third column
-        const addressCell = row.querySelector('td:nth-child(1)'); // Assuming Address is in the first column
-        const emailCell = row.querySelector('td:nth-child(2)'); // Assuming Email is in the second column
+        const adopterNameCell = row.querySelector('td:nth-child(1)');
+        const statusCell = row.querySelector('td:nth-child(5)');
 
-        // Check if any of the fields contain the search input
-        const fullNameMatch = fullNameCell.textContent.toLowerCase().includes(searchInput);
-        const addressMatch = addressCell.textContent.toLowerCase().includes(searchInput);
-        const emailMatch = emailCell.textContent.toLowerCase().includes(searchInput);
+        const adopterNameMatch = adopterNameCell.textContent.toLowerCase().includes(searchInput);
+        const statusMatch = statusCell.textContent.toLowerCase().includes(searchInput);
 
-        // Show the row if any of the fields match the search
-        if (fullNameMatch || addressMatch || emailMatch) {
+        if (adopterNameMatch || statusMatch) {
             row.style.display = '';
         } else {
-            row.style.display = 'none'; // Hide the row if none of the fields match the search
+            row.style.display = 'none';
         }
     });
 }
-// Call the function to display pet data when the page loads
-displayApplicationData();   
+
+displayApplicationsData();

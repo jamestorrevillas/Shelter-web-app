@@ -108,7 +108,7 @@ async function doesPetExist(petName, shelterId) {
     if (snapshot.exists()) {
         const pets = snapshot.val();
         return Object.values(pets).some((pet) => {
-            return pet.name.toLowerCase() === petName.toLowerCase() &&
+            return pet.name && pet.name.toLowerCase() === petName.toLowerCase() &&
                 pet.shelterId === shelterId;
         });
     }

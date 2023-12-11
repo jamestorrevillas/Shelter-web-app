@@ -34,7 +34,7 @@ function displayPetData() {
             if (Object.hasOwnProperty.call(petsData, petId)) {
                 const pet = petsData[petId];
 
-                if (pet.shelter_id && pet.shelter_id === loggedInShelterId) {
+                if (pet.shelter_id && pet.shelter_id === loggedInShelterId && pet.status !== 'completed' && pet.status !== 'ARCHIVED') {
                     displayNewPet(pet, petId);
                 }
             }
