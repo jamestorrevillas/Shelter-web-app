@@ -1,6 +1,6 @@
         // Import the functions you need from the Firebase SDK
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
-        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+        import { getDatabase, ref, onValue, update } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
         import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
 
         // Your web app's Firebase configuration
@@ -96,7 +96,7 @@
             image1.src = "../images/icons8-restore-58.png"; 
             
             image1.addEventListener('click', function() {
-                window.location.href = `editPetDetails.html?id=${petId}&imageURL=${petDetails.imageURL}`;
+                archivePet(petId);
             });
             
             button1.appendChild(image1);    
@@ -157,6 +157,19 @@
                 daysCell.textContent = daysAtShelter;
             });
         }
+
+        function archivePet(petId) {
+            const petRef = ref(database, `pets/${petId}`);
+            update(petRef, { status: 'IN SHELTER' })
+                .then(() => {
+                    console.log('Pet archived successfully!');
+                    window.location.href = `archive.html?id=${petId}&imageURL=${petDetails.imageURL}`;
+                })
+                .catch((error) => {
+                    console.error('Error archiving pet:', error.message);
+                });
+        }
+
         updateDaysAtShelter();
         setInterval(updateDaysAtShelter, 86400000);
         displayPetData();

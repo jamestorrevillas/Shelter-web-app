@@ -36,7 +36,7 @@ function displayApplicationsData() {
             if (Object.hasOwnProperty.call(applicationsData, applicationId)) {
                 const application = applicationsData[applicationId];
 
-                if (application.shelter_id && application.shelter_id === loggedInShelterId && application.status !== 'completed') {
+                if (application.shelter_id && application.shelter_id === loggedInShelterId && application.status !== 'COMPLETED') {
                     displayApplicationDetails(application, applicationId);
                 }
             }

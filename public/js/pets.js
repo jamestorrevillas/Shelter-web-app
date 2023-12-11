@@ -34,7 +34,7 @@
                 if (Object.hasOwnProperty.call(petsData, petId)) {
                     const pet = petsData[petId];
 
-                if (pet.shelter_id && pet.shelter_id === loggedInShelterId && pet.status !== 'completed' && pet.status !== 'ARCHIVED') {
+                if (pet.shelter_id && pet.shelter_id === loggedInShelterId && pet.status !== 'COMPLETED' && pet.status !== 'ARCHIVED') {
                     displayNewPet(pet, petId);
                 }
             }
@@ -164,6 +164,7 @@
             daysCell.textContent = daysAtShelter;
         });
     }
+
     function archivePet(petId) {
         const petRef = ref(database, `pets/${petId}`);
         update(petRef, { status: 'ARCHIVED' })
