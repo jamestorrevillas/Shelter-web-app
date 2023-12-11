@@ -1,6 +1,6 @@
     // Import the functions you need from the Firebase SDK
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
-    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+    import { getDatabase, ref, onValue, update } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
     import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
 
     // Your web app's Firebase configuration
@@ -34,7 +34,7 @@
                 if (Object.hasOwnProperty.call(petsData, petId)) {
                     const pet = petsData[petId];
 
-                    if (pet.shelter_id && pet.shelter_id === loggedInShelterId) {
+                    if (pet.shelter_id && pet.shelter_id === loggedInShelterId  && pet.status !== 'completed' && pet.status !=='ARCHIVED') {
                         
                         displayNewPet(pet, petId);
                     }
@@ -91,6 +91,7 @@
                     const button1 = document.createElement('td');
                 
                     const image1 = document.createElement('img');
+
                     image1.src = "../images/pen_icon.png"; 
                     
                     image1.addEventListener('click', function() {
@@ -98,6 +99,15 @@
                     });
                     
                     button1.appendChild(image1);    
+
+                    const button2 = document.createElement('td');
+                    const image2 = document.createElement('img');
+                    image2.src = "../images/icons8-archive-50.png"; 
+                    
+                    image2.addEventListener('click', function() {
+                        archivePet(petId);
+                    });
+                    button2.appendChild(image2);    
 
         // Add table cells to the table row
         tableRow.appendChild(nameCell);
@@ -109,6 +119,7 @@
         tableRow.appendChild(daysAtShelterCell);
         tableRow.appendChild(statusCell);
         tableRow.appendChild(button1);
+        tableRow.appendChild(button2);
         // tableRow.appendChild(descriptionCell);
 
         tableRow.classList.add('colored-row');
@@ -154,6 +165,18 @@
             daysCell.textContent = daysAtShelter;
         });
     }
+    function archivePet(petId) {
+        const petRef = ref(database, `pets/${petId}`);
+        update(petRef, { status: 'ARCHIVED' })
+            .then(() => {
+                console.log('Pet archived successfully!');
+                window.location.href = `pets.html?id=${petId}&imageURL=${petDetails.imageURL}`;
+            })
+            .catch((error) => {
+                console.error('Error archiving pet:', error.message);
+            });
+    }
+
     updateDaysAtShelter();
     setInterval(updateDaysAtShelter, 86400000);
     displayPetData();

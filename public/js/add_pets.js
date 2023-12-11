@@ -2,7 +2,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
 import { getDatabase, ref, push, set, get } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
 import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-storage.js";
-import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
+import { getAuth} from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -111,8 +111,8 @@ async function doesPetExist(petName, shelterId) {
     if (snapshot.exists()) {
         const pets = snapshot.val();
         return Object.values(pets).some((pet) => {
-            return pet.name.toLowerCase() === petName.toLowerCase() &&
-                pet.shelterId === shelterId;
+            // return pet.name.toLowerCase() === petName.toLowerCase() &&
+            //     pet.shelterId === shelterId;
         });
     }
 

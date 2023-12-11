@@ -38,8 +38,6 @@ function displayApplicationData() {
     });
 }
  
-// Function to display the newly added pet immediately on the page
-// Function to display the newly added pet immediately on the page
 function displayNewApplication(applicationDetails) {
     
     const tableBody = document.getElementById('table-body-below');
@@ -120,10 +118,9 @@ function filterTable() {
     const tableRows = document.querySelectorAll('.colored-row');
 
     tableRows.forEach(row => {
-        const fullNameCell = row.querySelector('td:nth-child(3)'); // Assuming Full Name is in the third column
-        const addressCell = row.querySelector('td:nth-child(1)'); // Assuming Address is in the first column
-        const emailCell = row.querySelector('td:nth-child(2)'); // Assuming Email is in the second column
-
+        const fullNameCell = row.querySelector('td:nth-child(3)'); 
+        const addressCell = row.querySelector('td:nth-child(1)'); 
+        const emailCell = row.querySelector('td:nth-child(2)'); 
         // Check if any of the fields contain the search input
         const fullNameMatch = fullNameCell.textContent.toLowerCase().includes(searchInput);
         const addressMatch = addressCell.textContent.toLowerCase().includes(searchInput);
