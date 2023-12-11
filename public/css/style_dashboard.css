@@ -398,7 +398,7 @@ button:hover {
 }
 #pets-table-top {
     display: inline-block;
-	margin-right: -20px;
+	margin-right: -60px;
     margin-left: -235px;;
 
 }
@@ -420,7 +420,7 @@ button:hover {
 }
 #history-table-top {
     display: inline-block;
-	margin-right: -410px;
+	margin-right: -310px;
     margin-left: -350px;
 
 }
@@ -429,6 +429,17 @@ button:hover {
     padding-right: 0px; /* Adjust the value as needed */
     padding-left: 10px;
 }
+/* #history-table-below {
+    display: inline-block;
+	margin-right: -410px;
+    margin-left: -350px;
+
+}
+#history-table-below th {
+    text-align: right;
+    padding-right: 0px; /* Adjust the value as needed */
+    padding-left: 10px;
+} */
 thead th {
     float: left;
     margin-top: 0px;
@@ -659,6 +670,23 @@ thead th {
 #application-table-below td {
     padding: 8px;
 }
+#history-table-below {
+    table-layout: fixed;
+    width: 100%; /* Adjust as needed */
+    margin-top: 20px;
+    border-radius:30px;
+}
+#history-table-below td {
+    padding: 8px;
+}
+#table-body-below td:nth-child(3) {
+    display: flex;
+    border-radius: 0px; 
+    margin-left: 50px;
+    padding-top: 20px;
+}
+
+
 #table-body-below {
     display: block;
     /* max-height: 100%;  */

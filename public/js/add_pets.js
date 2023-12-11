@@ -76,6 +76,8 @@ async function addPet() {
         // Generate a unique ID for the pet
         const petId = push(ref(database, 'pets')).key;
 
+        const currentDate = new Date();
+        const daysAtShelter = Math.floor((currentDate - new Date(petDays)) / (24 * 60 * 60 * 1000));
         // Save pet data to the Firebase Realtime Database
         const petData = {
             pet_id: petId,
@@ -85,6 +87,7 @@ async function addPet() {
             color: petColor,
             weight: petWeight,
             dateArrived: petDays,
+            daysAtShelter: daysAtShelter,
             description: petDescription,
             imageUrl: downloadURL,
             status: petStatus,

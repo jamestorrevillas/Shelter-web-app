@@ -56,17 +56,17 @@ function displayApplicationDetails() {
     });
 }
 
-// Function to be called when the 'Approve' button is clicked
-function approveApplication() {
-    // Add logic to update the application status or perform other actions
-    alert('Application approved!');
-}
 
-// Function to be called when the 'Disapprove' button is clicked
-function disapproveApplication() {
-    // Add logic to update the application status or perform other actions
-    alert('Application disapproved!');
-}
+// function approveApplication() {
 
-// Call the function to display application details when the page loads
+//     alert('Application approved!');
+// }
+
+
+// function disapproveApplication() {
+
+//     alert('Application disapproved!');
+// }
+
+
 displayApplicationDetails();
