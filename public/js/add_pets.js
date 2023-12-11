@@ -84,7 +84,7 @@ async function addPet() {
             age: petAge,
             color: petColor,
             weight: petWeight,
-            days_at_shelter: petDays,
+            dateArrived: petDays,
             description: petDescription,
             imageUrl: downloadURL,
             status: petStatus,

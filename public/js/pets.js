@@ -51,14 +51,14 @@ function getLoggedInShelterId() {
 function displayNewPet(petDetails, petId) {
     const tableBody = document.getElementById('table-body-below');
 
-    const { name, age, weight, color, type, days_at_shelter, status, description } = petDetails;
+    const { name, age, weight, color, type, dateArrived, status, description } = petDetails;
 
     const petName = name;
     const petAge = age;
     const petWeight = weight;
     const petColor = color;
     const petType = type;
-    const petDays = days_at_shelter;
+    const petDays = dateArrived;
     const petStatus = status;
     const petDescription = description;
 
