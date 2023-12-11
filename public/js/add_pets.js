@@ -2,7 +2,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
 import { getDatabase, ref, push, set, get } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
 import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-storage.js";
-import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
+import { getAuth} from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -76,6 +76,8 @@ async function addPet() {
         // Generate a unique ID for the pet
         const petId = push(ref(database, 'pets')).key;
 
+        const currentDate = new Date();
+        const daysAtShelter = Math.floor((currentDate - new Date(petDays)) / (24 * 60 * 60 * 1000));
         // Save pet data to the Firebase Realtime Database
         const petData = {
             pet_id: petId,
@@ -84,7 +86,8 @@ async function addPet() {
             age: petAge,
             color: petColor,
             weight: petWeight,
-            days_at_shelter: petDays,
+            dateArrived: petDays,
+            daysAtShelter: daysAtShelter,
             description: petDescription,
             imageUrl: downloadURL,
             status: petStatus,

@@ -398,11 +398,22 @@ button:hover {
 }
 #pets-table-top {
     display: inline-block;
-	margin-right: -20px;
-    margin-left: -235px;;
+	margin-right: 35px;
+    margin-left: -235px;
 
 }
 #pets-table-top th {
+    text-align: right;
+    padding-right: 0px; /* Adjust the value as needed */
+    padding-left: 30px;
+}
+#archive-table-top {
+    display: inline-block;
+	margin-right: 35px;
+    margin-left: -235px;
+
+}
+#archive-table-top th {
     text-align: right;
     padding-right: 0px; /* Adjust the value as needed */
     padding-left: 30px;
@@ -413,6 +424,7 @@ button:hover {
     margin-left: -200px;
 
 }
+
 #application-table-top th {
     text-align: right;
     padding-right: 0px; /* Adjust the value as needed */
@@ -420,7 +432,7 @@ button:hover {
 }
 #history-table-top {
     display: inline-block;
-	margin-right: -410px;
+	margin-right: -310px;
     margin-left: -350px;
 
 }
@@ -429,6 +441,17 @@ button:hover {
     padding-right: 0px; /* Adjust the value as needed */
     padding-left: 10px;
 }
+/* #history-table-below {
+    display: inline-block;
+	margin-right: -410px;
+    margin-left: -350px;
+
+}
+#history-table-below th {
+    text-align: right;
+    padding-right: 0px; /* Adjust the value as needed */
+    /* padding-left: 10px;
+} */ 
 thead th {
     float: left;
     margin-top: 0px;
@@ -650,6 +673,15 @@ thead th {
 #pets-table-below td {
     padding: 8px;
 }
+#archive-table-below {
+    table-layout: fixed;
+    width: 100%; /* Adjust as needed */
+    margin-top: 20px;
+    border-radius:30px;
+}
+#archive-table-below td {
+    padding: 8px;
+}
 #application-table-below {
     table-layout: fixed;
     width: 100%; /* Adjust as needed */
@@ -659,6 +691,23 @@ thead th {
 #application-table-below td {
     padding: 8px;
 }
+#history-table-below {
+    table-layout: fixed;
+    width: 100%; /* Adjust as needed */
+    margin-top: 20px;
+    border-radius:30px;
+}
+#history-table-below td {
+    padding: 8px;
+}
+#table-body-below td:nth-child(3) {
+    display: flex;
+    border-radius: 0px; 
+    margin-left: 50px;
+    padding-top: 20px;
+}
+
+
 #table-body-below {
     display: block;
     /* max-height: 100%;  */
@@ -684,7 +733,20 @@ thead th {
     height: 30px; 
     cursor: pointer;/* Replace with your desired height */
 }
+#archive-table-below img {
+    width: 30px; /* Replace with your desired width */
+    height: 30px; 
+    cursor: pointer;/* Replace with your desired height */
+}
+#pets-table-below td:nth-child(6){
+    margin-left:0px;
+    margin-right:-100px;
+}
 
+#pets-table-below td:nth-child(7){
+    margin-left:0px;
+    margin-right: 0px   ;
+}
 #editPetDetails_section {
     top: 0px; 
     margin-left: 0px; 

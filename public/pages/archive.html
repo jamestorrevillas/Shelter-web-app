@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../css/style_dashboard.css">
-    <script type="module" src="../js/applications.js"></script>
+    <script type="module" src="../js/archive.js"></script>
 
     <title>FurryFound</title>
 </head>
@@ -28,36 +28,42 @@
             <nav class="left-nav">
                 <ul>
                     <li><a href="pets.html" >Pets</a></li>
-                    <li><a href="applications.html" id="left-nav-current">Applications</a></li>
+                    <li><a href="applications.html">Applications</a></li>
                     <li><a href="History.html" >History</a></li>
-                    <li><a href="archive.html" >Archive</a></li>
-               
+                    <li><a href="archive.html" id="left-nav-current">Archive</a></li>
+                </ul>
                 </ul>
             </nav>
             <div class="mainpage">
                 <section id="top-section">
-                   
+                    <a href="addPet.html">
+                        <button id="add-pet-button">
+                            <img src="../images/pet_icon.png" alt="Add Pet Image" id="pet-icon">
+                            <br> 
+                            Add Pet For Adoption
+                        </button>
                     </a>
                     <input type="text" id="search-bar" placeholder="Search...">
                 </section>
                 <section id="below-section">
-                    <section id="topbelow-section">
-                        <table id="application-table-top"> 
+                    <section id="topbelow-section"> 
+                        <table id="archive-table-top"> 
                             <thead>
                                 <tr>
-                                    <th>ADDRESS</th>
-                                    <th>EMAIL</th>
                                     <th>NAME</th>
-                                    <th>CONTACT NUMBER</th>
+                                    <th>AGE</th>
+                                    <th>WEIGHT</th>
+                                    <th>DAYS</th>   
+                                    <th>STATUS</th>
                                 </tr>
                             </thead>
                         </table>
                     </section>
                     <section id="belowbelow-section">
-                        <table id="application-table-below"> 
+                        <table id="archive-table-below"> <!-- Changed ID to avoid conflicts -->
                             <tbody id="table-body-below">
                                 <tr>
-                                   
+                                    <!-- Your data will be added here dynamically -->
                                 </tr>
                             </tbody>
                         </table>
