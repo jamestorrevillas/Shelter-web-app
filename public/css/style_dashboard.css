@@ -93,7 +93,8 @@ nav ul li a:hover {
     background-color: #6868AE;
     border-radius: 30px;
     border: 0px solid #6868AE;
-    height: 120vh;
+    height: 100vh;
+    width: 1530px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0);
     /*margin-left: -30px;*/
 }
@@ -111,13 +112,26 @@ nav ul li a:hover {
 }
 
 .mainpage {
-    width: 1530;
-    padding: 10px;
-
-    border-radius: 20px;
-    float: right;
-    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
     overflow-y: auto;
+    width: 1220px;
+    padding: 10px;
+    border-radius: 20px;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+.mainpage2 {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow-y: auto;
+    width: 1220px;
+    padding: 10px;
+    border-radius: 20px;
+    height: 80vh;
     box-sizing: border-box;
 }
 
@@ -170,13 +184,13 @@ nav ul li a:hover {
 	margin-top: 0px;
 }
 #addPet-section {
-    top: 0px; 
+    overflow-y: auto;
     margin-left: 0px;
     background-color: #FCEEE2;
     border-radius: 20px;
-	float: left;
 	width: 1163px;
-    height: 770px;;
+    height: 770px;
+    max-height: 80vh;
 	margin-top: 0px;
 }
 
@@ -240,6 +254,20 @@ textarea {
 	text-decoration:none;
 	float:center;
     margin-left: 300px;
+    background-color: #6868AE;
+	font-family:'Poppins', sans-serif;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+
+}
+#editPetBtn {
+	font-family:'Poppins', sans-serif;
+	text-decoration:none;
+	float:center;
+    margin-left: 265px;
     background-color: #6868AE;
     color: #ffffff;
     padding: 10px 20px;
@@ -314,6 +342,7 @@ button:hover {
     margin-top: -7px;
     float: right;
 }
+
 #trashButton {
 	cursor: pointer; 
     display: inline-block;
@@ -369,15 +398,60 @@ button:hover {
 }
 #pets-table-top {
     display: inline-block;
-	margin-right: -50px;
-    margin-left: -235px;;
+	margin-right: 35px;
+    margin-left: -235px;
 
 }
 #pets-table-top th {
     text-align: right;
-    padding-right: 20px; /* Adjust the value as needed */
-    padding-left: 20px;
+    padding-right: 0px; /* Adjust the value as needed */
+    padding-left: 30px;
 }
+#archive-table-top {
+    display: inline-block;
+	margin-right: 35px;
+    margin-left: -235px;
+
+}
+#archive-table-top th {
+    text-align: right;
+    padding-right: 0px; /* Adjust the value as needed */
+    padding-left: 30px;
+}
+#application-table-top {
+    display: inline-block;
+	margin-right: -200px;
+    margin-left: -200px;
+
+}
+
+#application-table-top th {
+    text-align: right;
+    padding-right: 0px; /* Adjust the value as needed */
+    padding-left: 40px;
+}
+#history-table-top {
+    display: inline-block;
+	margin-right: -310px;
+    margin-left: -350px;
+
+}
+#history-table-top th {
+    text-align: right;
+    padding-right: 0px; /* Adjust the value as needed */
+    padding-left: 10px;
+}
+/* #history-table-below {
+    display: inline-block;
+	margin-right: -410px;
+    margin-left: -350px;
+
+}
+#history-table-below th {
+    text-align: right;
+    padding-right: 0px; /* Adjust the value as needed */
+    /* padding-left: 10px;
+} */ 
 thead th {
     float: left;
     margin-top: 0px;
@@ -428,12 +502,12 @@ thead th {
     margin-bottom: 40px;
 }
 #settings_section label {
-	text-align:left;
+	/* text-align:left;
     display: block;
 	font-family:'Intel', sans-serif;
 	color: #6868AE;
 	font-weight: bold;
-    margin-left: 60px;
+    margin-left: 60px; */
     margin-top: 20PX;
     margin-bottom: 8px;
 }
@@ -491,18 +565,20 @@ thead th {
 }
 
 #change-password_section h2 {
+    text-align: center;
     font-family: 'Intel', sans-serif;
     color: #6868AE;
-    margin-left: 60px;
+    margin-top: 40px;
+    margin-left: 40px;
     margin-bottom: 40px;
 }
 #change-password_section label {
-	text-align:left;
+	text-align:center;
     display: block;
 	font-family:'Intel', sans-serif;
 	color: #6868AE;
 	font-weight: bold;
-    margin-left: -160px;    
+    margin-left: 250px;    
     margin-top: 20PX;
     margin-bottom: 8px;
 }
@@ -511,11 +587,13 @@ thead th {
 #change-password_section textarea {
     float: center;
     width: 600px;
+    height:45px;
     padding: 10px;
     margin-bottom: 15px;
-	margin-left: -160px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+	margin-left: 70px;
+    border: 1px solid #D9D9D9;
+    background-color: #D9D9D9;
+    border-radius: 20px;
     box-sizing: border-box;
 }
 
@@ -526,8 +604,9 @@ thead th {
     color: white;
     text-decoration: none;
     border-radius: 5px;
-    margin-top: 10px;
-    margin-left: -160px;
+    margin-top: 80px;
+    margin-left: 285px;
+    font-weight: bold;
     font-family:'Intel', sans-serif;
     border-color: transparent;
 }
@@ -535,9 +614,14 @@ thead th {
     background-color: #D9D9D9;
     color: #42428D;
     text-transform: uppercase;
+    text-decoration: none !important;
     font-weight: thin;
     margin: 5px;
+    padding:10px;
     border-color: white;
+}
+.colored-row td {
+    text-decoration: none;
 }
 
 #pets-table {
@@ -589,6 +673,41 @@ thead th {
 #pets-table-below td {
     padding: 8px;
 }
+#archive-table-below {
+    table-layout: fixed;
+    width: 100%; /* Adjust as needed */
+    margin-top: 20px;
+    border-radius:30px;
+}
+#archive-table-below td {
+    padding: 8px;
+}
+#application-table-below {
+    table-layout: fixed;
+    width: 100%; /* Adjust as needed */
+    margin-top: 20px;
+    border-radius:30px;
+}
+#application-table-below td {
+    padding: 8px;
+}
+#history-table-below {
+    table-layout: fixed;
+    width: 100%; /* Adjust as needed */
+    margin-top: 20px;
+    border-radius:30px;
+}
+#history-table-below td {
+    padding: 8px;
+}
+#table-body-below td:nth-child(3) {
+    display: flex;
+    border-radius: 0px; 
+    margin-left: 50px;
+    padding-top: 20px;
+}
+
+
 #table-body-below {
     display: block;
     /* max-height: 100%;  */
@@ -597,7 +716,9 @@ thead th {
 
 #table-body-below tr {
     display: flex;
-    border-radius:20px; 
+    border-radius:0px; 
+    margin-left: 0px;
+    margin-right: 0px;
     padding-top: 0px;
 }
 
@@ -611,4 +732,224 @@ thead th {
     width: 30px; /* Replace with your desired width */
     height: 30px; 
     cursor: pointer;/* Replace with your desired height */
+}
+#archive-table-below img {
+    width: 30px; /* Replace with your desired width */
+    height: 30px; 
+    cursor: pointer;/* Replace with your desired height */
+}
+#pets-table-below td:nth-child(6){
+    margin-left:0px;
+    margin-right:-100px;
+}
+
+#pets-table-below td:nth-child(7){
+    margin-left:0px;
+    margin-right: 0px   ;
+}
+#editPetDetails_section {
+    top: 0px; 
+    margin-left: 0px; 
+    padding: 10px;
+    background-color: #FCEEE2;
+    border-radius: 20px;
+    height: 690px;
+	margin-top: 0px;
+}
+
+#image-profile img{
+    display: flex;
+    align-items: center;
+    margin-left: 500px;
+    margin-top: 20px;
+    width: 160px;
+    margin-bottom: 0px;
+    height: 160px;
+    border: 3px solid #D9D9D9;
+
+}
+.editimage-profile img{
+    margin-left:200px;
+    margin-top: 0px;
+    width: 160px;
+    height: 160px;
+    border: 3px solid #D9D9D9;
+}
+#edit-profile-form img{
+        margin-left: 280px;
+}
+/* #edit-profile-form label{
+    margin-left: 0px;
+    margin-top: 200px;
+} */
+#image-profile label{
+    margin-top: 0px;
+    margin-bottom: 20px;
+    text-align: center;
+    display:block;
+    width:150px;
+    background-color: white;
+    border: 3px solid #6868AE;
+    padding: 10px;
+    color: #6868AE;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#save-profile-btn{
+    margin-top: 0px;
+    margin-bottom: 20px;
+    display:block;
+    width:150px;
+    background-color: #6868AE;
+    padding: 10px;
+    font-weight: bold;
+    color: white;
+    border-radius: 5px;
+    margin-left:520px;
+    border: 3px solid transparent;
+    cursor: pointer;
+}
+#edit-profile-btn{
+    margin-top: 0px;
+    margin-bottom: 20px;
+    text-align: center;
+    display:block;
+    width:150px;
+    background-color: #6868AE;
+    padding: 10px;
+    font-weight: bold;
+    color: white;
+    border-radius: 5px;
+    margin-left:520px;
+    border: 3px solid transparent;
+    cursor: pointer;
+}
+#prof label{
+    margin-left: 20px;
+    color: #6868AE;
+    text-align: center;
+}
+#prof input{
+    margin-left:275px;
+    border: 3px solid transparent;
+    border-radius: 20px;
+    background-color: #D9D9D9;
+}
+#editprof{
+    margin-top: -50px;
+}
+#editProf input{
+    margin-left:50px;
+    border: 3px solid #D9D9D9;
+    border-radius: 20px;
+    background-color: #D9D9D9;
+}
+
+#editProf label{
+    margin-bottom: 10px;
+    margin-left: 250px;
+    color: #6868AE;
+    text-align: center;
+}
+#settings-section {
+    overflow-y: auto;
+    margin-left: 0px;
+    background-color: #FCEEE2;
+    border-radius: 20px;
+	width: 1163px;
+    height: 970px;
+    max-height: 100vh;
+	margin-top: 0px;
+}
+#setting-section {
+    overflow-y: auto;
+    margin-left: 0px;
+    background-color: #FCEEE2;
+    border-radius: 20px;
+	width: 1163px;
+    height: 970px;
+    max-height: 100vh;
+	margin-top: 0px;
+}
+/* #application-details{
+    overflow-y: auto;   
+    max-height: 80vh;
+} */
+#application-details h2{
+    margin-top:50px;
+    text-align: center;
+    color:#6868AE;
+    margin-left:20px;
+}
+#application-details label{
+    margin-left: 20px;
+    margin-top: 30px;
+}
+#application-details input{
+    background-color: #D9D9D9;
+    margin-left: 280px;
+    width:600px;
+}
+#approveButton,
+#disapproveButton{
+    background-color: #6868AE;
+    color:white;
+    padding:20px 30px;
+    margin-right: 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.responsebtn{
+    margin-top: 0px;
+    margin-left: 460px;
+}
+
+#application-details textarea {
+    float: center;
+    width: 600px;
+    padding: 10px;
+    margin-bottom: 15px;
+	margin-left: 280px;
+    background-color: #D9D9D9;
+    border: 1px solid #D9D9D9;
+    border-radius: 15px;
+    box-sizing: border-box;
+}
+#change-profile-pic-btn{
+    margin-left: 500px;
+    padding: 10px;
+    font-weight: bold;
+    color:white;
+    background-color: #6868AE;
+    font-family:'Intel', sans-serif;
+}
+#backbtn{
+    margin-top: 10px;
+    margin-left: 20px;
+    padding: 5px;
+    font-weight: bold;
+    color:white;
+    background-color: #6868AE;
+    font-family:'Intel', sans-serif;
+}
+#pet-profile img{
+    width:120px;
+    height:120px;
+}
+#pet-profile {
+    margin-left: 285px;
+}
+#pet-profile button{
+    margin-left: 10px;
+}
+#change-petpic-btn{
+    background-color: #6868AE;
+    color:white;
+    margin-bottom: 20px;
+}
+#editPetDetails_section{
+    overflow-y: auto;
+    max-height: 80vh;
 }

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../css/style_dashboard.css">
+    <script type="module" src="../js/editPetDetails.js"></script>
+
+    <title>FurryFound</title>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="../images/logo.png" alt="Logo">
+            <span>FURRYFOUND</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="pets.html" id="current">Dashboard</a></li>
+                <li><a href="Settings.html">Settings</a></li>
+                <li><a href="login.html" id="logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div id="dashboard">
+            <nav class="left-nav">
+                <ul>
+                    <li><a href="pets.html" id="left-nav-current">Pets</a></li>
+                    <li><a href="applications.html">Applications</a></li>
+                    <li><a href="History.html" >History</a></li>
+                    <li><a href="archive.html" >Archive</a></li>
+               
+                </ul>
+            </nav>
+            <div class="mainpage">
+                <section id="editPetDetails_section">
+                    <form id="editPetForm" action="pets.html" method="post" enctype="multipart/form-data">
+
+                        <div id="pet-profile">
+                            <img src="../images/default_profile_picture.png" id="petPic"></br>
+    
+                            <button id="change-petpic-btn">Upload Picture</button>
+                        </div>
+
+                        <label for="editPetName">NAME:</label>
+                        <input type="text" id="editPetName" name="editPetName" required>
+                        <label for="editPetType">BREED:</label>
+                        <input type="text" id="editPetType" name="editPetType" required>
+                        <label for="editPetAge">AGE:</label>
+                        <input type="number" id="editPetAge" name="editPetAge" required>
+                        <label for="editPetColor">COLOR:</label>
+                        <input type="text" id="editPetColor" name="editPetColor" required>
+                        <label for="editPetWeight">WEIGHT :</label>
+                        <input type="number" id="editPetWeight" name="editPetWeight" required>
+                        <label for="editPetDescription">DESCRIPTION:</label>
+                        <textarea id="editPetDescription" name="editPetDescription" rows="4" required></textarea>
+
+
+                        <button type="submit" id="editPetBtn">EDIT PROFILE</button>
+                        
+                    </form>
+                        </section>
+                    </div>
+        </div>
+    </main>
+</body>
+</html>

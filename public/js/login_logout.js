@@ -23,7 +23,7 @@ function loginUser(email, password) {
             console.log("User logged in:", user);
 
             // Redirect to another HTML file
-            window.location.href = "../pages/dashboard.html";
+            window.location.href = "../pages/pets.html";
         })
         .catch((error) => {
             const errorCode = error.code;

@@ -29,20 +29,29 @@
     var email = document.getElementById('email').value;
     var password = document.getElementById('password').value;
     var sheltername = document.getElementById('sheltername').value;
+    var address = document.getElementById('address').value;
+    var contactPerson= document.getElementById('contactPerson').value;
+    var contactnum= document.getElementById('contactnum').value;
+    
+    var profile_picture = "NOT SET";
 
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             // Signed up 
             const user = userCredential.user;
 
-            set(ref(database, 'shelters/' + sheltername),{
-                user_id: user.uid,
+            set(ref(database, 'shelters/' + user.uid),{
+                shelter_id: user.uid,
                 email: email,
                 shelter_name: sheltername,
-                password: password
+                address: address,
+                contact_person: contactPerson,
+                contact_number: contactnum,
+                password: password,
+                profile_picture: profile_picture
             })
             alert('user created!');
-        // ...
+            // window.location.href = 'login.html';
         })    
         .catch((error) => {
             const errorCode = error.code;
