@@ -10,6 +10,18 @@
       {
         "source": "**",
         "destination": "/pages/home.html"
+      },
+      {
+        "source": "/login.html",
+        "destination": "/pages/login.html"
+      },
+      {
+        "source": "/register.html",
+        "destination": "/pages/register.html"
+      },
+      {
+        "source": "/about.html",
+        "destination": "/pages/about.html"
       }
     ]
   }

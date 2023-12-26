@@ -90,7 +90,7 @@ async function displayApplicationDetails(application, applicationId) {
 
     // Create an anchor element
     const rowAnchor = document.createElement('a');
-    rowAnchor.href = '#';  // Set the desired URL or use '#' for placeholder
+    rowAnchor.href = '#';
     rowAnchor.addEventListener('click', function() {
         window.location.href = `response.html?applicationId=${applicationId}`;
     });
