@@ -92,8 +92,7 @@ async function displayApplicationDetails(application, applicationId) {
     const rowAnchor = document.createElement('a');
     rowAnchor.href = '#';  // Set the desired URL or use '#' for placeholder
     rowAnchor.addEventListener('click', function() {
-        // Handle click event, you can navigate to another page or perform any action here
-        window.location.href = 'response.html';
+        window.location.href = `response.html?applicationId=${applicationId}`;
     });
 
     // Append the table row to the anchor element

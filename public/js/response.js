@@ -1,10 +1,9 @@
-// Import the functions you need from the Firebase SDK
+// Import the necessary Firebase functions
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
-import { getDatabase, ref, onValue, get } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
+import { getDatabase, ref, get, update } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+import { getStorage, ref as storageRef, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-storage.js";
 
 // Your web app's Firebase configuration
-// Replace this with your actual Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyCBuYPKdZmVNe8BNMClJlNcK_ZkZ89qh1Q",
     authDomain: "furry-found.firebaseapp.com",
@@ -18,125 +17,81 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
-const auth = getAuth();
+const storage = getStorage(app);
 
 const adoptersRef = ref(database, 'adopters');
-const sheltersRef = ref(database, 'shelters');
+const petsRef = ref(database, 'pets');
 const applicationFormRef = ref(database, 'applicationform');
 
-function displayApplicationsData() {
-    onValue(applicationFormRef, (snapshot) => {
-        const applicationsData = snapshot.val();
-        const applicationsTableBody = document.getElementById('table-body-below');
-        applicationsTableBody.innerHTML = '';
+function getApplicationIdFromURL() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('applicationId');
+}
 
-        const loggedInShelterId = getLoggedInShelterId();
+async function displayApplicationData(applicationId) {
+    const applicationSnapshot = await get(ref(database, `applicationform/${applicationId}`));
+    const applicationData = applicationSnapshot.val();
 
-        for (const applicationId in applicationsData) {
-            if (Object.hasOwnProperty.call(applicationsData, applicationId)) {
-                const application = applicationsData[applicationId];
+    if (applicationData) {
+        // Fetch adopter details
+        const adopterSnapshot = await get(ref(database, `adopters/${applicationData.adopter_id}`));
+        const adopterData = adopterSnapshot.val();
 
-                if (application.shelter_id && application.shelter_id === loggedInShelterId && application.status !== 'completed') {
-                    displayApplicationDetails(application, applicationId);
-                }
+        // Fetch pet details using pet_id
+        const petSnapshot = await get(ref(database, `pets/${applicationData.pet_id}`));
+        const petData = petSnapshot.val();
+
+        // Update the HTML elements with the application data
+        document.getElementById('PetName').value = petData ? petData.name : '';
+        document.getElementById('AdopterName').value = `${adopterData.first_name || ''} ${adopterData.last_name || ''}`;
+        document.getElementById('ShelterEmail').value = adopterData.email || '';
+        document.getElementById('Address').value = adopterData.address || '';
+        document.getElementById('ContactNumber').value = adopterData.phone_number || '';
+        document.getElementById('Reason').value = applicationData.reason || '';
+
+        // Fetch and display pet image
+        if (petData && petData.imageUrl) {
+            try {
+                const imageUrl = await getDownloadURL(storageRef(storage, petData.imageUrl));
+                document.getElementById('pet_profile').src = imageUrl;
+            } catch (error) {
+                console.error('Error loading pet image:', error);
             }
         }
-    });
-}
-
-function getLoggedInShelterId() {
-    const user = auth.currentUser;
-
-    return user ? user.uid : null;
-}
-
-async function displayApplicationDetails(application, applicationId) {
-    const tableBody = document.getElementById('table-body-below');
-
-    // Fetch adopter details
-    const adopterDetails = await fetchUserData(adoptersRef, application.adopter_id);
-
-    // Extract adopter details
-    const { first_name, last_name, phone_number, email, address } = adopterDetails;
-
-    // Extract other application details
-    const { reason } = application;
-
-    const tableRow = document.createElement('tr');
-
-    const adopterNameCell = document.createElement('td');
-    adopterNameCell.textContent = first_name + ' ' + last_name;
-
-    const contactNumberCell = document.createElement('td');
-    contactNumberCell.textContent = phone_number;
-
-    const emailCell = document.createElement('td');
-    emailCell.textContent = email;
-
-    const addressCell = document.createElement('td');
-    addressCell.textContent = address;
-
-    const reasonCell = document.createElement('td');
-    reasonCell.textContent = reason;
-
-    // Add table cells to the table row
-    tableRow.appendChild(addressCell);
-    tableRow.appendChild(emailCell);
-    tableRow.appendChild(adopterNameCell);
-    tableRow.appendChild(contactNumberCell);
-    tableRow.appendChild(reasonCell);
-
-    tableRow.classList.add('colored-row');
-
-    // Create an anchor element
-    const rowAnchor = document.createElement('a');
-    rowAnchor.href = '#';  // Set the desired URL or use '#' for placeholder
-    rowAnchor.addEventListener('click', function() {
-        // Handle click event, you can navigate to another page or perform any action here
-        window.location.href = 'response.html';
-    });
-
-    // Append the table row to the anchor element
-    rowAnchor.appendChild(tableRow);
-
-    // Append the anchor element to the table body
-    tableBody.appendChild(rowAnchor);
-    document.getElementById('search-bar').addEventListener('input', filterTable);
-}
-
-
-// Function to fetch user data from a specific node in the database
-async function fetchUserData(nodeRef, userId) {
-    try {
-        const snapshot = await get(nodeRef);
-        const userData = snapshot.child(userId).val();
-        if (userData) {
-            return userData;
-        } else {
-            throw new Error("User not found");
-        }
-    } catch (error) {
-        throw error;
     }
 }
 
-function filterTable() {
-    const searchInput = document.getElementById('search-bar').value.toLowerCase();
-    const tableRows = document.querySelectorAll('.colored-row');
+function updateApplicationStatus(applicationId, status) {
+    const feedback = document.getElementById('shelterFeedback').value;
+    let updateData = {
+        remarks: status,
+        feedback: feedback
+    };
 
-    tableRows.forEach(row => {
-        const adopterNameCell = row.querySelector('td:nth-child(1)');
-        const statusCell = row.querySelector('td:nth-child(5)');
+    // If disapproving, also set the status to "COMPLETED"
+    if (status === 'DISAPPROVED') {
+        updateData.status = 'COMPLETED';
+    }
 
-        const adopterNameMatch = adopterNameCell.textContent.toLowerCase().includes(searchInput);
-        const statusMatch = statusCell.textContent.toLowerCase().includes(searchInput);
-
-        if (adopterNameMatch || statusMatch) {
-            row.style.display = '';
-        } else {
-            row.style.display = 'none';
-        }
+    update(ref(database, `applicationform/${applicationId}`), updateData)
+    .then(() => {
+        alert(`Application has been ${status.toLowerCase()}.`);
+        window.location.href = 'applications.html';
+    })
+    .catch(error => {
+        console.error('Error updating application:', error);
     });
 }
 
-displayApplicationsData();
+const applicationId = getApplicationIdFromURL();
+
+// Display the application data
+if (applicationId) {
+    displayApplicationData(applicationId);
+
+    // Event listeners for buttons
+    document.getElementById('approveButton').addEventListener('click', () => updateApplicationStatus(applicationId, 'APPROVED'));
+    document.getElementById('disapproveButton').addEventListener('click', () => updateApplicationStatus(applicationId, 'DISAPPROVED'));
+} else {
+    console.error('No application ID found in URL');
+}

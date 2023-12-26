@@ -1,10 +1,9 @@
-// Import the functions you need from the Firebase SDK
+// Import Firebase modules
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
-import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+import { getDatabase, ref, onValue, get } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
 
-// Your web app's Firebase configuration
-// Replace this with your actual Firebase configuration
+// Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyCBuYPKdZmVNe8BNMClJlNcK_ZkZ89qh1Q",
     authDomain: "furry-found.firebaseapp.com",
@@ -30,13 +29,11 @@ function displayHistoryData() {
 
         const loggedInShelterId = getLoggedInShelterId();
 
-        for (const applicationId in historyData) {
-            if (Object.hasOwnProperty.call(historyData, applicationId)) {
-                const application = historyData[applicationId];
-
-                // Check if the application is linked with the current shelter user and has a status of "completed"
-                if (application.shelter_id && application.shelter_id === loggedInShelterId && application.status === 'COMPLETED') {
-                    displayApplication(application, applicationId);
+        for (const uid in historyData) {
+            if (historyData.hasOwnProperty(uid)) {
+                const entry = historyData[uid];
+                if (entry.shelter_id === loggedInShelterId && entry.status === 'COMPLETED') {
+                    displayHistoryEntry(entry, uid);
                 }
             }
         }
@@ -48,16 +45,20 @@ function getLoggedInShelterId() {
     return user ? user.uid : null;
 }
 
-function displayApplication(applicationDetails, applicationId) {
+async function displayHistoryEntry(historyDetails, uid) {
     const tableBody = document.getElementById('table-body-below');
 
-    const { pet_name, adopter_name, contact_number, address, status } = applicationDetails;
+    // Fetch pet name using pet_id
+    const petSnapshot = await get(ref(database, `pets/${historyDetails.pet_id}`));
+    const petData = petSnapshot.val();
+    const petName = petData ? petData.name : 'No Pet Name';
 
-    const petName = pet_name;
-    const adopterName = adopter_name;
-    const contactNumber = contact_number;
-    const adopterAddress = address;
-    const applicationStatus = status;
+    // Fetch adopter details using adopter_id
+    const adopterSnapshot = await get(ref(database, `adopters/${historyDetails.adopter_id}`));
+    const adopterData = adopterSnapshot.val();
+    const adopterName = `${adopterData.first_name || ''} ${adopterData.last_name || ''}`; 
+    const contactNumber = adopterData.phone_number || 'No Contact Number'; 
+    const address = adopterData.address || 'No Address';
 
     const tableRow = document.createElement('tr');
 
@@ -68,40 +69,18 @@ function displayApplication(applicationDetails, applicationId) {
     const contactNumberCell = document.createElement('td');
     contactNumberCell.textContent = contactNumber;
     const addressCell = document.createElement('td');
-    addressCell.textContent = adopterAddress;
-    const statusCell = document.createElement('td');
-    statusCell.textContent = applicationStatus;
+    addressCell.textContent = address;
+    const remarksCell = document.createElement('td');
+    remarksCell.textContent = historyDetails.remarks;
 
-    // Add table cells to the table row
     tableRow.appendChild(petNameCell);
     tableRow.appendChild(adopterNameCell);
     tableRow.appendChild(contactNumberCell);
     tableRow.appendChild(addressCell);
-    tableRow.appendChild(statusCell);
-
-    tableRow.classList.add('colored-row');
+    tableRow.appendChild(remarksCell);
 
     tableBody.appendChild(tableRow);
-    document.getElementById('search-bar').addEventListener('input', filterTable);
-}
-
-function filterTable() {
-    const searchInput = document.getElementById('search-bar').value.toLowerCase();
-    const tableRows = document.querySelectorAll('.colored-row');
-
-    tableRows.forEach(row => {
-        const adopterNameCell = row.querySelector('td:nth-child(1)');
-        const statusCell = row.querySelector('td:nth-child(4)');
-
-        const adopterNameMatch = adopterNameCell.textContent.toLowerCase().includes(searchInput);
-        const statusMatch = statusCell.textContent.toLowerCase().includes(searchInput);
-
-        if (adopterNameMatch || statusMatch) {
-            row.style.display = '';
-        } else {
-            row.style.display = 'none';
-        }
-    });
 }
 
 displayHistoryData();
+

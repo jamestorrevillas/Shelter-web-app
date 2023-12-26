@@ -872,10 +872,9 @@ thead th {
     max-height: 100vh;
 	margin-top: 0px;
 }
-/* #application-details{
-    overflow-y: auto;   
-    max-height: 80vh;
-} */
+#application-details{
+    height:1100px;
+}
 #application-details h2{
     margin-top:50px;
     text-align: center;
@@ -937,6 +936,7 @@ thead th {
 #pet-profile img{
     width:120px;
     height:120px;
+    margin-left: 230px;
 }
 #pet-profile {
     margin-left: 285px;
