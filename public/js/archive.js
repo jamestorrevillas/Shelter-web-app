@@ -120,26 +120,22 @@
             document.getElementById('search-bar').addEventListener('input', filterTable);
         }
     }
-        function filterTable() {
-            const searchInput = document.getElementById('search-bar').value.toLowerCase();
-            const tableRows = document.querySelectorAll('.colored-row');
+    function filterTable() {
+        const searchInput = document.getElementById('search-bar').value.toLowerCase();
+        const tableRows = document.querySelectorAll('.colored-row');
 
-            tableRows.forEach(row => {
-                const nameCell = row.querySelector('td:nth-child(1)');
-                const statusCell = row.querySelector('td:nth-child(7)'); 
-
-            
-                const nameMatch = nameCell.textContent.toLowerCase().includes(searchInput);
-                const statusMatch = statusCell.textContent.toLowerCase().includes(searchInput);
-
-            
-                if (nameMatch || statusMatch) {
-                    row.style.display = '';
-                } else {
-                    row.style.display = 'none';
-                }
-            });
-        }
+        tableRows.forEach(row => {
+            const nameCell = row.querySelector('td:nth-child(1)');
+           
+            const nameMatch = nameCell.textContent.toLowerCase().includes(searchInput);
+           
+            if (nameMatch) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    }
         function updateDaysAtShelter() {
             const currentDate = new Date();
         

@@ -749,7 +749,7 @@ thead th {
 }
 #pets-table-below td:nth-child(6){
     margin-left:0px;
-    margin-right:-100px;
+    margin-right:-50px;
 }
 
 #pets-table-below td:nth-child(7){

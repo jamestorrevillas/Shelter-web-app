@@ -131,13 +131,11 @@ function filterTable() {
     const tableRows = document.querySelectorAll('.colored-row');
 
     tableRows.forEach(row => {
-        const adopterNameCell = row.querySelector('td:nth-child(1)');
-        const statusCell = row.querySelector('td:nth-child(5)');
-
-        const adopterNameMatch = adopterNameCell.textContent.toLowerCase().includes(searchInput);
-        const statusMatch = statusCell.textContent.toLowerCase().includes(searchInput);
-
-        if (adopterNameMatch || statusMatch) {
+        const nameCell = row.querySelector('td:nth-child(1)');
+       
+        const nameMatch = nameCell.textContent.toLowerCase().includes(searchInput);
+       
+        if (nameMatch) {
             row.style.display = '';
         } else {
             row.style.display = 'none';
