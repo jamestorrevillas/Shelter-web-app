@@ -83,16 +83,55 @@ async function displayHistoryEntry(historyDetails, applicationId) {
     tableRow.classList.add('colored-row');
 
     const rowAnchor = document.createElement('a');
-    rowAnchor.href = '#';  // Set the desired URL or use '#' for placeholder
+    rowAnchor.href = '#'; 
     rowAnchor.addEventListener('click', function() {
         window.location.href = `viewApplication.html?applicationId=${applicationId}`;
     });
 
-    tableBody.appendChild(tableRow);
+   // Append the table row to the anchor element
+   rowAnchor.appendChild(tableRow);
+
+   // Append the anchor element to the table body
+   tableBody.appendChild(rowAnchor);
+    //search bar
+   document.getElementById('search-bar').addEventListener('input', filterTable);
+   document.getElementById('remarks-filter').addEventListener('change', filterByRemarks);
 }
 function filterByRemarks() {
-    const selectedRemark = document.getElementById('remarks-filter').value;
-    displayHistoryData(selectedRemark);
+    const selectedRemark = document.getElementById('remarks-filter').value.toLowerCase();
+    const tableRows = document.querySelectorAll('.colored-row');
+
+    tableRows.forEach(row => {  
+        const remarksCell = row.querySelector('td:nth-child(5)'); // Assuming the remarks column is the fifth column (adjust if necessary)
+
+        const remarksMatch = remarksCell.textContent.toLowerCase().includes(selectedRemark);
+
+        if (remarksMatch) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+}
+
+
+function filterTable() {
+    const searchInput = document.getElementById('search-bar').value.toLowerCase();
+    const tableRows = document.querySelectorAll('.colored-row');
+
+    tableRows.forEach(row => {
+        const adopterNameCell = row.querySelector('td:nth-child(1)');
+        const statusCell = row.querySelector('td:nth-child(5)');
+
+        const adopterNameMatch = adopterNameCell.textContent.toLowerCase().includes(searchInput);
+        const statusMatch = statusCell.textContent.toLowerCase().includes(searchInput);
+
+        if (adopterNameMatch || statusMatch) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    });
 }
 displayHistoryData();
 
