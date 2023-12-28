@@ -18,7 +18,6 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
-const petsRef = ref(database, 'pets');
 const auth = getAuth();
 
 const adoptersRef = ref(database, 'adopters');
@@ -37,7 +36,7 @@ function displayApplicationsData() {
             if (Object.hasOwnProperty.call(applicationsData, applicationId)) {
                 const application = applicationsData[applicationId];
 
-                if (application.shelter_id && application.shelter_id === loggedInShelterId && application.status === 1) {
+                if (application.shelter_id && application.shelter_id === loggedInShelterId && application.status !== 1 && application.remarks === 'APPROVED') {
                     displayApplicationDetails(application, applicationId);
                 }
             }
@@ -53,10 +52,6 @@ function getLoggedInShelterId() {
 async function displayApplicationDetails(application, applicationId) {
     const tableBody = document.getElementById('table-body-below');
 
-    // Fetch pet details using pet_id
-    const petDetails = await fetchUserData(petsRef, application.pet_id);
-    const petName = petDetails ? petDetails.name : 'Unknown Pet'; // Adjust if your pet name field is different
-
     // Fetch adopter details
     const adopterDetails = await fetchUserData(adoptersRef, application.adopter_id);
 
@@ -68,14 +63,14 @@ async function displayApplicationDetails(application, applicationId) {
 
     const tableRow = document.createElement('tr');
 
-    const petNameCell = document.createElement('td');
-    petNameCell.textContent = petName;
-
     const adopterNameCell = document.createElement('td');
     adopterNameCell.textContent = first_name + ' ' + last_name;
 
     const contactNumberCell = document.createElement('td');
     contactNumberCell.textContent = phone_number;
+
+    const emailCell = document.createElement('td');
+    emailCell.textContent = email;
 
     const addressCell = document.createElement('td');
     addressCell.textContent = address;
@@ -84,11 +79,10 @@ async function displayApplicationDetails(application, applicationId) {
     remarksCell.textContent = remarks;
 
     // Add table cells to the table row
-    
-    tableRow.appendChild(petNameCell);
+    tableRow.appendChild(addressCell);
+    tableRow.appendChild(emailCell);
     tableRow.appendChild(adopterNameCell);
     tableRow.appendChild(contactNumberCell);
-    tableRow.appendChild(addressCell);
     tableRow.appendChild(remarksCell);
 
     tableRow.classList.add('colored-row');
