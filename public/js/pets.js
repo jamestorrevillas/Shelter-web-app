@@ -142,12 +142,20 @@
     function filterTable() {
         const searchInput = document.getElementById('search-bar').value.toLowerCase();
         const tableRows = document.querySelectorAll('.colored-row');
-
+    
         tableRows.forEach(row => {
             const nameCell = row.querySelector('td:nth-child(1)');
-           
+            // const ageCell = row.querySelector('td:nth-child(2)');
+            // const weightCell = row.querySelector('td:nth-child(3)'); 
+            // const daysAtShelterCell = row.querySelector('td:nth-child(7)'); 
+    
+            // Retrieve the text content of cells and convert to lowercase for case-insensitive comparison
             const nameMatch = nameCell.textContent.toLowerCase().includes(searchInput);
-           
+            // const ageMatch = ageCell.textContent.toLowerCase().includes(searchInput);
+            // const weightMatch = weightCell.textContent.toLowerCase().includes(searchInput);
+            // const daysAtShelterMatch = daysAtShelterCell.textContent.toLowerCase().includes(searchInput);
+    
+            // Check if any of the fields match the search input
             if (nameMatch) {
                 row.style.display = '';
             } else {
@@ -155,6 +163,8 @@
             }
         });
     }
+    
+    
 
     function updateDaysAtShelter() {
         const currentDate = new Date();

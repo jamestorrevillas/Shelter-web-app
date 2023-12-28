@@ -949,7 +949,7 @@ thead th {
 #pet-profile img{
     width:120px;
     height:120px;
-    margin-left: 230px;
+    margin-left:0px;
 }
 #pet-profile {
     margin-left: 285px;
