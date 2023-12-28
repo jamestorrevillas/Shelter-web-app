@@ -34,7 +34,7 @@
                 if (Object.hasOwnProperty.call(petsData, petId)) {
                     const pet = petsData[petId];
 
-                if (pet.shelter_id && pet.shelter_id === loggedInShelterId && pet.status !== 'COMPLETED' && pet.status !== 'ARCHIVED') {
+                if (pet.shelter_id && pet.shelter_id === loggedInShelterId && pet.status === 0) {
                     displayNewPet(pet, petId);
                 }
             }
@@ -116,7 +116,7 @@
         // tableRow.appendChild(typeCell);
         // tableRow.appendChild(daysCell);
         tableRow.appendChild(daysAtShelterCell);
-        tableRow.appendChild(statusCell);
+        // tableRow.appendChild(statusCell);
         tableRow.appendChild(button1);
         tableRow.appendChild(button2);
         // tableRow.appendChild(descriptionCell);
@@ -167,7 +167,7 @@
 
     function archivePet(petId) {
         const petRef = ref(database, `pets/${petId}`);
-        update(petRef, { status: 'ARCHIVED' })
+        update(petRef, { status: -1 })
             .then(() => {
                 console.log('Pet archived successfully!');
                 window.location.href = `pets.html?id=${petId}&imageURL=${petDetails.imageURL}`;

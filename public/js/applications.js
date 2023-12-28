@@ -36,7 +36,7 @@ function displayApplicationsData() {
             if (Object.hasOwnProperty.call(applicationsData, applicationId)) {
                 const application = applicationsData[applicationId];
 
-                if (application.shelter_id && application.shelter_id === loggedInShelterId && application.status !== 'COMPLETED') {
+                if (application.shelter_id && application.shelter_id === loggedInShelterId && application.status !== 1) {
                     displayApplicationDetails(application, applicationId);
                 }
             }
@@ -90,7 +90,7 @@ async function displayApplicationDetails(application, applicationId) {
 
     // Create an anchor element
     const rowAnchor = document.createElement('a');
-    rowAnchor.href = '#';  // Set the desired URL or use '#' for placeholder
+    rowAnchor.href = '#';
     rowAnchor.addEventListener('click', function() {
         window.location.href = `response.html?applicationId=${applicationId}`;
     });

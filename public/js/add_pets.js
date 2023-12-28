@@ -52,7 +52,7 @@ async function addPet() {
     const petWeight = document.getElementById('petWeight').value;
     const petDays = document.getElementById('petDays').value;
     const petDescription = document.getElementById('petDescription').value;
-    const petStatus = 'IN SHELTER';
+    const petStatus = 0;
 
     // Retrieve the logged-in user's shelter ID
     const loggedInShelterId = getLoggedInShelterId();

@@ -32,7 +32,7 @@ function displayHistoryData() {
         for (const uid in historyData) {
             if (historyData.hasOwnProperty(uid)) {
                 const entry = historyData[uid];
-                if (entry.shelter_id === loggedInShelterId && entry.status === 'COMPLETED') {
+                if (entry.shelter_id === loggedInShelterId && entry.status === 1) {
                     displayHistoryEntry(entry, uid);
                 }
             }
