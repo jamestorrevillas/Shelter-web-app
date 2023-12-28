@@ -54,7 +54,7 @@
 
             const { name, age, weight, color, type, dateArrived, status, description } = petDetails;
 
-            if (status === 'ARCHIVED') {
+            if (status === -1) {
 
             const petName = name;
             const petAge = age;
@@ -109,7 +109,7 @@
             // tableRow.appendChild(typeCell);
             // tableRow.appendChild(daysCell);
             tableRow.appendChild(daysAtShelterCell);
-            tableRow.appendChild(statusCell);
+            // tableRow.appendChild(statusCell);
             tableRow.appendChild(button1);
             // tableRow.appendChild(button2);
             // tableRow.appendChild(descriptionCell);
@@ -160,7 +160,7 @@
 
         function archivePet(petId) {
             const petRef = ref(database, `pets/${petId}`);
-            update(petRef, { status: 'IN SHELTER' })
+            update(petRef, { status: 0 })
                 .then(() => {
                     console.log('Pet archived successfully!');
                     window.location.href = `archive.html?id=${petId}&imageURL=${petDetails.imageURL}`;

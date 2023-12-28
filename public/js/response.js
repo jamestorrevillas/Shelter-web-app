@@ -70,7 +70,7 @@ function updateApplicationStatus(applicationId, status) {
 
     // If disapproving, also set the status to "COMPLETED"
     if (status === 'DISAPPROVED') {
-        updateData.status = 'COMPLETED';
+        updateData.status = 1;
     }
 
     update(ref(database, `applicationform/${applicationId}`), updateData)
