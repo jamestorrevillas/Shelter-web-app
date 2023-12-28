@@ -19,10 +19,6 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 const storage = getStorage(app);
 
-const adoptersRef = ref(database, 'adopters');
-const petsRef = ref(database, 'pets');
-const applicationFormRef = ref(database, 'applicationform');
-
 function getApplicationIdFromURL() {
     const params = new URLSearchParams(window.location.search);
     return params.get('applicationId');
@@ -59,4 +55,14 @@ async function displayApplicationData(applicationId) {
             }
         }
     }
+}
+
+const applicationId = getApplicationIdFromURL();
+
+// Display the application data
+if (applicationId) {
+    displayApplicationData(applicationId);
+
+} else {
+    console.error('No application ID found in URL');
 }

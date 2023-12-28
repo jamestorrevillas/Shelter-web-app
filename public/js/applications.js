@@ -36,7 +36,7 @@ function displayApplicationsData() {
             if (Object.hasOwnProperty.call(applicationsData, applicationId)) {
                 const application = applicationsData[applicationId];
 
-                if (application.shelter_id && application.shelter_id === loggedInShelterId && application.status !== 1) {
+                if (application.shelter_id && application.shelter_id === loggedInShelterId && application.status !== 1 && application.remarks !== 'APPROVED') {
                     displayApplicationDetails(application, applicationId);
                 }
             }
@@ -46,7 +46,6 @@ function displayApplicationsData() {
 
 function getLoggedInShelterId() {
     const user = auth.currentUser;
-
     return user ? user.uid : null;
 }
 

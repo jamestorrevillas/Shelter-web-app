@@ -18,7 +18,6 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
-const petsRef = ref(database, 'pets');
 const auth = getAuth();
 
 const adoptersRef = ref(database, 'adopters');
@@ -37,14 +36,13 @@ function displayApplicationsData() {
             if (Object.hasOwnProperty.call(applicationsData, applicationId)) {
                 const application = applicationsData[applicationId];
 
-                if (application.shelter_id && application.shelter_id === loggedInShelterId && application.status === 1) {
+                if (application.shelter_id && application.shelter_id === loggedInShelterId && application.status !== 1 && application.remarks === 'APPROVED') {
                     displayApplicationDetails(application, applicationId);
                 }
             }
         }
     });
 }
-
 
 function getLoggedInShelterId() {
     const user = auth.currentUser;
@@ -53,10 +51,6 @@ function getLoggedInShelterId() {
 
 async function displayApplicationDetails(application, applicationId) {
     const tableBody = document.getElementById('table-body-below');
-
-    // Fetch pet details using pet_id
-    const petDetails = await fetchUserData(petsRef, application.pet_id);
-    const petName = petDetails ? petDetails.name : 'Unknown Pet'; // Adjust if your pet name field is different
 
     // Fetch adopter details
     const adopterDetails = await fetchUserData(adoptersRef, application.adopter_id);
@@ -69,14 +63,14 @@ async function displayApplicationDetails(application, applicationId) {
 
     const tableRow = document.createElement('tr');
 
-    const petNameCell = document.createElement('td');
-    petNameCell.textContent = petName;
-
     const adopterNameCell = document.createElement('td');
     adopterNameCell.textContent = first_name + ' ' + last_name;
 
     const contactNumberCell = document.createElement('td');
     contactNumberCell.textContent = phone_number;
+
+    const emailCell = document.createElement('td');
+    emailCell.textContent = email;
 
     const addressCell = document.createElement('td');
     addressCell.textContent = address;
@@ -85,11 +79,10 @@ async function displayApplicationDetails(application, applicationId) {
     remarksCell.textContent = remarks;
 
     // Add table cells to the table row
-    
-    tableRow.appendChild(petNameCell);
+    tableRow.appendChild(addressCell);
+    tableRow.appendChild(emailCell);
     tableRow.appendChild(adopterNameCell);
     tableRow.appendChild(contactNumberCell);
-    tableRow.appendChild(addressCell);
     tableRow.appendChild(remarksCell);
 
     tableRow.classList.add('colored-row');
@@ -98,7 +91,7 @@ async function displayApplicationDetails(application, applicationId) {
     const rowAnchor = document.createElement('a');
     rowAnchor.href = '#';
     rowAnchor.addEventListener('click', function() {
-        window.location.href = `viewApplicationHistory.html?applicationId=${applicationId}`;
+        window.location.href = `viewApplicationPending.html?applicationId=${applicationId}`;
     });
 
     // Append the table row to the anchor element
@@ -109,41 +102,39 @@ async function displayApplicationDetails(application, applicationId) {
     document.getElementById('search-bar').addEventListener('input', filterTable);
 }
 
-    tableRows.forEach(row => {
-        const remarksCell = row.querySelector('td:nth-child(5)'); // Change to 5 if the Remarks column is the fifth column
-        const remarksText = remarksCell.textContent.trim().toLowerCase(); // Trim to remove leading/trailing spaces
 
-        // Check if the remarksText is exactly equal to the selectedRemark (case-insensitive)
-        const remarksMatch = remarksText === selectedRemark;
-
-        if (remarksMatch) {
-            row.style.display = '';
+// Function to fetch user data from a specific node in the database
+async function fetchUserData(nodeRef, userId) {
+    try {
+        const snapshot = await get(nodeRef);
+        const userData = snapshot.child(userId).val();
+        if (userData) {
+            return userData;
         } else {
             throw new Error("User not found");
         }
-    }catch (error) {
+    } catch (error) {
         throw error;
     }
+}
 
 function filterTable() {
-    const searchInput = document.getElementById('search-bar').value.trim().toLowerCase();
+    const searchInput = document.getElementById('search-bar').value.toLowerCase();
     const tableRows = document.querySelectorAll('.colored-row');
 
     tableRows.forEach(row => {
         const adopterNameCell = row.querySelector('td:nth-child(1)');
-       
+        const statusCell = row.querySelector('td:nth-child(5)');
 
-        const adopterNameMatch = adopterNameCell.textContent.trim().toLowerCase().includes(searchInput);
-       
-        // Show the row only if there's a match in adopter name or remarks
-        if (adopterNameMatch) {
+        const adopterNameMatch = adopterNameCell.textContent.toLowerCase().includes(searchInput);
+        const statusMatch = statusCell.textContent.toLowerCase().includes(searchInput);
+
+        if (adopterNameMatch || statusMatch) {
             row.style.display = '';
         } else {
             row.style.display = 'none';
         }
     });
 }
-
-displayHistoryData();
 
 displayApplicationsData();
