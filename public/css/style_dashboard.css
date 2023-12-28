@@ -900,7 +900,8 @@ thead th {
     width:600px;
 }
 #approveButton,
-#disapproveButton{
+#disapproveButton,
+#confirmButton{
     background-color: #6868AE;
     color:white;
     padding:20px 30px;
@@ -913,7 +914,10 @@ thead th {
     margin-top: 0px;
     margin-left: 460px;
 }
-
+.confirmbtn{
+    margin-top: 0px;
+    margin-left: 460px;
+}
 #application-details textarea {
     float: center;
     width: 600px;

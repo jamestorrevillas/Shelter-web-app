@@ -124,7 +124,7 @@ async function displayApplicationDetails(application, applicationId) {
     }catch (error) {
         throw error;
     }
-
+}
 function filterTable() {
     const searchInput = document.getElementById('search-bar').value.trim().toLowerCase();
     const tableRows = document.querySelectorAll('.colored-row');
