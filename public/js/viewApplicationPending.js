@@ -37,6 +37,7 @@ async function displayApplicationData(applicationId) {
         document.getElementById('Address').value = adopterData.address || '';
         document.getElementById('ContactNumber').value = adopterData.phone_number || '';
         document.getElementById('Reason').value = applicationData.reason || '';
+        document.getElementById('shelterFeedback').value = applicationData.feedback || '';
 
         if (petData && petData.imageUrl) {
             try {

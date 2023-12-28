@@ -25,7 +25,7 @@ const adoptersRef = ref(database, 'adopters');
 const sheltersRef = ref(database, 'shelters');
 const applicationFormRef = ref(database, 'applicationform');
 
-function displayApplicationsData() {
+function displayApplicationsData(remarkFilter = '') {
     onValue(applicationFormRef, (snapshot) => {
         const applicationsData = snapshot.val();
         const applicationsTableBody = document.getElementById('table-body-below');
@@ -37,7 +37,8 @@ function displayApplicationsData() {
             if (Object.hasOwnProperty.call(applicationsData, applicationId)) {
                 const application = applicationsData[applicationId];
 
-                if (application.shelter_id && application.shelter_id === loggedInShelterId && application.status === 1) {
+                if (application.shelter_id === loggedInShelterId && application.status === 1 && 
+                    (!remarkFilter || application.remarks === remarkFilter)) {
                     displayApplicationDetails(application, applicationId);
                 }
             }
@@ -144,4 +145,20 @@ function filterTable() {
     });
 }
 
-displayApplicationsData();
+document.addEventListener('DOMContentLoaded', () => {
+    const remarksFilter = document.getElementById('remarks-filter');
+    const searchBar = document.getElementById('search-bar');
+
+    if (remarksFilter) {
+        remarksFilter.addEventListener('change', function() {
+            displayApplicationsData(this.value);
+        });
+    }
+
+    if (searchBar) {
+        searchBar.addEventListener('input', filterTable);
+    }
+
+    // Initial display of applications data without filter
+    displayApplicationsData();
+});
