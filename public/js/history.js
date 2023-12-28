@@ -109,41 +109,39 @@ async function displayApplicationDetails(application, applicationId) {
     document.getElementById('search-bar').addEventListener('input', filterTable);
 }
 
-    tableRows.forEach(row => {
-        const remarksCell = row.querySelector('td:nth-child(5)'); // Change to 5 if the Remarks column is the fifth column
-        const remarksText = remarksCell.textContent.trim().toLowerCase(); // Trim to remove leading/trailing spaces
 
-        // Check if the remarksText is exactly equal to the selectedRemark (case-insensitive)
-        const remarksMatch = remarksText === selectedRemark;
-
-        if (remarksMatch) {
-            row.style.display = '';
+// Function to fetch user data from a specific node in the database
+async function fetchUserData(nodeRef, userId) {
+    try {
+        const snapshot = await get(nodeRef);
+        const userData = snapshot.child(userId).val();
+        if (userData) {
+            return userData;
         } else {
             throw new Error("User not found");
         }
-    }catch (error) {
+    } catch (error) {
         throw error;
     }
 }
+
 function filterTable() {
-    const searchInput = document.getElementById('search-bar').value.trim().toLowerCase();
+    const searchInput = document.getElementById('search-bar').value.toLowerCase();
     const tableRows = document.querySelectorAll('.colored-row');
 
     tableRows.forEach(row => {
         const adopterNameCell = row.querySelector('td:nth-child(1)');
-       
+        const statusCell = row.querySelector('td:nth-child(5)');
 
-        const adopterNameMatch = adopterNameCell.textContent.trim().toLowerCase().includes(searchInput);
-       
-        // Show the row only if there's a match in adopter name or remarks
-        if (adopterNameMatch) {
+        const adopterNameMatch = adopterNameCell.textContent.toLowerCase().includes(searchInput);
+        const statusMatch = statusCell.textContent.toLowerCase().includes(searchInput);
+
+        if (adopterNameMatch || statusMatch) {
             row.style.display = '';
         } else {
             row.style.display = 'none';
         }
     });
 }
-
-displayHistoryData();
 
 displayApplicationsData();
