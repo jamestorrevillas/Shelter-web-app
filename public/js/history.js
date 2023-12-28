@@ -45,6 +45,7 @@ function displayApplicationsData() {
     });
 }
 
+
 function getLoggedInShelterId() {
     const user = auth.currentUser;
     return user ? user.uid : null;
@@ -91,56 +92,8 @@ async function displayApplicationDetails(application, applicationId) {
     tableRow.appendChild(addressCell);
     tableRow.appendChild(remarksCell);
 
-    tableRow.classList.add('colored-row');
-
-    // Create an anchor element
-    const rowAnchor = document.createElement('a');
-    rowAnchor.href = '#';
-    rowAnchor.addEventListener('click', function() {
-        window.location.href = `_________.html?applicationId=${applicationId}`;
-    });
-
-    // Append the table row to the anchor element
-    rowAnchor.appendChild(tableRow);
-
-    // Append the anchor element to the table body
-    tableBody.appendChild(rowAnchor);
-    document.getElementById('search-bar').addEventListener('input', filterTable);
+    tableBody.appendChild(tableRow);
 }
 
+displayHistoryData();
 
-// Function to fetch user data from a specific node in the database
-async function fetchUserData(nodeRef, userId) {
-    try {
-        const snapshot = await get(nodeRef);
-        const userData = snapshot.child(userId).val();
-        if (userData) {
-            return userData;
-        } else {
-            throw new Error("User not found");
-        }
-    } catch (error) {
-        throw error;
-    }
-}
-
-function filterTable() {
-    const searchInput = document.getElementById('search-bar').value.toLowerCase();
-    const tableRows = document.querySelectorAll('.colored-row');
-
-    tableRows.forEach(row => {
-        const adopterNameCell = row.querySelector('td:nth-child(1)');
-        const statusCell = row.querySelector('td:nth-child(5)');
-
-        const adopterNameMatch = adopterNameCell.textContent.toLowerCase().includes(searchInput);
-        const statusMatch = statusCell.textContent.toLowerCase().includes(searchInput);
-
-        if (adopterNameMatch || statusMatch) {
-            row.style.display = '';
-        } else {
-            row.style.display = 'none';
-        }
-    });
-}
-
-displayApplicationsData();

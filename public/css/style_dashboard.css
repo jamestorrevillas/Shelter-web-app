@@ -399,7 +399,7 @@ button:hover {
 #pets-table-top {
     display: inline-block;
 	margin-right: 35px;
-    margin-left: -235px;
+    margin-left: -375px;
 
 }
 #pets-table-top th {
@@ -409,14 +409,14 @@ button:hover {
 }
 #archive-table-top {
     display: inline-block;
-	margin-right: 35px;
-    margin-left: -235px;
+	margin-right: 50px;
+    margin-left: -320px;
 
 }
 #archive-table-top th {
     text-align: right;
     padding-right: 0px; /* Adjust the value as needed */
-    padding-left: 30px;
+    padding-left: 60px;
 }
 #application-table-top {
     display: inline-block;
@@ -619,6 +619,7 @@ thead th {
     margin: 5px;
     padding:10px;
     border-color: white;
+    cursor: pointer;
 }
 .colored-row td {
     text-decoration: none;
@@ -684,12 +685,12 @@ thead th {
 }
 #application-table-below {
     table-layout: fixed;
-    width: 100%; /* Adjust as needed */
+    width: 95%; /* Adjust as needed */
     margin-top: 20px;
     border-radius:30px;
 }
 #application-table-below td {
-    padding: 8px;
+    padding: 0px;
 }
 #history-table-below {
     table-layout: fixed;
@@ -701,17 +702,22 @@ thead th {
     padding: 8px;
 }
 #table-body-below td:nth-child(3) {
-    display: flex;
+    /* display: flex; */
     border-radius: 0px; 
     margin-left: 50px;
     padding-top: 20px;
 }
-
+/* #table-body-below td:nth-child(5) {
+    /* display: flex; */
+    /* border-radius: 0px; 
+    margin-left: 100px;
+    padding-top: 20px;
+} */ 
 
 #table-body-below {
     display: block;
     /* max-height: 100%;  */
-    overflow-y: auto;
+    /* overflow-y: auto; */
 }
 
 #table-body-below tr {
@@ -723,8 +729,8 @@ thead th {
 }
 
 #table-body-below td {
-    flex: 1;
-    width: 20%; /* Set a fixed width for each td, adjust as needed */
+    /* flex: 1; */
+    width:20%; 
     padding: 20px; /* Adjust padding as needed */
     border: 0px solid black; /* Apply border to table cells in the body */
 }

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style_dashboard.css">
     <script type="module" src="../js/auth_check.js"></script>
-    <script type="module" src="../js/response.js"></script>
+    <script type="module" src="../js/viewApplication.js"></script>
     <title>FurryFound</title>
 </head>
 <body>
@@ -27,8 +27,8 @@
             <nav class="left-nav">
                 <ul>
                     <li><a href="pets.html" >Pets</a></li>
-                    <li><a href="applications.html" id="left-nav-current">Applications</a></li>
-                    <li><a href="History.html" >History</a></li>
+                    <li><a href="applications.html" >Applications</a></li>
+                    <li><a href="History.html" id="left-nav-current">History</a></li>
                     <li><a href="archive.html" >Archive</a></li>
                     <li><a href="pending.html" >Pendings</a></li>
                 
@@ -62,14 +62,9 @@
                     <input type="text" id="Reason" name="Reason" readonly>
 
                     <label for="shelterFeedback">Feedback:</label>
-                    <textarea id="shelterFeedback" name="shelterFeedback" rows="4"></textarea>
+                    <textarea id="shelterFeedback" name="shelterFeedback" rows="4" required></textarea>
 
-                    <div class="responsebtn">
-                        <button id="approveButton" onclick="approveApplication()">Approve</button>
-                        <button id="disapproveButton" onclick="disapproveApplication()">Disapprove</button>
-                        
-                    </div>
-
+                    
                 </section>
             </div>
         </div>
