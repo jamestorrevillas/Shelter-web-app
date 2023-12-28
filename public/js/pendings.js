@@ -91,7 +91,7 @@ async function displayApplicationDetails(application, applicationId) {
     const rowAnchor = document.createElement('a');
     rowAnchor.href = '#';
     rowAnchor.addEventListener('click', function() {
-        window.location.href = `_________.html?applicationId=${applicationId}`;
+        window.location.href = `viewApplicationPending.html?applicationId=${applicationId}`;
     });
 
     // Append the table row to the anchor element
