@@ -619,6 +619,7 @@ thead th {
     margin: 5px;
     padding:10px;
     border-color: white;
+    cursor: pointer;
 }
 .colored-row td {
     text-decoration: none;

@@ -40,12 +40,13 @@ function displayHistoryData() {
     });
 }
 
+
 function getLoggedInShelterId() {
     const user = auth.currentUser;
     return user ? user.uid : null;
 }
 
-async function displayHistoryEntry(historyDetails, uid) {
+async function displayHistoryEntry(historyDetails, applicationId) {
     const tableBody = document.getElementById('table-body-below');
 
     // Fetch pet name using pet_id
@@ -79,8 +80,19 @@ async function displayHistoryEntry(historyDetails, uid) {
     tableRow.appendChild(addressCell);
     tableRow.appendChild(remarksCell);
 
+    tableRow.classList.add('colored-row');
+
+    const rowAnchor = document.createElement('a');
+    rowAnchor.href = '#';  // Set the desired URL or use '#' for placeholder
+    rowAnchor.addEventListener('click', function() {
+        window.location.href = `viewApplication.html?applicationId=${applicationId}`;
+    });
+
     tableBody.appendChild(tableRow);
 }
-
+function filterByRemarks() {
+    const selectedRemark = document.getElementById('remarks-filter').value;
+    displayHistoryData(selectedRemark);
+}
 displayHistoryData();
 
