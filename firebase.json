@@ -8,24 +8,80 @@
     ],
     "rewrites": [
       {
-        "source": "*/*",
-        "destination": "/pages/home.html"
+        "source": "/archive.html",
+        "destination": "/pages/archive.html"
       },
       {
-        "source": "**",
-        "destination": "/pages/home.html"
+        "source": "/history-application-details.html",
+        "destination": "/pages/history-application-details.html"
       },
       {
-        "source": "/pages/login.html",
-        "destination": "/login.html"
+        "source": "/history.html",
+        "destination": "/pages/history.html"
+      },
+      {
+        "source": "/pending-application-details.html",
+        "destination": "/pages/pending-application-details.html"
+      },
+      {
+        "source": "/pendings.html",
+        "destination": "/pages/pendings.html"
+      },
+      {
+        "source": "/response.html",
+        "destination": "/pages/response.html"
+      },
+      {
+        "source": "/applications.html",
+        "destination": "/pages/applications.html"
+      },
+      {
+        "source": "/change-password.html",
+        "destination": "/pages/change-password.html"
+      },
+      {
+        "source": "/settings.html",
+        "destination": "/pages/settings.html"
+      },
+      {
+        "source": "/edit-pet-details.html",
+        "destination": "/pages/edit-pet-details.html"
+      },
+      {
+        "source": "/add-pet.html",
+        "destination": "/pages/add-pet.html"
+      },
+      {
+        "source": "/pets.html",
+        "destination": "/pages/pets.html"
+      },
+      {
+        "source": "/pets.html",
+        "destination": "/pages/pets.html"
+      },
+      {
+        "source": "/forgot-password.html",
+        "destination": "/pages/forgot-password.html"
       },
       {
         "source": "/register.html",
         "destination": "/pages/register.html"
       },
       {
+        "source": "/login.html",
+        "destination": "/pages/login.html"
+      },
+      {
         "source": "/about.html",
         "destination": "/pages/about.html"
+      },
+      {
+        "source": "/home.html",
+        "destination": "/pages/home.html"
+      },
+      {
+        "source": "**",
+        "destination": "/pages/home.html"
       }
     ]
   }
