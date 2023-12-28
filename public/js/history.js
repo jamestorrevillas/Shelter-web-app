@@ -101,10 +101,12 @@ function filterByRemarks() {
     const selectedRemark = document.getElementById('remarks-filter').value.toLowerCase();
     const tableRows = document.querySelectorAll('.colored-row');
 
-    tableRows.forEach(row => {  
-        const remarksCell = row.querySelector('td:nth-child(5)'); // Assuming the remarks column is the fifth column (adjust if necessary)
+    tableRows.forEach(row => {
+        const remarksCell = row.querySelector('td:nth-child(5)'); // Change to 5 if the Remarks column is the fifth column
+        const remarksText = remarksCell.textContent.trim().toLowerCase(); // Trim to remove leading/trailing spaces
 
-        const remarksMatch = remarksCell.textContent.toLowerCase().includes(selectedRemark);
+        // Check if the remarksText is exactly equal to the selectedRemark (case-insensitive)
+        const remarksMatch = remarksText === selectedRemark;
 
         if (remarksMatch) {
             row.style.display = '';
@@ -113,25 +115,24 @@ function filterByRemarks() {
         }
     });
 }
-
-
 function filterTable() {
-    const searchInput = document.getElementById('search-bar').value.toLowerCase();
+    const searchInput = document.getElementById('search-bar').value.trim().toLowerCase();
     const tableRows = document.querySelectorAll('.colored-row');
 
     tableRows.forEach(row => {
         const adopterNameCell = row.querySelector('td:nth-child(1)');
-        const statusCell = row.querySelector('td:nth-child(5)');
+       
 
-        const adopterNameMatch = adopterNameCell.textContent.toLowerCase().includes(searchInput);
-        const statusMatch = statusCell.textContent.toLowerCase().includes(searchInput);
-
-        if (adopterNameMatch || statusMatch) {
+        const adopterNameMatch = adopterNameCell.textContent.trim().toLowerCase().includes(searchInput);
+       
+        // Show the row only if there's a match in adopter name or remarks
+        if (adopterNameMatch) {
             row.style.display = '';
         } else {
             row.style.display = 'none';
         }
     });
 }
+
 displayHistoryData();
 

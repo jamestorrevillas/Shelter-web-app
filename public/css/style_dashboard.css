@@ -433,13 +433,16 @@ button:hover {
 #history-table-top {
     display: inline-block;
 	margin-right: -310px;
-    margin-left: -350px;
+    margin-left: -250px;
 
 }
 #history-table-top th {
     text-align: right;
     padding-right: 0px; /* Adjust the value as needed */
     padding-left: 10px;
+}
+#remarks-filter{
+    width: 20px;
 }
 /* #history-table-below {
     display: inline-block;
