@@ -74,11 +74,39 @@ async function confirmApplication() {
     }
 }
 
-// Attach the event listener to the confirm button
+// Function to handle the cancel button click
+async function cancelApplication() {
+    if (!applicationId) {
+        console.error('No application ID available for cancellation');
+        return;
+    }
+
+    const updates = {};
+    updates[`/applicationform/${applicationId}/remarks`] = 'CANCELLED';
+
+    try {
+        await update(ref(database), updates);
+        alert("Application cancelled successfully.");
+
+        // Redirect to another page after successful cancellation
+        window.location.href = "pending.html";
+    } catch (error) {
+        console.error('Error cancelling application:', error);
+        alert("Failed to cancel application.");
+    }
+}
+
+// Attach the event listeners to the buttons
 document.addEventListener('DOMContentLoaded', () => {
     const confirmButton = document.getElementById("confirmButton");
+    const cancelButton = document.getElementById("cancelButton");
+
     if (confirmButton) {
         confirmButton.addEventListener("click", confirmApplication);
+    }
+
+    if (cancelButton) {
+        cancelButton.addEventListener("click", cancelApplication);
     }
 });
 
