@@ -89,8 +89,8 @@ async function displayApplicationDetails(application, applicationId) {
     
     tableRow.appendChild(petNameCell);
     tableRow.appendChild(adopterNameCell);
-    tableRow.appendChild(contactNumberCell);
     tableRow.appendChild(addressCell);
+    tableRow.appendChild(contactNumberCell);
     tableRow.appendChild(remarksCell);
 
     tableRow.classList.add('colored-row');

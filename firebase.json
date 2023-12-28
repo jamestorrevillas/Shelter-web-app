@@ -16,8 +16,8 @@
         "destination": "/pages/home.html"
       },
       {
-        "source": "/login.html",
-        "destination": "/pages/login.html"
+        "source": "/pages/login.html",
+        "destination": "/login.html"
       },
       {
         "source": "/register.html",
@@ -28,17 +28,5 @@
         "destination": "/pages/about.html"
       }
     ]
-  },
-  "functions": [
-    {
-      "source": "functions",
-      "codebase": "default",
-      "ignore": [
-        "node_modules",
-        ".git",
-        "firebase-debug.log",
-        "firebase-debug.*.log"
-      ]
-    }
-  ]
+  }
 }

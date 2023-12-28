@@ -27,20 +27,31 @@
             const petsData = snapshot.val();
             const petsTableBody = document.getElementById('table-body-below');
             petsTableBody.innerHTML = '';
-
+    
             const loggedInShelterId = getLoggedInShelterId();
-
+            let petsArray = [];
+    
             for (const petId in petsData) {
                 if (Object.hasOwnProperty.call(petsData, petId)) {
                     const pet = petsData[petId];
-
-                if (pet.shelter_id && pet.shelter_id === loggedInShelterId && pet.status === 0) {
-                    displayNewPet(pet, petId);
+    
+                    if (pet.shelter_id && pet.shelter_id === loggedInShelterId && pet.status === 0) {
+                        const currentDate = new Date();
+                        const daysAtShelter = Math.floor((currentDate - new Date(pet.dateArrived)) / (24 * 60 * 60 * 1000));
+                        petsArray.push({ pet, petId, daysAtShelter });
+                    }
                 }
             }
-        }
-    });
-}
+    
+            // Sort the petsArray based on daysAtShelter
+            petsArray.sort((a, b) => a.daysAtShelter - b.daysAtShelter);
+    
+            // Now display each pet
+            petsArray.forEach(({ pet, petId, daysAtShelter }) => {
+                displayNewPet(pet, petId, daysAtShelter);
+            });
+        });
+    }    
 
     function getLoggedInShelterId() {
         const user = auth.currentUser;
@@ -144,6 +155,7 @@
             }
         });
     }
+
     function updateDaysAtShelter() {
         const currentDate = new Date();
     

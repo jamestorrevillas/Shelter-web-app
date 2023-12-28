@@ -79,9 +79,9 @@ async function displayApplicationDetails(application, applicationId) {
     remarksCell.textContent = remarks;
 
     // Add table cells to the table row
+    tableRow.appendChild(adopterNameCell);
     tableRow.appendChild(addressCell);
     tableRow.appendChild(emailCell);
-    tableRow.appendChild(adopterNameCell);
     tableRow.appendChild(contactNumberCell);
     tableRow.appendChild(remarksCell);
 
