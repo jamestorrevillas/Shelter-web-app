@@ -398,8 +398,8 @@ button:hover {
 }
 #pets-table-top {
     display: inline-block;
-	margin-right: 35px;
-    margin-left: -375px;
+	margin-right: 50px;
+    margin-left: -200px;
 
 }
 #pets-table-top th {
@@ -420,8 +420,9 @@ button:hover {
 }
 #application-table-top {
     display: inline-block;
-	margin-right: -200px;
-    margin-left: -200px;
+	margin-right: 0px;
+    margin-left: -250px;
+  
 
 }
 
@@ -687,13 +688,13 @@ thead th {
     padding: 8px;
 }
 #application-table-below {
-    table-layout: fixed;
-    width: 95%; /* Adjust as needed */
+    /* table-layout: fixed; */
+    width: 100%; /* Adjust as needed */
     margin-top: 20px;
-    border-radius:30px;
+    /* border-radius:30px; */
 }
 #application-table-below td {
-    padding: 0px;
+    padding: px;
 }
 #history-table-below {
     table-layout: fixed;
@@ -704,12 +705,19 @@ thead th {
 #history-table-below td {
     padding: 8px;
 }
-#table-body-below td:nth-child(3) {
-    /* display: flex; */
+/* #table-body-below td:nth-child(6) {
+   
     border-radius: 0px; 
-    margin-left: 50px;
+    margin-left: 200px;
+    padding-top: 20px;
+} */
+#table-body-below td:nth-child(1) {
+   
+    border-radius: 0px; 
+    margin-left: -20px;
     padding-top: 20px;
 }
+
 /* #table-body-below td:nth-child(5) {
     /* display: flex; */
     /* border-radius: 0px; 
@@ -733,6 +741,7 @@ thead th {
 
 #table-body-below td {
     /* flex: 1; */
+    margin-left: 50px;
     width:20%; 
     padding: 20px; /* Adjust padding as needed */
     border: 0px solid black; /* Apply border to table cells in the body */
@@ -887,6 +896,11 @@ thead th {
 }
 #appdet{  
     margin-top: -90px;
+    height: 108%;
+}
+
+#appdet input{
+    text-align: center;
 }
 #historydet{  
     margin-top: -90px;

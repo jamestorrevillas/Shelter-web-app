@@ -81,6 +81,8 @@
         colorCell.textContent = color;
         const typeCell = document.createElement('td');
         typeCell.textContent = type;
+        const genderCell = document.createElement('td');
+        genderCell.textContent = gender;
         const daysCell = document.createElement('td');
         daysCell.textContent = dateArrived;
         const daysAtShelterCell = document.createElement('td');
@@ -116,6 +118,7 @@
         // tableRow.appendChild(weightCell);
         tableRow.appendChild(colorCell);
         tableRow.appendChild(typeCell);
+        // tableRow.appendChild(genderCell);
         // tableRow.appendChild(daysCell);
         tableRow.appendChild(daysAtShelterCell);
         // tableRow.appendChild(statusCell);
