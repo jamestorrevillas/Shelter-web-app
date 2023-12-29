@@ -27,33 +27,25 @@ const editPetForm = document.getElementById('editPetForm');
 editPetForm.addEventListener('submit', function (event) {
   event.preventDefault();
 
-  onValue(petRef, (snapshot) => {
-    const existingPetDetails = snapshot.val();
+  const updatedPetDetails = {
+    imageUrl: document.getElementById('petPic').src,
+    name: document.getElementById('editPetName').value,
+    type: document.getElementById('editPetType').value,
+    age: document.getElementById('editPetAge').value,
+    color: document.getElementById('editPetColor').value,
+    weight: document.getElementById('editPetWeight').value,
+    description: document.getElementById('editPetDescription').value,
+  };
 
-    // Get updated pet details from the form
-    const updatedPetDetails = {
-      imageUrl: document.getElementById('petPic').src,
-      name: document.getElementById('editPetName').value,
-      type: document.getElementById('editPetType').value,
-      age: document.getElementById('editPetAge').value,
-      color: document.getElementById('editPetColor').value,
-      weight: document.getElementById('editPetWeight').value,
-      description: document.getElementById('editPetDescription').value,
-      status: existingPetDetails.status,
-      daysAtShelter: existingPetDetails.daysAtShelter,
-    };
-
-    // Update the pet details in Firebase
-    set(petRef, updatedPetDetails)
-      .then(() => {
-        alert('Pet details updated successfully!');
-        window.location.href = 'pets.html'; // Redirect to the pets page
-      })
-      .catch((error) => {
-        console.error('Error updating pet details:', error.message);
-      });
-  });
+  update(petRef, updatedPetDetails);
+    // .then(() => {
+    //   alert('Pet details updated successfully!');
+    // })
+    // .catch((error) => {
+    //   console.error('Error updating pet details:', error.message);
+    // });
 });
+
 
 // Function to pre-fill the form with existing pet details
 async function preFillForm(petDetails) {
@@ -81,7 +73,7 @@ async function preFillForm(petDetails) {
   // document.getElementById('editPetStatus').value = petDetails.status || '';
   // document.getElementById('editPetDays').value = petDetails.daysAtShelter || '';
 
-  // Pre-fill other fields as needed
+  toggleEditMode(false);
 }
 
 // Fetch pet details from Firebase and pre-fill the form
@@ -93,62 +85,48 @@ onValue(petRef, (snapshot) => {
 });
 
 // Function to toggle edit mode
-function toggleEditMode() {
-  const editPetName = document.getElementById('editPetName');
-  const editPetType = document.getElementById('editPetType');
-  const editPetAge = document.getElementById('editPetAge');
-  const editPetColor = document.getElementById('editPetColor');
-  const editPetWeight = document.getElementById('editPetWeight');
-  const editPetDescription = document.getElementById('editPetDescription');
+function toggleEditMode(isEditMode) {
+  const editFields = [
+    'editPetName', 'editPetType', 'editPetAge', 
+    'editPetColor', 'editPetWeight', 'editPetDescription'
+  ];
+
+  editFields.forEach(fieldId => {
+    const field = document.getElementById(fieldId);
+    if (field) {
+      field.readOnly = !isEditMode;
+    }
+  });
+
   const savePetProfileBtn = document.getElementById('editPetBtn');
-
-  const isEditMode = editPetName.readOnly;
-
-  // Toggle read-only state of text fields
-  editPetName.readOnly = !isEditMode;
-  editPetType.readOnly = !isEditMode;
-  editPetAge.readOnly = !isEditMode;
-  editPetColor.readOnly = !isEditMode;
-  editPetWeight.readOnly = !isEditMode;
-  editPetDescription.readOnly = !isEditMode;
-
-  // Change button text based on edit mode
   savePetProfileBtn.textContent = isEditMode ? 'SAVE CHANGES' : 'EDIT PROFILE';
 
   // If entering edit mode, focus on the first editable field
-  if (!isEditMode) {
-    editPetName.focus();
+  if (isEditMode) {
+    document.getElementById('editPetName').focus();
   }
 }
 
 // Function to save changes to pet profile
 function saveChanges() {
-    const editPetName = document.getElementById('editPetName');
-    const editPetType = document.getElementById('editPetType');
-    const editPetAge = document.getElementById('editPetAge');
-    const editPetColor = document.getElementById('editPetColor');
-    const editPetWeight = document.getElementById('editPetWeight');
-    const editPetDescription = document.getElementById('editPetDescription');
-  
-    // Update the pet profile data in the database
-    const updateData = {
-      name: editPetName.value,
-      type: editPetType.value,
-      age: editPetAge.value,
-      color: editPetColor.value,
-      weight: editPetWeight.value,
-      description: editPetDescription.value,
-    };
-  
-    update(petRef, updateData)
-      .then(() => {
-        alert('Pet details updated successfully!');
-        toggleEditMode();
-      })
-      .catch((error) => {
-        console.error('Error updating pet details:', error.message);
-      });
-  }
+  const updateData = {
+    name: document.getElementById('editPetName').value,
+    type: document.getElementById('editPetType').value,
+    age: document.getElementById('editPetAge').value,
+    color: document.getElementById('editPetColor').value,
+    weight: document.getElementById('editPetWeight').value,
+    description: document.getElementById('editPetDescription').value,
+  };
+
+  update(petRef, updateData)
+    .then(() => {
+      alert('Pet details updated successfully!');
+      toggleEditMode(false);  // Switch back to view mode after saving
+    })
+    .catch((error) => {
+      console.error('Error updating pet details:', error.message);
+    });
+}
   
 
 // Function to handle changing the pet's profile picture
@@ -179,11 +157,8 @@ function changePetProfilePicture() {
 
 // Add event listener to the "EDIT PROFILE" button
 document.getElementById('editPetBtn').addEventListener('click', () => {
-  if (document.getElementById('editPetBtn').textContent === 'EDIT PROFILE') {
-    toggleEditMode();
-  } else {
-    saveChanges();
-  }
+  const isCurrentlyEdit = document.getElementById('editPetBtn').textContent === 'EDIT PROFILE';
+  toggleEditMode(isCurrentlyEdit);
 });
 
 // Add event listener to the "Change Profile Picture" button for pets

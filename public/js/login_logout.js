@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function logoutUser() {
     signOut(auth).then(() => {
         console.log("User logged out");
-        window.location.href = "login.html";
+        window.location.href = "./login.html";
     }).catch((error) => {
         console.error("Logout failed", error);
     });

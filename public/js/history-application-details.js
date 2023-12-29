@@ -39,6 +39,7 @@ async function displayApplicationData(applicationId) {
 
         // Update the HTML elements with the application data
         document.getElementById('PetName').value = petData ? petData.name : '';
+        document.getElementById('DateApplied').value = applicationData.date_applied || '';
         document.getElementById('AdopterName').value = `${adopterData.first_name || ''} ${adopterData.last_name || ''}`;
         document.getElementById('ShelterEmail').value = adopterData.email || '';
         document.getElementById('Address').value = adopterData.address || '';

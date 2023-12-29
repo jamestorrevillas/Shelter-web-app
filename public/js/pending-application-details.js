@@ -32,6 +32,7 @@ async function displayApplicationData(applicationId) {
         const petData = petSnapshot.val();
 
         document.getElementById('PetName').value = petData ? petData.name : '';
+        document.getElementById('DateApplied').value = applicationData.date_applied || '';
         document.getElementById('AdopterName').value = `${adopterData.first_name || ''} ${adopterData.last_name || ''}`;
         document.getElementById('ShelterEmail').value = adopterData.email || '';
         document.getElementById('Address').value = adopterData.address || '';
@@ -89,7 +90,7 @@ async function cancelApplication() {
         alert("Application cancelled successfully.");
 
         // Redirect to another page after successful cancellation
-        window.location.href = "pending.html";
+        window.location.href = "pendings.html";
     } catch (error) {
         console.error('Error cancelling application:', error);
         alert("Failed to cancel application.");
