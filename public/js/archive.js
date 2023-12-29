@@ -89,7 +89,17 @@
             statusCell.textContent = petStatus;
             const descriptionCell = document.createElement('td');
             descriptionCell.textContent = petDescription;
+
+            const button2 = document.createElement('td');
+            const image2 = document.createElement('img');
+            image2.src = "../images/pen_icon.png"; 
+    
+            image2.addEventListener('click', function() {
+                window.location.href = `edit-pet-details.html?id=${petId}&imageURL=${petDetails.imageURL}`;
+            });
+            button2.appendChild(image2);    
         
+
             const button1 = document.createElement('td');
                     
             const image1 = document.createElement('img');
@@ -110,6 +120,7 @@
             // tableRow.appendChild(daysCell);
             tableRow.appendChild(daysAtShelterCell);
             // tableRow.appendChild(statusCell);
+            tableRow.appendChild(button2);
             tableRow.appendChild(button1);
             // tableRow.appendChild(button2);
             // tableRow.appendChild(descriptionCell);

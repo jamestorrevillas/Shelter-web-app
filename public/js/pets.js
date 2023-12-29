@@ -62,13 +62,14 @@
     function displayNewPet(petDetails, petId) {
         const tableBody = document.getElementById('table-body-below');
 
-        const { name, age, weight, color, type, dateArrived, status, description } = petDetails;
+        const { name, age, weight, color, type,gender, dateArrived, status, description } = petDetails;
 
         const petName = name;
         const petAge = age;
         const petWeight = weight;
         const petColor = color;
         const petType = type;
+        const petGender = gender;
         const petDays = dateArrived;
         const petStatus = status;
         const petDescription = description;
@@ -89,6 +90,8 @@
         colorCell.textContent = petColor;
         const typeCell = document.createElement('td');
         typeCell.textContent = petType;
+        const genderCell = document.createElement('td');
+        genderCell.textContent = petGender;
         const daysCell = document.createElement('td');
         daysCell.textContent = petDays;
         const daysAtShelterCell = document.createElement('td');
@@ -97,19 +100,17 @@
         statusCell.textContent = petStatus;
         const descriptionCell = document.createElement('td');
         descriptionCell.textContent = petDescription;
-    
-                    const button1 = document.createElement('td');
-                
-                    const image1 = document.createElement('img');
 
+        //PENBTN
+                    const button1 = document.createElement('td');
+                    const image1 = document.createElement('img');
                     image1.src = "../images/pen_icon.png"; 
-                    
+            
                     image1.addEventListener('click', function() {
                         window.location.href = `edit-pet-details.html?id=${petId}&imageURL=${petDetails.imageURL}`;
                     });
-                    
                     button1.appendChild(image1);    
-
+        //ARCHIVEBTN
                     const button2 = document.createElement('td');
                     const image2 = document.createElement('img');
                     image2.src = "../images/icons8-archive-50.png"; 

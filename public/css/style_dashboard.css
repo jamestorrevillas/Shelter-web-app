@@ -267,7 +267,7 @@ textarea {
 	font-family:'Poppins', sans-serif;
 	text-decoration:none;
 	float:center;
-    margin-left: 265px;
+    margin-left: 280px;
     background-color: #6868AE;
     color: #ffffff;
     padding: 10px 20px;
@@ -275,7 +275,7 @@ textarea {
     border-radius: 10px;
     cursor: pointer;
 }
-
+    
 button:hover {
     background-color: #485084;
 }
@@ -409,14 +409,14 @@ button:hover {
 }
 #archive-table-top {
     display: inline-block;
-	margin-right: 50px;
-    margin-left: -320px;
+	margin-right: 80px;
+    margin-left: -370px;
 
 }
 #archive-table-top th {
     text-align: right;
     padding-right: 0px; /* Adjust the value as needed */
-    padding-left: 60px;
+    padding-left: 20px;
 }
 #application-table-top {
     display: inline-block;
@@ -883,6 +883,13 @@ thead th {
 }
 #application-details{
     height:1100px;
+      
+}
+#appdet{  
+    margin-top: -90px;
+}
+#historydet{  
+    margin-top: -90px;
 }
 #application-details h2{
     margin-top:50px;
@@ -909,6 +916,14 @@ thead th {
     border: none;
     cursor: pointer;
     border-radius: 5px;
+}
+.gender-container {
+    display: inline-block;
+}
+
+.gender-container label {
+    display: inline-block;
+    margin-right: 10px; /* Adjust the margin as needed */
 }
 .responsebtn{
     margin-top: 0px;
@@ -943,16 +958,23 @@ thead th {
     padding: 5px;
     font-weight: bold;
     color:white;
-    background-color: #6868AE;
+    background-color: transparent;
+    border: none;
     font-family:'Intel', sans-serif;
 }
 #pet-profile img{
     width:120px;
     height:120px;
-    margin-left:0px;
+    margin-left:230px;
+}
+#addpet-profile img{
+    width:120px;
+    height:120px;
+    margin-left:290px;
 }
 #pet-profile {
     margin-left: 285px;
+   
 }
 #pet-profile button{
     margin-left: 10px;
@@ -961,8 +983,12 @@ thead th {
     background-color: #6868AE;
     color:white;
     margin-bottom: 20px;
+    margin-left: 300px;
 }
 #editPetDetails_section{
     overflow-y: auto;
     max-height: 80vh;
+}
+#editPetForm{
+    margin-top: -90px;
 }

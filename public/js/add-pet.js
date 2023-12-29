@@ -45,9 +45,21 @@ async function addPet() {
         return;
     }
 
+
+    const petGenderMale = document.getElementById('male');
+    const petGenderFemale = document.getElementById('female');
+    
+    const petGender = petGenderMale.checked ? petGenderMale.value : petGenderFemale.value;
+    
+    if (!petGender) {
+        alert('Error: Please select a pet gender.');
+        return;
+    }
+
+
     const petName = document.getElementById('petName').value;
     const petType = document.getElementById('petType').value;
-    const petAge = parseInt(document.getElementById('petAge').value, 10);
+    const petAge = document.getElementById('petAge').value;
     const petColor = document.getElementById('petColor').value;
     const petWeight = parseFloat(document.getElementById('petWeight').value);
     const petDays = document.getElementById('petDays').value;
@@ -91,7 +103,8 @@ async function addPet() {
             description: petDescription,
             imageUrl: downloadURL,
             status: petStatus,
-            shelter_id: loggedInShelterId
+            shelter_id: loggedInShelterId,
+            gender: petGender
         };
 
         // Set the pet data under the generated pet ID in the "pets" node

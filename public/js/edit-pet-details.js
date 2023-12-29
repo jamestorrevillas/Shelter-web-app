@@ -35,6 +35,7 @@ editPetForm.addEventListener('submit', function (event) {
       imageUrl: document.getElementById('petPic').src,
       name: document.getElementById('editPetName').value,
       type: document.getElementById('editPetType').value,
+      gender: document.getElementById('editPetGender').value,
       age: document.getElementById('editPetAge').value,
       color: document.getElementById('editPetColor').value,
       weight: document.getElementById('editPetWeight').value,
@@ -74,6 +75,11 @@ async function preFillForm(petDetails) {
 
   document.getElementById('editPetName').value = petDetails.name || '';
   document.getElementById('editPetType').value = petDetails.type || '';
+  
+  document.getElementById('editPetGenderMale').checked = petDetails.gender === 'Male';
+  document.getElementById('editPetGenderFemale').checked = petDetails.gender === 'Female';
+
+
   document.getElementById('editPetAge').value = petDetails.age || '';
   document.getElementById('editPetColor').value = petDetails.color || '';
   document.getElementById('editPetWeight').value = petDetails.weight || '';
@@ -125,6 +131,7 @@ function toggleEditMode() {
 function saveChanges() {
     const editPetName = document.getElementById('editPetName');
     const editPetType = document.getElementById('editPetType');
+    const editPetGender = document.getElementById('editPetGender');
     const editPetAge = document.getElementById('editPetAge');
     const editPetColor = document.getElementById('editPetColor');
     const editPetWeight = document.getElementById('editPetWeight');
@@ -134,6 +141,7 @@ function saveChanges() {
     const updateData = {
       name: editPetName.value,
       type: editPetType.value,
+      gender: editPetGender.value,
       age: editPetAge.value,
       color: editPetColor.value,
       weight: editPetWeight.value,
