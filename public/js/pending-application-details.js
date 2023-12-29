@@ -83,7 +83,8 @@ async function cancelApplication() {
     }
 
     const updates = {};
-    updates[`/applicationform/${applicationId}/remarks`] = 'CANCELLED';
+    updates[`/applicationform/${applicationId}/remarks`] = -1;
+    updates[`/applicationform/${applicationId}/status`] = 1;
 
     try {
         await update(ref(database), updates);

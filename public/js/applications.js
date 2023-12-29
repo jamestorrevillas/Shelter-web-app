@@ -41,7 +41,7 @@ function displayApplicationsData() {
                 const petDetails = await fetchPetData(application.pet_id);
 
                 // Check if the pet belongs to the logged-in shelter
-                if (petDetails && petDetails.shelter_id === loggedInShelterId && application.status !== 1 && application.remarks !== 1) {
+                if (petDetails && petDetails.shelter_id === loggedInShelterId && application.status !== 1 && application.remarks !== 1 && application.remarks !== -1) {
                     displayApplicationDetails(application, applicationId);
                 }
             }
