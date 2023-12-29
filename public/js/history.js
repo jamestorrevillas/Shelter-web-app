@@ -26,7 +26,7 @@ const sheltersRef = ref(database, 'shelters');
 const applicationFormRef = ref(database, 'applicationform');
 
 function displayApplicationsData(remarkFilter = '') {
-    onValue(applicationFormRef, (snapshot) => {
+    onValue(applicationFormRef, async (snapshot) => {
         const applicationsData = snapshot.val();
         const applicationsTableBody = document.getElementById('table-body-below');
         applicationsTableBody.innerHTML = '';
@@ -36,14 +36,40 @@ function displayApplicationsData(remarkFilter = '') {
         for (const applicationId in applicationsData) {
             if (Object.hasOwnProperty.call(applicationsData, applicationId)) {
                 const application = applicationsData[applicationId];
+                const petDetails = await fetchPetData(application.pet_id);
 
-                if (application.shelter_id === loggedInShelterId && application.status === 1 && 
-                    (!remarkFilter || application.remarks === remarkFilter)) {
+                // Convert the numeric remark value to a string for comparison
+                const remarksDisplay = mapRemarkValueToString(application.remarks);
+
+                if (petDetails && petDetails.shelter_id === loggedInShelterId && application.status === 1 &&
+                    (!remarkFilter || remarksDisplay === remarkFilter)) {
                     displayApplicationDetails(application, applicationId);
                 }
             }
         }
     });
+}
+
+
+// Function to map numeric remark values to string
+function mapRemarkValueToString(remarkValue) {
+    switch (remarkValue) {
+        case -1: return "CANCELLED";
+        case 0: return "DISAPPROVED";
+        case 1: return "APPROVED";
+        default: return "Unknown";
+    }
+}
+
+// Function to fetch pet data from the database
+async function fetchPetData(petId) {
+    try {
+        const petSnapshot = await get(ref(database, `pets/${petId}`));
+        return petSnapshot.val();
+    } catch (error) {
+        console.error("Error fetching pet data:", error);
+        return null;
+    }
 }
 
 
@@ -68,6 +94,8 @@ async function displayApplicationDetails(application, applicationId) {
     // Extract other application details
     const { remarks, date_applied } = application;
 
+    const remarksDisplay = mapRemarkValueToString(remarks);
+
     const tableRow = document.createElement('tr');
 
     // const petNameCell = document.createElement('td');
@@ -86,7 +114,7 @@ async function displayApplicationDetails(application, applicationId) {
     addressCell.textContent = address;
 
     const remarksCell = document.createElement('td');
-    remarksCell.textContent = remarks;
+    remarksCell.textContent = remarksDisplay;
 
     // Add table cells to the table row
     

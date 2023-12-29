@@ -70,14 +70,20 @@ function updateApplicationStatus(applicationId, status) {
     };
 
     // If disapproving, also set the status to "COMPLETED"
-    if (status === 'DISAPPROVED') {
+    if (status === 0) {
         updateData.status = 1;
     }
 
     update(ref(database, `applicationform/${applicationId}`), updateData)
     .then(() => {
-        alert(`Application has been ${status.toLowerCase()}.`);
-        window.location.href = 'applications.html';
+        let remarks = status;
+        if (remarks === 0)
+            remarks = "dispproved"
+        else if (remarks === 1)
+            remarks = "approved"
+            
+        alert(`Application has been ${remarks}.`);
+        window.location.href = './applications.html';
     })
     .catch(error => {
         console.error('Error updating application:', error);
@@ -91,8 +97,8 @@ if (applicationId) {
     displayApplicationData(applicationId);
 
     // Event listeners for buttons
-    document.getElementById('approveButton').addEventListener('click', () => updateApplicationStatus(applicationId, 'APPROVED'));
-    document.getElementById('disapproveButton').addEventListener('click', () => updateApplicationStatus(applicationId, 'DISAPPROVED'));
+    document.getElementById('approveButton').addEventListener('click', () => updateApplicationStatus(applicationId, 1));
+    document.getElementById('disapproveButton').addEventListener('click', () => updateApplicationStatus(applicationId, 0));
 } else {
     console.error('No application ID found in URL');
 }

@@ -62,44 +62,34 @@
     function displayNewPet(petDetails, petId) {
         const tableBody = document.getElementById('table-body-below');
 
-        const { name, age, weight, color, type,gender, dateArrived, status, description } = petDetails;
-
-        const petName = name;
-        const petAge = age;
-        const petWeight = weight;
-        const petColor = color;
-        const petType = type;
-        const petGender = gender;
-        const petDays = dateArrived;
-        const petStatus = status;
-        const petDescription = description;
+        const { name, age, weight, color, type, gender, dateArrived, status, description } = petDetails;
 
         const currentDate = new Date();
-        const daysAtShelter = Math.floor((currentDate - new Date(petDays)) / (24 * 60 * 60 * 1000));
+        const daysAtShelter = Math.floor((currentDate - new Date(dateArrived)) / (24 * 60 * 60 * 1000));
 
+        const petCurrentEstimatedAge = calculateCurrentEstimatedAge(age);
 
         const tableRow = document.createElement('tr');
 
         const nameCell = document.createElement('td');
-        nameCell.textContent = petName;
+        nameCell.textContent = name;
         const ageCell = document.createElement('td');
-        ageCell.textContent = petAge;
+        ageCell.textContent = petCurrentEstimatedAge;
         const weightCell = document.createElement('td');
-        weightCell.textContent = petWeight;
+        weightCell.textContent = weight;
         const colorCell = document.createElement('td');
-        colorCell.textContent = petColor;
+        colorCell.textContent = color;
         const typeCell = document.createElement('td');
-        typeCell.textContent = petType;
-        const genderCell = document.createElement('td');
-        genderCell.textContent = petGender;
+        typeCell.textContent = type;
         const daysCell = document.createElement('td');
-        daysCell.textContent = petDays;
+        daysCell.textContent = dateArrived;
         const daysAtShelterCell = document.createElement('td');
         daysAtShelterCell.textContent = daysAtShelter;
         const statusCell = document.createElement('td');
-        statusCell.textContent = petStatus;
+        statusCell.textContent = status;
         const descriptionCell = document.createElement('td');
-        descriptionCell.textContent = petDescription;
+        descriptionCell.textContent = description;
+    
 
         //PENBTN
                     const button1 = document.createElement('td');
@@ -123,9 +113,9 @@
         // Add table cells to the table row
         tableRow.appendChild(nameCell);
         tableRow.appendChild(ageCell);
-        tableRow.appendChild(weightCell);
-        // tableRow.appendChild(colorCell);
-        // tableRow.appendChild(typeCell);
+        // tableRow.appendChild(weightCell);
+        tableRow.appendChild(colorCell);
+        tableRow.appendChild(typeCell);
         // tableRow.appendChild(daysCell);
         tableRow.appendChild(daysAtShelterCell);
         // tableRow.appendChild(statusCell);
@@ -166,6 +156,14 @@
     }
     
     
+
+    // Function to calculate the current estimated age based on the estimated age at entry
+    function calculateCurrentEstimatedAge(estimatedAgeAtEntry) {
+        const currentYear = new Date().getFullYear();
+        const estimatedYearOfBirth = currentYear - estimatedAgeAtEntry;
+        const currentEstimatedAge = currentYear - estimatedYearOfBirth;
+        return currentEstimatedAge;
+    }
 
     function updateDaysAtShelter() {
         const currentDate = new Date();

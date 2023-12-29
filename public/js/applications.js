@@ -23,9 +23,10 @@ const auth = getAuth();
 const adoptersRef = ref(database, 'adopters');
 const sheltersRef = ref(database, 'shelters');
 const applicationFormRef = ref(database, 'applicationform');
+const petsRef = ref(database, 'pets');
 
 function displayApplicationsData() {
-    onValue(applicationFormRef, (snapshot) => {
+    onValue(applicationFormRef, async (snapshot) => {
         const applicationsData = snapshot.val();
         const applicationsTableBody = document.getElementById('table-body-below');
         applicationsTableBody.innerHTML = '';
@@ -36,12 +37,27 @@ function displayApplicationsData() {
             if (Object.hasOwnProperty.call(applicationsData, applicationId)) {
                 const application = applicationsData[applicationId];
 
-                if (application.shelter_id && application.shelter_id === loggedInShelterId && application.status !== 1 && application.remarks !== 'APPROVED') {
+                // Fetch pet details to get the shelter_id associated with the pet
+                const petDetails = await fetchPetData(application.pet_id);
+
+                // Check if the pet belongs to the logged-in shelter
+                if (petDetails && petDetails.shelter_id === loggedInShelterId && application.status !== 1 && application.remarks !== 1 && application.remarks !== -1) {
                     displayApplicationDetails(application, applicationId);
                 }
             }
         }
     });
+}
+
+// Function to fetch pet data from the database
+async function fetchPetData(petId) {
+    try {
+        const petSnapshot = await get(ref(database, `pets/${petId}`));
+        return petSnapshot.val();
+    } catch (error) {
+        console.error("Error fetching pet data:", error);
+        return null;
+    }
 }
 
 function getLoggedInShelterId() {
