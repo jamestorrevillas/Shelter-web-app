@@ -26,7 +26,7 @@ const sheltersRef = ref(database, 'shelters');
 const applicationFormRef = ref(database, 'applicationform');
 
 function displayApplicationsData(remarkFilter = '') {
-    onValue(applicationFormRef, (snapshot) => {
+    onValue(applicationFormRef, async (snapshot) => {
         const applicationsData = snapshot.val();
         const applicationsTableBody = document.getElementById('table-body-below');
         applicationsTableBody.innerHTML = '';
@@ -37,13 +37,26 @@ function displayApplicationsData(remarkFilter = '') {
             if (Object.hasOwnProperty.call(applicationsData, applicationId)) {
                 const application = applicationsData[applicationId];
 
-                if (application.shelter_id === loggedInShelterId && application.status === 1 && 
+                const petDetails = await fetchPetData(application.pet_id);
+
+                if (petDetails && petDetails.shelter_id === loggedInShelterId && application.status === 1 && 
                     (!remarkFilter || application.remarks === remarkFilter)) {
                     displayApplicationDetails(application, applicationId);
                 }
             }
         }
     });
+}
+
+// Function to fetch pet data from the database
+async function fetchPetData(petId) {
+    try {
+        const petSnapshot = await get(ref(database, `pets/${petId}`));
+        return petSnapshot.val();
+    } catch (error) {
+        console.error("Error fetching pet data:", error);
+        return null;
+    }
 }
 
 

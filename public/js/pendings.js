@@ -23,6 +23,7 @@ const auth = getAuth();
 const adoptersRef = ref(database, 'adopters');
 const sheltersRef = ref(database, 'shelters');
 const applicationFormRef = ref(database, 'applicationform');
+const petsRef = ref(database, 'pets');
 
 function displayApplicationsData() {
     onValue(applicationFormRef, async (snapshot) => {
@@ -38,7 +39,9 @@ function displayApplicationsData() {
             if (applicationsData.hasOwnProperty(applicationId)) {
                 const application = applicationsData[applicationId];
 
-                if (application.shelter_id === loggedInShelterId && application.status !== 1 && application.remarks === 'APPROVED') {
+                const petDetails = await fetchPetData(application.pet_id);
+
+                if (petDetails && petDetails.shelter_id === loggedInShelterId && application.status !== 1 && application.remarks === 1) {
                     const adopterDetails = await fetchUserData(adoptersRef, application.adopter_id);
                     const daysAtPending = calculateDaysAtPending(application.date_applied);
 
@@ -55,6 +58,17 @@ function displayApplicationsData() {
             displayApplicationDetails(application, applicationId, adopterDetails);
         });
     });
+}
+
+// Function to fetch pet data from the database
+async function fetchPetData(petId) {
+    try {
+        const petSnapshot = await get(ref(database, `pets/${petId}`));
+        return petSnapshot.val();
+    } catch (error) {
+        console.error("Error fetching pet data:", error);
+        return null;
+    }
 }
 
 function getLoggedInShelterId() {
