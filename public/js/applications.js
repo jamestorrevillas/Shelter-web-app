@@ -59,30 +59,40 @@ async function displayApplicationDetails(application, applicationId) {
     const { first_name, last_name, phone_number, email, address } = adopterDetails;
 
     // Extract other application details
-    const { reason } = application;
+    const { reason, date_applied } = application;
+
+    const daysAtPending = calculateDaysAtPending(date_applied);
 
     const tableRow = document.createElement('tr');
 
     const adopterNameCell = document.createElement('td');
     adopterNameCell.textContent = first_name + ' ' + last_name;
 
-    const contactNumberCell = document.createElement('td');
-    contactNumberCell.textContent = phone_number;
+    // const contactNumberCell = document.createElement('td');
+    // contactNumberCell.textContent = phone_number;
+    
+    const dateAppliedCell = document.createElement('td');
+    dateAppliedCell.textContent = date_applied;
 
-    const emailCell = document.createElement('td');
-    emailCell.textContent = email;
+    const daysAtPendingCell = document.createElement('td');
+    daysAtPendingCell.textContent = daysAtPending;
+
+    // const emailCell = document.createElement('td');
+    // emailCell.textContent = email;
 
     const addressCell = document.createElement('td');
     addressCell.textContent = address;
 
-    const reasonCell = document.createElement('td');
-    reasonCell.textContent = reason;
+    // const reasonCell = document.createElement('td');
+    // reasonCell.textContent = reason;
 
     // Add table cells to the table row
     tableRow.appendChild(adopterNameCell);
     tableRow.appendChild(addressCell);
-    tableRow.appendChild(emailCell);
-    tableRow.appendChild(contactNumberCell);
+    tableRow.appendChild(dateAppliedCell);
+    tableRow.appendChild(daysAtPendingCell);
+    // tableRow.appendChild(emailCell);
+    // tableRow.appendChild(contactNumberCell);
     // tableRow.appendChild(reasonCell);
 
     tableRow.classList.add('colored-row');
@@ -135,6 +145,15 @@ function filterTable() {
             row.style.display = 'none';
         }
     });
+}
+
+// Function to calculate the number of days between the application date and the current date
+function calculateDaysAtPending(dateApplied) {
+    const currentDate = new Date();
+    const applicationDate = new Date(dateApplied);
+    const timeDiff = currentDate.getTime() - applicationDate.getTime();
+    const daysDiff = Math.floor(timeDiff / (1000 * 3600 * 24));
+    return daysDiff;
 }
 
 displayApplicationsData();

@@ -66,18 +66,21 @@ async function displayApplicationDetails(application, applicationId) {
     const { first_name, last_name, phone_number, email, address } = adopterDetails;
 
     // Extract other application details
-    const { remarks } = application;
+    const { remarks, date_applied } = application;
 
     const tableRow = document.createElement('tr');
 
-    const petNameCell = document.createElement('td');
-    petNameCell.textContent = petName;
+    // const petNameCell = document.createElement('td');
+    // petNameCell.textContent = petName;
 
     const adopterNameCell = document.createElement('td');
     adopterNameCell.textContent = first_name + ' ' + last_name;
 
-    const contactNumberCell = document.createElement('td');
-    contactNumberCell.textContent = phone_number;
+    // const contactNumberCell = document.createElement('td');
+    // contactNumberCell.textContent = phone_number;
+
+    const dateAppliedCell = document.createElement('td');
+    dateAppliedCell.textContent = date_applied;
 
     const addressCell = document.createElement('td');
     addressCell.textContent = address;
@@ -87,10 +90,11 @@ async function displayApplicationDetails(application, applicationId) {
 
     // Add table cells to the table row
     
-    tableRow.appendChild(petNameCell);
+    // tableRow.appendChild(petNameCell);
     tableRow.appendChild(adopterNameCell);
     tableRow.appendChild(addressCell);
-    tableRow.appendChild(contactNumberCell);
+    // tableRow.appendChild(contactNumberCell);
+    tableRow.appendChild(dateAppliedCell);
     tableRow.appendChild(remarksCell);
 
     tableRow.classList.add('colored-row');

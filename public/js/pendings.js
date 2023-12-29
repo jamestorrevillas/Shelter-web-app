@@ -25,22 +25,35 @@ const sheltersRef = ref(database, 'shelters');
 const applicationFormRef = ref(database, 'applicationform');
 
 function displayApplicationsData() {
-    onValue(applicationFormRef, (snapshot) => {
+    onValue(applicationFormRef, async (snapshot) => {
         const applicationsData = snapshot.val();
         const applicationsTableBody = document.getElementById('table-body-below');
         applicationsTableBody.innerHTML = '';
 
         const loggedInShelterId = getLoggedInShelterId();
 
+        let applicationsArray = [];
+
         for (const applicationId in applicationsData) {
-            if (Object.hasOwnProperty.call(applicationsData, applicationId)) {
+            if (applicationsData.hasOwnProperty(applicationId)) {
                 const application = applicationsData[applicationId];
 
-                if (application.shelter_id && application.shelter_id === loggedInShelterId && application.status !== 1 && application.remarks === 'APPROVED') {
-                    displayApplicationDetails(application, applicationId);
+                if (application.shelter_id === loggedInShelterId && application.status !== 1 && application.remarks === 'APPROVED') {
+                    const adopterDetails = await fetchUserData(adoptersRef, application.adopter_id);
+                    const daysAtPending = calculateDaysAtPending(application.date_applied);
+
+                    applicationsArray.push({ application, applicationId, adopterDetails, daysAtPending });
                 }
             }
         }
+
+        // Sort applications by days at pending in ascending order
+        applicationsArray.sort((a, b) => a.daysAtPending - b.daysAtPending);
+
+        // Display each application
+        applicationsArray.forEach(({ application, applicationId, adopterDetails }) => {
+            displayApplicationDetails(application, applicationId, adopterDetails);
+        });
     });
 }
 
@@ -59,31 +72,37 @@ async function displayApplicationDetails(application, applicationId) {
     const { first_name, last_name, phone_number, email, address } = adopterDetails;
 
     // Extract other application details
-    const { remarks } = application;
+    const { date_applied  } = application;
+
+    const daysAtPending = calculateDaysAtPending(date_applied);
 
     const tableRow = document.createElement('tr');
 
     const adopterNameCell = document.createElement('td');
     adopterNameCell.textContent = first_name + ' ' + last_name;
 
-    const contactNumberCell = document.createElement('td');
-    contactNumberCell.textContent = phone_number;
+    // const contactNumberCell = document.createElement('td');
+    // contactNumberCell.textContent = phone_number;
 
-    const emailCell = document.createElement('td');
-    emailCell.textContent = email;
+    // const emailCell = document.createElement('td');
+    // emailCell.textContent = email;
 
     const addressCell = document.createElement('td');
     addressCell.textContent = address;
 
-    const remarksCell = document.createElement('td');
-    remarksCell.textContent = remarks;
+    const daysAtPendingCell = document.createElement('td');
+    daysAtPendingCell.textContent = daysAtPending;
+
+    const dateAppliedCell = document.createElement('td');
+    dateAppliedCell.textContent = date_applied;
 
     // Add table cells to the table row
     tableRow.appendChild(adopterNameCell);
     tableRow.appendChild(addressCell);
-    tableRow.appendChild(emailCell);
-    tableRow.appendChild(contactNumberCell);
-    tableRow.appendChild(remarksCell);
+    // tableRow.appendChild(emailCell);
+    // tableRow.appendChild(contactNumberCell);
+    tableRow.appendChild(dateAppliedCell);
+    tableRow.appendChild(daysAtPendingCell);
 
     tableRow.classList.add('colored-row');
 
@@ -135,6 +154,15 @@ function filterTable() {
             row.style.display = 'none';
         }
     });
+}
+
+// Function to calculate the number of days between the application date and the current date
+function calculateDaysAtPending(dateApplied) {
+    const currentDate = new Date();
+    const applicationDate = new Date(dateApplied);
+    const timeDiff = currentDate.getTime() - applicationDate.getTime();
+    const daysDiff = Math.floor(timeDiff / (1000 * 3600 * 24));
+    return daysDiff;
 }
 
 displayApplicationsData();
