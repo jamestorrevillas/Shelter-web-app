@@ -95,7 +95,7 @@
             image2.src = "../images/pen_icon.png"; 
     
             image2.addEventListener('click', function() {
-                window.location.href = `edit-pet-details.html?id=${petId}&imageURL=${petDetails.imageURL}`;
+                window.location.href = `archive-view.html?id=${petId}&imageURL=${petDetails.imageURL}`;
             });
             button2.appendChild(image2);    
         
