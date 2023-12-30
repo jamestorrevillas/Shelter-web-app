@@ -114,9 +114,9 @@
             // Add table cells to the table row
             tableRow.appendChild(nameCell);
             tableRow.appendChild(ageCell);
-            tableRow.appendChild(weightCell);
-            // tableRow.appendChild(colorCell);
-            // tableRow.appendChild(typeCell);
+            // tableRow.appendChild(weightCell);
+            tableRow.appendChild(colorCell);
+            tableRow.appendChild(typeCell);
             // tableRow.appendChild(daysCell);
             tableRow.appendChild(daysAtShelterCell);
             // tableRow.appendChild(statusCell);
