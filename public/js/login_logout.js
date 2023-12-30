@@ -27,24 +27,39 @@ function loginUser(email, password) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    const emailInput = document.getElementById("email");
+    const passwordInput = document.getElementById("password");
     const loginButton = document.getElementById("login");
+
+    function handleLogin() {
+        const email = emailInput.value.trim();
+        const password = passwordInput.value;
+        loginUser(email, password);
+    }
+
     if (loginButton) {
-        loginButton.addEventListener("click", function () {
-            const email = document.getElementById("email").value.trim();
-            const password = document.getElementById("password").value;
-            loginUser(email, password);
+        loginButton.addEventListener("click", handleLogin);
+    }
+
+    if (emailInput && passwordInput) {
+        emailInput.addEventListener("keypress", function(event) {
+            if (event.keyCode === 13) {
+                handleLogin();
+            }
+        });
+
+        passwordInput.addEventListener("keypress", function(event) {
+            if (event.keyCode === 13) {
+                handleLogin();
+            }
         });
     }
 
     const logoutButton = document.getElementById("logout");
     if (logoutButton) {
-        console.log("Logout button found."); 
         logoutButton.addEventListener("click", function () {
-            console.log("Logout button clicked.");
             logoutUser();
         });
-    } else {
-        console.error("Logout button not found.");
     }
 
     onAuthStateChanged(auth, (user) => {
@@ -58,7 +73,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function logoutUser() {
     signOut(auth).then(() => {
-        console.log("User logged out");
         window.location.href = "./login.html";
     }).catch((error) => {
         console.error("Logout failed", error);
