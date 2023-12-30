@@ -936,6 +936,9 @@ thead th {
 #historydet{  
     margin-top: -90px;
 }
+#historydet input{
+    text-align: center;
+}
 #application-details h2{
     margin-top:50px;
     text-align: center;
@@ -1041,6 +1044,10 @@ thead th {
 #editPetDetails_section{
     overflow-y: auto;
     max-height: 80vh;
+}
+#editPetDetails_section input,
+#editPetDetails_section textarea{
+    text-align:center;
 }
 #editPetForm{
     margin-top: -90px;
