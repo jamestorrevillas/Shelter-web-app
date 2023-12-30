@@ -433,14 +433,14 @@ button:hover {
 }
 #history-table-top {
     display: inline-block;
-	margin-right: -310px;
-    margin-left: -250px;
+	margin-right: -200px;
+    margin-left: -280px;
 
 }
 #history-table-top th {
     text-align: right;
     padding-right: 0px; /* Adjust the value as needed */
-    padding-left: 10px;
+    padding-left: 80px;
 }
 #remarks-filter{
     width: 20px;
@@ -924,7 +924,6 @@ thead th {
 }
 #application-details{
     height:1100px;
-      
 }
 #appdet{  
     margin-top: -90px;
@@ -955,14 +954,21 @@ thead th {
 }
 #approveButton,
 #disapproveButton,
-#confirmButton{
+#confirmButton,
+#cancelButton{
     background-color: #6868AE;
     color:white;
     padding:20px 30px;
     margin-right: 20px;
     border: none;
     cursor: pointer;
+    font-family: 'Intel', sans-serif;
+    font-weight: bold;
     border-radius: 5px;
+}
+#approveButton,
+#disapproveButton{
+    padding:20px 60px;
 }
 .gender-container {
     display: inline-block;
@@ -974,11 +980,11 @@ thead th {
 }
 .responsebtn{
     margin-top: 0px;
-    margin-left: 460px;
+    margin-left: 360px;
 }
 .confirmbtn{
     margin-top: 0px;
-    margin-left: 460px;
+    margin-left: 360px;
 }
 #application-details textarea {
     float: center;
@@ -1038,4 +1044,7 @@ thead th {
 }
 #editPetForm{
     margin-top: -90px;
+}
+#pendingdetails{
+    height: 100%;
 }
