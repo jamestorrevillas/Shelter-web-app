@@ -62,7 +62,7 @@
     function displayNewPet(petDetails, petId) {
         const tableBody = document.getElementById('table-body-below');
 
-        const { name, age, weight, color, type, dateArrived, status, description } = petDetails;
+        const { name, age, weight, color, type, gender, dateArrived, status, description } = petDetails;
 
         const currentDate = new Date();
         const daysAtShelter = Math.floor((currentDate - new Date(dateArrived)) / (24 * 60 * 60 * 1000));
@@ -81,6 +81,8 @@
         colorCell.textContent = color;
         const typeCell = document.createElement('td');
         typeCell.textContent = type;
+        const genderCell = document.createElement('td');
+        genderCell.textContent = gender;
         const daysCell = document.createElement('td');
         daysCell.textContent = dateArrived;
         const daysAtShelterCell = document.createElement('td');
@@ -90,18 +92,17 @@
         const descriptionCell = document.createElement('td');
         descriptionCell.textContent = description;
     
-                    const button1 = document.createElement('td');
-                
-                    const image1 = document.createElement('img');
 
+        //PENBTN
+                    const button1 = document.createElement('td');
+                    const image1 = document.createElement('img');
                     image1.src = "../images/pen_icon.png"; 
-                    
+            
                     image1.addEventListener('click', function() {
                         window.location.href = `edit-pet-details.html?id=${petId}&imageURL=${petDetails.imageURL}`;
                     });
-                    
                     button1.appendChild(image1);    
-
+        //ARCHIVEBTN
                     const button2 = document.createElement('td');
                     const image2 = document.createElement('img');
                     image2.src = "../images/icons8-archive-50.png"; 
@@ -117,6 +118,7 @@
         // tableRow.appendChild(weightCell);
         tableRow.appendChild(colorCell);
         tableRow.appendChild(typeCell);
+        // tableRow.appendChild(genderCell);
         // tableRow.appendChild(daysCell);
         tableRow.appendChild(daysAtShelterCell);
         // tableRow.appendChild(statusCell);
@@ -134,12 +136,20 @@
     function filterTable() {
         const searchInput = document.getElementById('search-bar').value.toLowerCase();
         const tableRows = document.querySelectorAll('.colored-row');
-
+    
         tableRows.forEach(row => {
             const nameCell = row.querySelector('td:nth-child(1)');
-           
+            // const ageCell = row.querySelector('td:nth-child(2)');
+            // const weightCell = row.querySelector('td:nth-child(3)'); 
+            // const daysAtShelterCell = row.querySelector('td:nth-child(7)'); 
+    
+            // Retrieve the text content of cells and convert to lowercase for case-insensitive comparison
             const nameMatch = nameCell.textContent.toLowerCase().includes(searchInput);
-           
+            // const ageMatch = ageCell.textContent.toLowerCase().includes(searchInput);
+            // const weightMatch = weightCell.textContent.toLowerCase().includes(searchInput);
+            // const daysAtShelterMatch = daysAtShelterCell.textContent.toLowerCase().includes(searchInput);
+    
+            // Check if any of the fields match the search input
             if (nameMatch) {
                 row.style.display = '';
             } else {
@@ -147,6 +157,8 @@
             }
         });
     }
+    
+    
 
     // Function to calculate the current estimated age based on the estimated age at entry
     function calculateCurrentEstimatedAge(estimatedAgeAtEntry) {

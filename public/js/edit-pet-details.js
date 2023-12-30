@@ -66,6 +66,11 @@ async function preFillForm(petDetails) {
 
   document.getElementById('editPetName').value = petDetails.name || '';
   document.getElementById('editPetType').value = petDetails.type || '';
+  
+  document.getElementById('editPetGenderMale').checked = petDetails.gender === 'Male';
+  document.getElementById('editPetGenderFemale').checked = petDetails.gender === 'Female';
+
+
   document.getElementById('editPetAge').value = petDetails.age || '';
   document.getElementById('editPetColor').value = petDetails.color || '';
   document.getElementById('editPetWeight').value = petDetails.weight || '';

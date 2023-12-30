@@ -267,7 +267,7 @@ textarea {
 	font-family:'Poppins', sans-serif;
 	text-decoration:none;
 	float:center;
-    margin-left: 265px;
+    margin-left: 280px;
     background-color: #6868AE;
     color: #ffffff;
     padding: 10px 20px;
@@ -275,7 +275,7 @@ textarea {
     border-radius: 10px;
     cursor: pointer;
 }
-
+    
 button:hover {
     background-color: #485084;
 }
@@ -398,8 +398,8 @@ button:hover {
 }
 #pets-table-top {
     display: inline-block;
-	margin-right: 35px;
-    margin-left: -375px;
+	margin-right: 50px;
+    margin-left: -200px;
 
 }
 #pets-table-top th {
@@ -409,19 +409,20 @@ button:hover {
 }
 #archive-table-top {
     display: inline-block;
-	margin-right: 50px;
-    margin-left: -320px;
+	margin-right: 80px;
+    margin-left: -370px;
 
 }
 #archive-table-top th {
     text-align: right;
     padding-right: 0px; /* Adjust the value as needed */
-    padding-left: 60px;
+    padding-left: 20px;
 }
 #application-table-top {
     display: inline-block;
-	margin-right: -200px;
-    margin-left: -200px;
+	margin-right: 0px;
+    margin-left: -250px;
+  
 
 }
 
@@ -687,13 +688,13 @@ thead th {
     padding: 8px;
 }
 #application-table-below {
-    table-layout: fixed;
-    width: 95%; /* Adjust as needed */
+    /* table-layout: fixed; */
+    width: 100%; /* Adjust as needed */
     margin-top: 20px;
-    border-radius:30px;
+    /* border-radius:30px; */
 }
 #application-table-below td {
-    padding: 0px;
+    padding: px;
 }
 #history-table-below {
     table-layout: fixed;
@@ -704,12 +705,19 @@ thead th {
 #history-table-below td {
     padding: 8px;
 }
-#table-body-below td:nth-child(3) {
-    /* display: flex; */
+/* #table-body-below td:nth-child(6) {
+   
     border-radius: 0px; 
-    margin-left: 50px;
+    margin-left: 200px;
+    padding-top: 20px;
+} */
+#table-body-below td:nth-child(1) {
+   
+    border-radius: 0px; 
+    margin-left: -20px;
     padding-top: 20px;
 }
+
 /* #table-body-below td:nth-child(5) {
     /* display: flex; */
     /* border-radius: 0px; 
@@ -733,6 +741,7 @@ thead th {
 
 #table-body-below td {
     /* flex: 1; */
+    margin-left: 50px;
     width:20%; 
     padding: 20px; /* Adjust padding as needed */
     border: 0px solid black; /* Apply border to table cells in the body */
@@ -883,6 +892,18 @@ thead th {
 }
 #application-details{
     height:1100px;
+      
+}
+#appdet{  
+    margin-top: -90px;
+    height: 108%;
+}
+
+#appdet input{
+    text-align: center;
+}
+#historydet{  
+    margin-top: -90px;
 }
 #application-details h2{
     margin-top:50px;
@@ -910,6 +931,14 @@ thead th {
     border: none;
     cursor: pointer;
     border-radius: 5px;
+}
+.gender-container {
+    display: inline-block;
+}
+
+.gender-container label {
+    display: inline-block;
+    margin-right: 10px; /* Adjust the margin as needed */
 }
 .responsebtn{
     margin-top: 0px;
@@ -944,16 +973,23 @@ thead th {
     padding: 5px;
     font-weight: bold;
     color:white;
-    background-color: #6868AE;
+    background-color: transparent;
+    border: none;
     font-family:'Intel', sans-serif;
 }
 #pet-profile img{
     width:120px;
     height:120px;
-    margin-left: 230px;
+    margin-left:230px;
+}
+#addpet-profile img{
+    width:120px;
+    height:120px;
+    margin-left:290px;
 }
 #pet-profile {
     margin-left: 285px;
+   
 }
 #pet-profile button{
     margin-left: 10px;
@@ -962,8 +998,12 @@ thead th {
     background-color: #6868AE;
     color:white;
     margin-bottom: 20px;
+    margin-left: 300px;
 }
 #editPetDetails_section{
     overflow-y: auto;
     max-height: 80vh;
+}
+#editPetForm{
+    margin-top: -90px;
 }
