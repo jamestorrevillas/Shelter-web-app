@@ -31,6 +31,7 @@ editPetForm.addEventListener('submit', function (event) {
     imageUrl: document.getElementById('petPic').src,
     name: document.getElementById('editPetName').value,
     type: document.getElementById('editPetType').value,
+    gender: document.getElementById('editPetGender').value,
     age: document.getElementById('editPetAge').value,
     color: document.getElementById('editPetColor').value,
     weight: document.getElementById('editPetWeight').value,
@@ -92,7 +93,7 @@ onValue(petRef, (snapshot) => {
 // Function to toggle edit mode
 function toggleEditMode(isEditMode) {
   const editFields = [
-    'editPetName', 'editPetType', 'editPetAge', 
+    'editPetName', 'editPetType', 'editPetAge', 'editPetGender',
     'editPetColor', 'editPetWeight', 'editPetDescription'
   ];
 
@@ -117,6 +118,7 @@ function saveChanges() {
   const updateData = {
     name: document.getElementById('editPetName').value,
     type: document.getElementById('editPetType').value,
+    gender: document.getElementById('editPetGender').value,
     age: document.getElementById('editPetAge').value,
     color: document.getElementById('editPetColor').value,
     weight: document.getElementById('editPetWeight').value,
