@@ -69,19 +69,19 @@ function updateApplicationStatus(applicationId, status) {
         feedback: feedback
     };
 
+    // If approving, set the date_approved to the current date
+    if (status === 1) {
+        updateData.date_approved = new Date().toISOString().split('T')[0]; // Format: YYYY-MM-DD
+    }
+
     // If disapproving, also set the status to "COMPLETED"
     if (status === 0) {
-        updateData.status = 1;
+        updateData.status = 1; // Assuming '1' signifies 'COMPLETED'
     }
 
     update(ref(database, `applicationform/${applicationId}`), updateData)
     .then(() => {
-        let remarks = status;
-        if (remarks === 0)
-            remarks = "dispproved"
-        else if (remarks === 1)
-            remarks = "approved"
-            
+        let remarks = status === 0 ? "disapproved" : "approved";
         alert(`Application has been ${remarks}.`);
         window.location.href = './applications.html';
     })

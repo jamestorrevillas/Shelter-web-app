@@ -25,13 +25,14 @@ const adoptersRef = ref(database, 'adopters');
 const sheltersRef = ref(database, 'shelters');
 const applicationFormRef = ref(database, 'applicationform');
 
-function displayApplicationsData(remarkFilter = '') {
+function displayApplicationsData(remarkFilter = 'SHOW_ALL') {
     onValue(applicationFormRef, async (snapshot) => {
         const applicationsData = snapshot.val();
         const applicationsTableBody = document.getElementById('table-body-below');
         applicationsTableBody.innerHTML = '';
 
         const loggedInShelterId = getLoggedInShelterId();
+        let applicationsArray = [];
 
         for (const applicationId in applicationsData) {
             if (Object.hasOwnProperty.call(applicationsData, applicationId)) {
@@ -41,15 +42,23 @@ function displayApplicationsData(remarkFilter = '') {
                 // Convert the numeric remark value to a string for comparison
                 const remarksDisplay = mapRemarkValueToString(application.remarks);
 
+                // Check for the selected filter and pet's shelter ID
                 if (petDetails && petDetails.shelter_id === loggedInShelterId && application.status === 1 &&
-                    (!remarkFilter || remarksDisplay === remarkFilter)) {
-                    displayApplicationDetails(application, applicationId);
+                    (remarkFilter === 'SHOW_ALL' || remarksDisplay === remarkFilter)) {
+                    applicationsArray.push({ application, applicationId });
                 }
             }
         }
+
+        // Sort the applicationsArray based on date_applied in ascending order
+        applicationsArray.sort((a, b) => new Date(a.application.date_applied) - new Date(b.application.date_applied));
+
+        // Now display each application
+        applicationsArray.forEach(({ application, applicationId }) => {
+            displayApplicationDetails(application, applicationId);
+        });
     });
 }
-
 
 // Function to map numeric remark values to string
 function mapRemarkValueToString(remarkValue) {
@@ -57,7 +66,7 @@ function mapRemarkValueToString(remarkValue) {
         case -1: return "CANCELLED";
         case 0: return "DISAPPROVED";
         case 1: return "APPROVED";
-        default: return "Unknown";
+        default: return "SHOW_ALL";
     }
 }
 
@@ -83,13 +92,15 @@ async function displayApplicationDetails(application, applicationId) {
 
     // Fetch pet details using pet_id
     const petDetails = await fetchUserData(petsRef, application.pet_id);
-    const petName = petDetails ? petDetails.name : 'Unknown Pet'; // Adjust if your pet name field is different
 
     // Fetch adopter details
     const adopterDetails = await fetchUserData(adoptersRef, application.adopter_id);
 
+    // Extract pet details
+    const { name, imageUrl } = petDetails;
+
     // Extract adopter details
-    const { first_name, last_name, phone_number, email, address } = adopterDetails;
+    const { first_name, last_name, address, profile_picture } = adopterDetails;
 
     // Extract other application details
     const { remarks, date_applied } = application;
@@ -98,38 +109,60 @@ async function displayApplicationDetails(application, applicationId) {
 
     const tableRow = document.createElement('tr');
 
-    // const petNameCell = document.createElement('td');
-    // petNameCell.textContent = petName;
-
-    const adopterNameCell = document.createElement('td');
-    adopterNameCell.textContent = first_name + ' ' + last_name;
-
-    // const contactNumberCell = document.createElement('td');
-    // contactNumberCell.textContent = phone_number;
-
     const dateAppliedCell = document.createElement('td');
     dateAppliedCell.textContent = date_applied;
+    dateAppliedCell.style.display = 'flex';
+    dateAppliedCell.style.alignItems = 'center';
+
+    const profilePicture = document.createElement('img');
+    profilePicture.src = profile_picture; 
+    profilePicture.style.width = '50px'; 
+    profilePicture.style.height = '50px';
+    profilePicture.style.marginRight = '10px';
+
+    const adopterNameCell = document.createElement('td');
+    adopterNameCell.style.display = 'flex';
+    adopterNameCell.style.alignItems = 'center';
+
+    adopterNameCell.appendChild(profilePicture);
+    adopterNameCell.appendChild(document.createTextNode(first_name + ' ' + last_name));
 
     const addressCell = document.createElement('td');
     addressCell.textContent = address;
+    addressCell.style.display = 'flex';
+    addressCell.style.alignItems = 'center';
+
+    const petImage = document.createElement('img');
+    petImage.src = imageUrl; 
+    petImage.style.width = '50px'; 
+    petImage.style.height = '50px';
+    petImage.style.marginRight = '10px';
+
+    const petNameCell = document.createElement('td');
+    petNameCell.style.display = 'flex';
+    petNameCell.style.alignItems = 'center';
+
+    petNameCell.appendChild(petImage);
+    petNameCell.appendChild(document.createTextNode(name));
 
     const remarksCell = document.createElement('td');
     remarksCell.textContent = remarksDisplay;
+    remarksCell.style.display = 'flex';
+    remarksCell.style.alignItems = 'center';
 
     // Add table cells to the table row
-    
-    // tableRow.appendChild(petNameCell);
+    tableRow.appendChild(dateAppliedCell);
     tableRow.appendChild(adopterNameCell);
     tableRow.appendChild(addressCell);
-    // tableRow.appendChild(contactNumberCell);
-    tableRow.appendChild(dateAppliedCell);
+    tableRow.appendChild(petNameCell);
     tableRow.appendChild(remarksCell);
 
     tableRow.classList.add('colored-row');
 
-    // Create an anchor element
     const rowAnchor = document.createElement('a');
     rowAnchor.href = '#';
+    rowAnchor.style.textDecoration = 'none'; // Remove underline
+    rowAnchor.style.color = 'inherit'; // Keep text color consistent
     rowAnchor.addEventListener('click', function() {
         window.location.href = `history-application-details.html?applicationId=${applicationId}`;
     });
@@ -139,7 +172,6 @@ async function displayApplicationDetails(application, applicationId) {
 
     // Append the anchor element to the table body
     tableBody.appendChild(rowAnchor);
-    document.getElementById('search-bar').addEventListener('input', filterTable);
 }
 
 
@@ -177,7 +209,6 @@ function filterTable() {
 
 document.addEventListener('DOMContentLoaded', () => {
     const remarksFilter = document.getElementById('remarks-filter');
-    const searchBar = document.getElementById('search-bar');
 
     if (remarksFilter) {
         remarksFilter.addEventListener('change', function() {
@@ -185,10 +216,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    if (searchBar) {
-        searchBar.addEventListener('input', filterTable);
-    }
-
-    // Initial display of applications data without filter
     displayApplicationsData();
 });
