@@ -172,6 +172,8 @@ async function displayApplicationDetails(application, applicationId) {
 
     // Append the anchor element to the table body
     tableBody.appendChild(rowAnchor);
+
+    document.getElementById('search-bar').addEventListener('input', filterTable);
 }
 
 
@@ -195,11 +197,15 @@ function filterTable() {
     const tableRows = document.querySelectorAll('.colored-row');
 
     tableRows.forEach(row => {
-        const nameCell = row.querySelector('td:nth-child(1)');
-       
-        const nameMatch = nameCell.textContent.toLowerCase().includes(searchInput);
-       
-        if (nameMatch) {
+        // Retrieve the text content of each column in the row
+        const dateApplied = row.cells[0].textContent.toLowerCase(); 
+        const adopterName = row.cells[1].textContent.toLowerCase(); 
+        const address = row.cells[2].textContent.toLowerCase(); 
+        const petName = row.cells[3].textContent.toLowerCase(); 
+        const remarks = row.cells[4].textContent.toLowerCase(); 
+
+        // Check if the search input matches any of these text contents
+        if (dateApplied.includes(searchInput) || adopterName.includes(searchInput) || address.includes(searchInput) || petName.includes(searchInput) || remarks.includes(searchInput)) {
             row.style.display = '';
         } else {
             row.style.display = 'none';

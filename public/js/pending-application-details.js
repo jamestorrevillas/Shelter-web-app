@@ -31,19 +31,25 @@ async function displayApplicationData(applicationId) {
         const petSnapshot = await get(ref(database, `pets/${applicationData.pet_id}`));
         const petData = petSnapshot.val();
 
+        // Update the HTML elements with the application data
         document.getElementById('PetName').value = petData ? petData.name : '';
-        document.getElementById('DateApplied').value = applicationData.date_applied || '';
+        document.getElementById('PetType').value = petData.type || '';
+        document.getElementById('PetColor').value = petData.color || '';
+        document.getElementById('PetGender').value = petData.gender || '';
+        document.getElementById('DateApproved').value = applicationData.date_approved || '';
         document.getElementById('AdopterName').value = `${adopterData.first_name || ''} ${adopterData.last_name || ''}`;
-        document.getElementById('ShelterEmail').value = adopterData.email || '';
-        document.getElementById('Address').value = adopterData.address || '';
-        document.getElementById('ContactNumber').value = adopterData.phone_number || '';
+        document.getElementById('AdopterEmail').value = adopterData.email || '';
+        document.getElementById('AdopterAddress').value = adopterData.address || '';
+        document.getElementById('AdopterNumber').value = adopterData.phone_number || '';
         document.getElementById('Reason').value = applicationData.reason || '';
-        document.getElementById('shelterFeedback').value = applicationData.feedback || '';
 
-        if (petData && petData.imageUrl) {
+        // Fetch and display pet image
+        if (petData && adopterData && petData.imageUrl && adopterData.profile_picture) {
             try {
                 const imageUrl = await getDownloadURL(storageRef(storage, petData.imageUrl));
                 document.getElementById('pet_profile').src = imageUrl;
+                const profile_picture = await getDownloadURL(storageRef(storage, adopterData.profile_picture));
+                document.getElementById('adopter_profile').src = profile_picture;
             } catch (error) {
                 console.error('Error loading pet image:', error);
             }
@@ -91,7 +97,7 @@ async function cancelApplication() {
         alert("Application approval cancelled successfully.");
 
         // Redirect to another page after successful cancellation
-        window.location.href = "pendings.html";
+        window.location.href = "./pendings.html";
     } catch (error) {
         console.error('Error cancelling application approval:', error);
         alert("Failed to cancel application approval.");

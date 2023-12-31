@@ -35,7 +35,7 @@ function displayPetData() {
             if (Object.hasOwnProperty.call(petsData, petId)) {
                 const pet = petsData[petId];
 
-                if (pet.shelter_id && pet.shelter_id === loggedInShelterId && pet.status === 0) {
+                if (pet.shelter_id && pet.shelter_id === loggedInShelterId && pet.status !== -1) {
                     petsArray.push({ pet, petId });
                 }
             }
@@ -136,19 +136,21 @@ function filterTable() {
     const tableRows = document.querySelectorAll('.colored-row');
 
     tableRows.forEach(row => {
-        const nameCell = row.querySelector('td:nth-child(1)');
-
         // Retrieve the text content of cells and convert to lowercase for case-insensitive comparison
-        const nameMatch = nameCell.textContent.toLowerCase().includes(searchInput);
+        const dateAdded = row.cells[0].textContent.toLowerCase();
+        const name = row.cells[1].textContent.toLowerCase(); 
+        const breed = row.cells[2].textContent.toLowerCase();
+        const status = row.cells[3].textContent.toLowerCase();
 
         // Check if any of the fields match the search input
-        if (nameMatch) {
+        if (dateAdded.includes(searchInput) || name.includes(searchInput) || breed.includes(searchInput) || status.includes(searchInput)) {
             row.style.display = '';
         } else {
             row.style.display = 'none';
         }
     });
 }
+
 
 
 
