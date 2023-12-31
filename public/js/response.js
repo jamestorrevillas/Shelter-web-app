@@ -65,10 +65,10 @@ async function displayApplicationData(applicationId) {
         // Fetch and display pet image
         if (petData && adopterData && petData.imageUrl && adopterData.profile_picture) {
             try {
-                const imageUrl = await getDownloadURL(storageRef(storage, petData.imageUrl));
-                document.getElementById('pet_profile').src = imageUrl;
-                const profile_picture = await getDownloadURL(storageRef(storage, adopterData.profile_picture));
-                document.getElementById('adopter_profile').src = profile_picture;
+                // const imageUrl = await getDownloadURL(storageRef(storage, petData.imageUrl));
+                document.getElementById('pet_profile').src = petData.imageUrl;
+                // const profile_picture = await getDownloadURL(storageRef(storage, adopterData.profile_picture));
+                document.getElementById('adopter_profile').src = adopterData.profile_picture;
             } catch (error) {
                 console.error('Error loading pet image:', error);
             }
