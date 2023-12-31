@@ -46,21 +46,21 @@
                         </a>
                     </div>
 
-            <div id="appdet">
+                <div id="appdet">
                     <h2>PET DETAILS</h2>
                 <div id="petleft">
                     <div id="pet-profile">
                         <img src="../images/default_profile_picture.png" id="pet_profile">
                     </div>
 
-                    <label for="PetName">Gender:</label>
-                    <input type="text" id="PetName" name="PetName" readonly>
+                    <label for="PetGender">Gender:</label>
+                    <input type="text" id="PetGender" name="PetGender" readonly>
 
-                    <label for="PetType">Color:</label>
-                    <input type="text" id="PetType" name="PetType" readonly>
-
-                    <label for="PetColor">Date Arrived:</label>
+                    <label for="PetColor">Color:</label>
                     <input type="text" id="PetColor" name="PetColor" readonly>
+
+                    <label for="PetDateArrived">Date Arrived:</label>
+                    <input type="text" id="PetDateArrived" name="PetDateArrived" readonly>
                     </div>
                 <div id="petright">
                     <label for="PetName">Name:</label>
@@ -69,14 +69,14 @@
                     <label for="PetType">Breed:</label>
                     <input type="text" id="PetType" name="PetType" readonly>
 
-                    <label for="PetColor">Age:</label>
-                    <input type="text" id="PetColor" name="PetColor" readonly>
+                    <label for="PetAge">Age:</label>
+                    <input type="text" id="PetAge" name="PetAge" readonly>
 
-                    <label for="PetType">Weight:</label>
-                    <input type="text" id="PetType" name="PetType" readonly>
+                    <label for="PetWeight">Weight:</label>
+                    <input type="text" id="PetWeight" name="PetWeight" readonly>
 
-                    <label for="PetColor">Days At Shelter:</label>
-                    <input type="text" id="PetColor" name="PetColor" readonly>
+                    <label for="PetDaysAtShelter">Days At Shelter:</label>
+                    <input type="text" id="PetDaysAtShelter" name="PetDaysAtShelter" readonly>
                 </div>
                 </div>
         <div id="adopterdet">
@@ -86,34 +86,34 @@
                         <img src="../images/default_profile_picture.png" id="adopter_profile">
                     </div>
 
-                    <label for="AdopterName">Email:</label>
-                    <input type="text" id="AdopterName" name="AdopterName" readonly>
-
-                    <label for="AdopterEmail">Pet Owned:</label>
+                    <label for="AdopterEmail">Email:</label>
                     <input type="text" id="AdopterEmail" name="AdopterEmail" readonly>
 
-                    <label for="AdopterAddress">Residence Status:</label>
-                    <input type="text" id="AdopterAddress" name="AdopterAddress" readonly>
+                    <label for="AdopterPetOwned">Pet Owned:</label>
+                    <input type="text" id="AdopterPetOwned" name="AdopterPetOwned" readonly>
+
+                    <label for="AdopterResidenceStatus">Residence Status:</label>
+                    <input type="text" id="AdopterResidenceStatus" name="AdopterResidenceStatus" readonly>
             
-                 </div>
-                 <div id="adopterright">
-                    <label for="PetName">Name:</label>
-                    <input type="text" id="PetName" name="PetName" readonly>
+                    </div>
+                    <div id="adopterright">
+                    <label for="AdopterName">Name:</label>
+                    <input type="text" id="AdopterName" name="AdopterName" readonly>
 
-                    <label for="PetType">Address:</label>
-                    <input type="text" id="PetType" name="PetType" readonly>
+                    <label for="AdopterAddress">Address:</label>
+                    <input type="text" id="AdopterAddress" name="AdopterAddress" readonly>
 
-                    <label for="PetColor">Contact Number:</label>
-                    <input type="text" id="PetColor" name="PetColor" readonly>
+                    <label for="AdopterNumber">Contact Number:</label>
+                    <input type="text" id="AdopterNumber" name="AdopterNumber" readonly>
 
-                    <label for="PetType">Employment Status:</label>
-                    <input type="text" id="PetType" name="PetType" readonly>
+                    <label for="AdopterEmploymentStatus">Employment Status:</label>
+                    <input type="text" id="AdopterEmploymentStatus" name="AdopterEmploymentStatus" readonly>
 
-                    <label for="PetColor">Living Environment:</label>
-                    <input type="text" id="PetColor" name="PetColor" readonly>
+                    <label for="AdopterLivingEnvironment">Living Environment:</label>
+                    <input type="text" id="AdopterLivingEnvironment" name="AdopterLivingEnvironment" readonly>
                 </div>
                 </div>
-     <div id="applicationdet">
+        <div id="applicationdet">
                     <h2>APPLICATION DETAILS</h2>
                 
                 <div id="applicationleft">
@@ -121,16 +121,20 @@
                     <input type="text" id="DateApplied" name="DateApplied" readonly>
 
                     <label for="Reason">Reason for Adopter:</label>
-                    <textarea id="reason" name="Reason" rows="6" readonly></textarea>
+                    <textarea id="Reason" name="Reason" rows="6" readonly></textarea>
                 </div>
 
                 <div id="applicationright">
                     <label for="shelterFeedback">Feedback:</label>
-                    <textarea id="shelterFeedback" name="shelterFeedback" rows="14" readonly></textarea>
+                    <textarea id="shelterFeedback" name="shelterFeedback" rows="14" ></textarea>
                 </div>
 
                 </div>
-               
+                <div class="responsebtn">
+                    <button id="approveButton" >APPROVE</button>
+                    <button id="disapproveButton" >DISAPPROVE</button>
+                    
+                </div>
                 </section>
             </div>
         </div>
