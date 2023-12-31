@@ -76,7 +76,9 @@ function updateApplicationStatus(applicationId, status) {
 
     // If approving, set the date_approved to the current date
     if (status === 1) {
-        updateData.date_approved = new Date().toISOString().split('T')[0]; // Format: YYYY-MM-DD
+        const currentDate = new Date();
+        currentDate.setMinutes(currentDate.getMinutes() - currentDate.getTimezoneOffset()); // Adjust for local timezone
+        updateData.date_approved = currentDate.toISOString().split('T')[0]; // Format: YYYY-MM-DD
     }
 
     // If disapproving, also set the status to "COMPLETED"
@@ -94,6 +96,7 @@ function updateApplicationStatus(applicationId, status) {
         console.error('Error updating application:', error);
     });
 }
+
 
 const applicationId = getApplicationIdFromURL();
 

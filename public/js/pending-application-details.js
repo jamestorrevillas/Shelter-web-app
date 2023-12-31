@@ -97,7 +97,7 @@ async function cancelApplication() {
         alert("Application approval cancelled successfully.");
 
         // Redirect to another page after successful cancellation
-        window.location.href = "pendings.html";
+        window.location.href = "./pendings.html";
     } catch (error) {
         console.error('Error cancelling application approval:', error);
         alert("Failed to cancel application approval.");
