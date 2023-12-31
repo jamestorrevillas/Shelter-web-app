@@ -925,15 +925,42 @@ thead th {
 	margin-top: 0px;
 }
 #application-details{
-    height:1100px;
+    height:1200px;
 }
 #appdet{  
     margin-top: -90px;
-    height: 108%;
+    margin-left: -100px;
+    margin-right: 500px;
+    /* border: 2px solid black; */
 }
+/* #appdet h2{
+    margin-left: 500px;
+} */
+#applicationdet h2{
+    margin-right: 80px;
+}
+#appdet input[type="text"] {
+    width: 350px; /* Adjust the width as per your requirement */
+}
+#appdet label{
+    margin-right: -160px;
+}
+#adopterdet label{
+    margin-right: -160px;
+}
+#adopterdet{  
+    margin-top: -90px;
+    margin-left: 400px;
+    margin-top: -660px;
+    /* margin-right: 500px;
+    border: 2px solid black; */
+}
+/* #appdet h2{
+    margin-left: 500px;
+} */
 
-#appdet input{
-    text-align: center;
+#adopterdet input[type="text"] {
+    width: 350px; /* Adjust the width as per your requirement */
 }
 #historydet{  
     margin-top: -90px;
@@ -945,7 +972,7 @@ thead th {
     margin-top:50px;
     text-align: center;
     color:#6868AE;
-    margin-left:20px;
+    margin-left:130px;
 }
 #application-details label{
     margin-left: 20px;
@@ -1023,7 +1050,7 @@ thead th {
 #pet-profile img{
     width:120px;
     height:120px;
-    margin-left:230px;
+    margin-left:90px;
 }
 #addpet-profile img{
     width:120px;
