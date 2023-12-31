@@ -946,8 +946,11 @@ thead th {
 	margin-top: 0px;
 }
 #application-details{
-    height:1200px;
+    height:1050px;
+    width: 90%;
 }
+
+
 #appdet h2{
     font-family: 'Poppins', sans-serif;
 }
@@ -959,8 +962,9 @@ thead th {
 }
 #appdet{  
     margin-top: -90px;
-    margin-left: -100px;
+    margin-left: -200px;
     margin-right: 500px;
+
     /* border: 2px solid black; */
 }
 #pendingsdet{
@@ -987,24 +991,66 @@ thead th {
 #appdet input[type="text"],
 #appdet input[type="date"],
 #appdet input[type="number"] {
-    width: 350px; 
-    text-align: center;/* Adjust the width as per your requirement */
+    background-color: white;
+    border: 1px color lightgray;
+    width: 200px; 
+    text-align: center;
+    margin-top: 0px;/* Adjust the width as per your requirement */
 }
 #applicationdet input[type="text"],
 #applicationdet input[type="date"],
 #applicationdet input[type="number"] {
-    text-align: center;/* Adjust the width as per your requirement */
+    background-color: white;
+    border: 1px color lightgray;
+    width: 200px; 
+    text-align: center;
+    margin-top: 0px;/* Adjust the width as per your requirement */
+}
+#applicationdet textarea{
+    background-color: white;
+    border: 1px color lightgray !important;
+    width: 200px; 
+    text-align: center;
+    margin-top: 0px;
+}
+#applicationdet textarea {
+    background-color: white !important;
+}
+#reason textarea,
+#shelterFeedback textarea{
+    background-color: white !important;
+}
+#applicationleft textarea,
+#applicationright textarea{
+    background-color: white !important;
+    width: 400px !important;
+}
+#applicationleft label,
+#applicationright label{
+    margin-right:500px;
+}
+#applicationright label{
+    margin-left:300px !important;
+}
+#applicationright{
+    margin-left:380px;
+    margin-top: -300px;
+}
+#applicationleft{
+    margin-left:-150px;
+    
 }
 #appdet label{
-    margin-right: -160px;
+    margin-right: 200px;
+    margin-bottom: 0px;
 }
 #adopterdet label{
-    margin-right: -160px;
+    margin-right: 200px;
+    margin-bottom: 0px;
 }
 #adopterdet{  
-    margin-top: -90px;
-    margin-left: 400px;
-    margin-top: -660px;
+    margin-left: 330px;
+    margin-top: -565px;
     /* margin-right: 500px;
     border: 2px solid black; */
 }
@@ -1015,8 +1061,11 @@ thead th {
 #adopterdet input[type="text"], 
 #adopterdet input[type="date"],
 #adopterdet input[type="number"] {
-    width: 350px;
-    text-align: center; /* Adjust the width as per your requirement */
+    background-color: white;
+    border: 1px color lightgray;
+    width: 200px; 
+    text-align: center;
+    margin-top: 0px; /* Adjust the width as per your requirement */
 }
 #historydet{  
     margin-top: -90px;
@@ -1104,9 +1153,39 @@ thead th {
     font-family:'Poppins', sans-serif;
 }
 #pet-profile img{
-    width:120px;
-    height:120px;
-    margin-left:120px;
+    width:180px;
+    height:150px;
+    margin-left:10px;
+    margin-bottom:10px;
+}
+
+#petright{
+    margin-left: 280px;
+    margin-top: -506px;
+}
+#petright label{
+    text-align: left;
+    margin-left: 300px;
+    margin-right: -100px;
+}
+#petleft label{
+    text-align: left;
+    margin-left: 300px;
+    margin-right: -100px;
+}
+#adopterleft label{
+    text-align: left;
+    margin-left: 300px;
+    margin-right: -100px;
+}
+#adopterright{
+    margin-left: 280px;
+    margin-top: -506px;
+}
+#adopterright label{
+    text-align: left;
+    margin-left: 300px;
+    margin-right: -100px;
 }
 #addpet-profile img{
     width:120px;
