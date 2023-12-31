@@ -948,6 +948,15 @@ thead th {
 #application-details{
     height:1200px;
 }
+#appdet h2{
+    font-family: 'Poppins', sans-serif;
+}
+#adopterdet h2{
+    font-family: 'Poppins', sans-serif;
+}
+#applicationdet h2{
+    font-family: 'Poppins', sans-serif;
+}
 #appdet{  
     margin-top: -90px;
     margin-left: -100px;
