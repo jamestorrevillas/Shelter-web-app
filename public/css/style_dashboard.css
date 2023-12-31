@@ -110,7 +110,12 @@ nav ul li a:hover {
 	float: left;
 	/*padding: 5px 30px; */
 }
+.left-nav h1{
+    font-size: 30px;
+    margin-left: 20px;
+    color:white;
 
+}
 .mainpage {
     display: flex;
     flex-direction: column;
@@ -399,7 +404,7 @@ button:hover {
 #pets-table-top {
     display: inline-block;
 	margin-right:-10px;
-    margin-left: -130px;
+    margin-left: -350px;
 
 }
 #pets-table-top th {
@@ -411,18 +416,19 @@ button:hover {
 #archive-table-top {
     display: inline-block;
 	margin-right:-10px;
-    margin-left: -130px;
+    margin-left: -350px;
 
 }
 #archive-table-top th {
     text-align: right;
     padding-right: 0px; /* Adjust the value as needed */
     padding-left: 30px;
+    font-family: 'Poppins-light', sans-serif;
 }
 #application-table-top {
     display: inline-block;
 	margin-right: 0px;
-    margin-left: -250px;
+    margin-left: -180px;
   
 
 }
@@ -431,17 +437,19 @@ button:hover {
     text-align: right;
     padding-right: 0px; /* Adjust the value as needed */
     padding-left: 40px;
+    font-family: 'Poppins-light', sans-serif;
 }
 #history-table-top {
     display: inline-block;
 	margin-right: -200px;
-    margin-left: -280px;
+    margin-left: -180px;
 
 }
 #history-table-top th {
     text-align: right;
     padding-right: 0px; /* Adjust the value as needed */
-    padding-left: 80px;
+    padding-left: 20px;
+    font-family: 'Poppins-light', sans-serif;
 }
 #remarks-filter{
     width: 20px;
@@ -933,6 +941,21 @@ thead th {
     margin-right: 500px;
     /* border: 2px solid black; */
 }
+#pendingsdet{
+    margin-top:-90px;
+    height: 1150px;
+}
+#pendingsdet h2{
+    margin-right: 90px;
+}
+#pendingsdet input{
+    text-align: center;
+}
+#pets-profile img{
+    width:120px;
+    height:120px;
+    margin-left:520px;
+}
 /* #appdet h2{
     margin-left: 500px;
 } */
@@ -1050,7 +1073,7 @@ thead th {
 #pet-profile img{
     width:120px;
     height:120px;
-    margin-left:90px;
+    margin-left:120px;
 }
 #addpet-profile img{
     width:120px;

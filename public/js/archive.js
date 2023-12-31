@@ -113,7 +113,7 @@ function displayNewPet(petDetails, petId) {
     const button1 = document.createElement('td');
             
     const image1 = document.createElement('img');
-    image1.src = "../images/icons8-restore-58.png"; 
+    image1.src = "../images/icons8-eye-50.png"; 
     
     image1.addEventListener('click', function() {
         archivePet(petId);
