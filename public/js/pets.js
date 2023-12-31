@@ -35,7 +35,7 @@ function displayPetData() {
             if (Object.hasOwnProperty.call(petsData, petId)) {
                 const pet = petsData[petId];
 
-                if (pet.shelter_id && pet.shelter_id === loggedInShelterId && pet.status === 0) {
+                if (pet.shelter_id && pet.shelter_id === loggedInShelterId) {
                     petsArray.push({ pet, petId });
                 }
             }

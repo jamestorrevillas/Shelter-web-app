@@ -39,19 +39,23 @@ async function displayApplicationData(applicationId) {
 
         // Update the HTML elements with the application data
         document.getElementById('PetName').value = petData ? petData.name : '';
+        document.getElementById('PetType').value = petData.type || '';
+        document.getElementById('PetColor').value = petData.color || '';
+        document.getElementById('PetGender').value = petData.gender || '';
         document.getElementById('DateApplied').value = applicationData.date_applied || '';
         document.getElementById('AdopterName').value = `${adopterData.first_name || ''} ${adopterData.last_name || ''}`;
-        document.getElementById('ShelterEmail').value = adopterData.email || '';
-        document.getElementById('Address').value = adopterData.address || '';
-        document.getElementById('ContactNumber').value = adopterData.phone_number || '';
+        document.getElementById('AdopterEmail').value = adopterData.email || '';
+        document.getElementById('AdopterAddress').value = adopterData.address || '';
+        document.getElementById('AdopterNumber').value = adopterData.phone_number || '';
         document.getElementById('Reason').value = applicationData.reason || '';
-        document.getElementById('shelterFeedback').value = applicationData.feedback || '';
 
         // Fetch and display pet image
-        if (petData && petData.imageUrl) {
+        if (petData && adopterData && petData.imageUrl && adopterData.profile_picture) {
             try {
                 const imageUrl = await getDownloadURL(storageRef(storage, petData.imageUrl));
                 document.getElementById('pet_profile').src = imageUrl;
+                const profile_picture = await getDownloadURL(storageRef(storage, adopterData.profile_picture));
+                document.getElementById('adopter_profile').src = profile_picture;
             } catch (error) {
                 console.error('Error loading pet image:', error);
             }
