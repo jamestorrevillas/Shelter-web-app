@@ -32,7 +32,7 @@ header {
 .logo-container span {
     font-size: 24px;
     color: #FFFFFF;
-    font-family: 'Intel', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 600;
 }
 
@@ -406,6 +406,7 @@ button:hover {
     text-align: right;
     padding-right: 0px; /* Adjust the value as needed */
     padding-left: 30px;
+    font-family: 'Poppins-light', sans-serif;
 }
 #archive-table-top {
     display: inline-block;
@@ -500,7 +501,7 @@ thead th {
 
 #settings_section img,
 #settings_section h2 {
-    font-family: 'Intel', sans-serif;
+    font-family: 'Poppins', sans-serif;
     color: #6868AE;
     margin-left:60px;
     margin-bottom: 40px;
@@ -534,7 +535,7 @@ thead th {
     padding: 10px 20px;
     background-color: #6868AE;
     color: white;
-    font-family:'Intel', sans-serif;
+    font-family:'Poppins', sans-serif;
     text-decoration: none;
     border-radius: 5px;
     margin-top: 10px;
@@ -545,7 +546,7 @@ thead th {
     padding: 10px 20px;
     background-color: #6868AE;
     color: white;
-    font-family:'Intel', sans-serif;
+    font-family:'Poppins', sans-serif;
     text-decoration: none;
     border-radius: 5px;
     margin-top: 10px;
@@ -570,7 +571,7 @@ thead th {
 
 #change-password_section h2 {
     text-align: center;
-    font-family: 'Intel', sans-serif;
+    font-family: 'Poppins', sans-serif;
     color: #6868AE;
     margin-top: 40px;
     margin-left: 40px;
@@ -579,7 +580,7 @@ thead th {
 #change-password_section label {
 	text-align:center;
     display: block;
-	font-family:'Intel', sans-serif;
+	font-family:'Poppins', sans-serif;
 	color: #6868AE;
 	font-weight: bold;
     margin-left: 250px;    
@@ -611,7 +612,7 @@ thead th {
     margin-top: 80px;
     margin-left: 285px;
     font-weight: bold;
-    font-family:'Intel', sans-serif;
+    font-family:'Poppins', sans-serif;
     border-color: transparent;
 }
 .colored-row {
@@ -624,6 +625,7 @@ thead th {
     padding:10px;
     border-color: white;
     cursor: pointer;
+    font-family: 'Poppins', sans-serif;
 }
 .colored-row td {
     text-decoration: none;
@@ -965,7 +967,7 @@ thead th {
     margin-right: 20px;
     border: none;
     cursor: pointer;
-    font-family: 'Intel', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: bold;
     border-radius: 5px;
 }
@@ -1006,7 +1008,7 @@ thead th {
     font-weight: bold;
     color:white;
     background-color: #6868AE;
-    font-family:'Intel', sans-serif;
+    font-family:'Poppins', sans-serif;
 }
 #backbtn{
     margin-top: 10px;
@@ -1016,7 +1018,7 @@ thead th {
     color:white;
     background-color: transparent;
     border: none;
-    font-family:'Intel', sans-serif;
+    font-family:'Poppins', sans-serif;
 }
 #pet-profile img{
     width:120px;

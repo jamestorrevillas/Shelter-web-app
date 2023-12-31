@@ -71,51 +71,69 @@ async function displayApplicationDetails(application, applicationId) {
     // Fetch adopter details
     const adopterDetails = await fetchUserData(adoptersRef, application.adopter_id);
 
+    // Fetch pet details using pet_id
+    const petDetails = await fetchUserData(petsRef, application.pet_id);
+
+    // Extract pet details
+    const { name, imageUrl } = petDetails;
+
     // Extract adopter details
-    const { first_name, last_name, phone_number, email, address } = adopterDetails;
+    const { first_name, last_name, address, profile_picture } = adopterDetails;
 
     // Extract other application details
-    const { reason, date_applied } = application;
-
-    const daysAtPending = calculateDaysAtPending(date_applied);
+    const { date_applied } = application;
 
     const tableRow = document.createElement('tr');
 
-    const adopterNameCell = document.createElement('td');
-    adopterNameCell.textContent = first_name + ' ' + last_name;
-
-    // const contactNumberCell = document.createElement('td');
-    // contactNumberCell.textContent = phone_number;
-    
     const dateAppliedCell = document.createElement('td');
     dateAppliedCell.textContent = date_applied;
+    dateAppliedCell.style.display = 'flex';
+    dateAppliedCell.style.alignItems = 'center';
 
-    const daysAtPendingCell = document.createElement('td');
-    daysAtPendingCell.textContent = daysAtPending;
+    const profilePicture = document.createElement('img');
+    profilePicture.src = profile_picture; 
+    profilePicture.style.width = '50px'; 
+    profilePicture.style.height = '50px';
+    profilePicture.style.marginRight = '10px';
 
-    // const emailCell = document.createElement('td');
-    // emailCell.textContent = email;
+    const adopterNameCell = document.createElement('td');
+    adopterNameCell.style.display = 'flex';
+    adopterNameCell.style.alignItems = 'center';
+
+    adopterNameCell.appendChild(profilePicture);
+    adopterNameCell.appendChild(document.createTextNode(first_name + ' ' + last_name));
 
     const addressCell = document.createElement('td');
     addressCell.textContent = address;
+    addressCell.style.display = 'flex';
+    addressCell.style.alignItems = 'center';
 
-    // const reasonCell = document.createElement('td');
-    // reasonCell.textContent = reason;
+    const petImage = document.createElement('img');
+    petImage.src = imageUrl; 
+    petImage.style.width = '50px'; 
+    petImage.style.height = '50px';
+    petImage.style.marginRight = '10px';
+
+    const petNameCell = document.createElement('td');
+    petNameCell.style.display = 'flex';
+    petNameCell.style.alignItems = 'center';
+
+    petNameCell.appendChild(petImage);
+    petNameCell.appendChild(document.createTextNode(name));
 
     // Add table cells to the table row
+    tableRow.appendChild(dateAppliedCell);
     tableRow.appendChild(adopterNameCell);
     tableRow.appendChild(addressCell);
-    tableRow.appendChild(dateAppliedCell);
-    tableRow.appendChild(daysAtPendingCell);
-    // tableRow.appendChild(emailCell);
-    // tableRow.appendChild(contactNumberCell);
-    // tableRow.appendChild(reasonCell);
+    tableRow.appendChild(petNameCell);
 
     tableRow.classList.add('colored-row');
 
     // Create an anchor element
     const rowAnchor = document.createElement('a');
     rowAnchor.href = '#';
+    rowAnchor.style.textDecoration = 'none'; // Remove underline
+    rowAnchor.style.color = 'inherit'; // Keep text color consistent
     rowAnchor.addEventListener('click', function() {
         window.location.href = `response.html?applicationId=${applicationId}`;
     });
@@ -125,7 +143,6 @@ async function displayApplicationDetails(application, applicationId) {
 
     // Append the anchor element to the table body
     tableBody.appendChild(rowAnchor);
-    document.getElementById('search-bar').addEventListener('input', filterTable);
 }
 
 
