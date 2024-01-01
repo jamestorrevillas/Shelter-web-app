@@ -945,7 +945,7 @@ thead th {
 	margin-top: 0px;
 }
 #application-details{
-    height:1050px;
+    height:1150px;
     width: 90%;
 }
 
@@ -1100,7 +1100,7 @@ thead th {
     cursor: pointer;
     font-family: 'Poppins', sans-serif;
     font-weight: bold;
-    border-radius: 5px;
+    border-radius: 15px;
 }
 #approveButton,
 #disapproveButton{
@@ -1119,7 +1119,7 @@ thead th {
     margin-left: 360px;
 }
 .confirmbtn{
-    margin-top: 0px;
+    margin-top: 50px;
     margin-left: 360px;
 }
 #application-details textarea {
@@ -1186,6 +1186,7 @@ thead th {
     margin-left: 300px;
     margin-right: -100px;
 }
+
 #addpet-profile img{
     width:120px;
     height:120px;
@@ -1220,6 +1221,15 @@ thead th {
 #editPetForm textarea{
     width: 700px;
     margin-left: 10px;
+}
+.description label{
+    margin-left: -328px !important;
+}
+
+#editPetDescription label{
+    margin-top:50px;
+    display:block;
+    margin-right:300px;
 }
 #pendingdetails{
     height: 100%;
@@ -1292,6 +1302,93 @@ thead th {
     text-align: center;
     margin-top: 0px; 
 }
+#adopterdet{
+    margin-top:-520px;
+}
+#adopterright input[type="text"], 
+#adopterright input[type="date"],
+#adopterright input[type="number"] {
+    margin-bottom: -20px;
+}
+#adopterright{
+    margin-top:-380px;
+}
+#adopterleft img{
+    width: 130px !important;
+    height: 130px !important;
+    margin-bottom: -30px;
+}
+#adopterleft input[type="text"], 
+#adopterleft input[type="date"],
+#adopterleft input[type="number"] {
+    margin-top: 10px;
+    margin-bottom: -20px;
+}
+#petright input[type="text"], 
+#petright input[type="date"],
+#petright input[type="number"] {
+    margin-bottom: -20px;
+    margin-top: 10px;
+}
+#adopterright input[type="text"], 
+#adopterright input[type="date"],
+#adopterright input[type="number"] {
+    margin-bottom: -20px;
+    margin-top: 10px;
+}
+#petright{
+    margin-top:-425px !important;
+}
+#petleft img{
+    width: 150px;
+    height: 150px;
+    margin-bottom: -30px;
+}
+#petleft input[type="text"], 
+#petleft input[type="date"],
+#petleft input[type="number"] {
+    margin-bottom: -20px;
+    margin-top: 10px;
+    margin-left: 330px;
+}
+#petleft label{
+    margin-left: 350px;
+    font-family: 'Poppins', sans-serif, thin;
+} 
+/* #adopterleft label{
+    margin-left: 330px;
+    font-family: 'Poppins', sans-serif, thin;
+}  */
+#adopterleft label{
+    /* margin-top:0px; */
+}
+#petleft img{
+    margin-left: 60px;
+    margin-bottom: 5px;
+    width: 130px;
+    height: 130px;
+}
+/* #petleft label{
+    font-weight: -20px !important;
+} */
+#adopterdet img{
+    margin-bottom: 10px;
+}
+#adopterright{
+    margin-left:230px;
+    margin-top:-430px;
+}
+#appdet{
+    margin-top:-40px;
+}
+#appdet h2{
+    margin-bottom: 40px;
+    margin-left: 300px;
+}
+#adopterdet h2{
+    margin-bottom: 40px;
+    margin-left: 300px;
+}
 #rightsetting label{
     margin-left: 300px !important;
     text-align:left;
@@ -1303,4 +1400,29 @@ thead th {
     border-radius: 20px;
     border: none;
     width: 645px;
+}
+#applicationdet label{
+    text-align: left;
+    margin-left:300px;
+}
+#applicationdet input[type="text"],
+#applicationdet textarea{
+    text-align: left;
+}
+#applicationdet{
+    margin-top: 100px;
+    margin-bottom:50px;
+}
+#appdet label,
+#adopterdet label,
+#applicationdet label{
+    font-style: thin;
+    font-weight: lighter;
+}
+/* #editPetDescription label{
+    margin-top:30px;
+    margin-left: -200px;
+} */
+#description label{
+    margin-left: -325px !important;
 }
