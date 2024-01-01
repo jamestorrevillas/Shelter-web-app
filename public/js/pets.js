@@ -61,7 +61,7 @@ function getLoggedInShelterId() {
 function displayNewPet(petDetails, petId) {
     const tableBody = document.getElementById('table-body-below');
 
-    const { name, type, dateArrived, status, imageUrl } = petDetails;
+    const { name, type, breed, dateArrived, status, imageUrl } = petDetails;
 
     // const currentDate = new Date();
     // const daysAtShelter = Math.floor((currentDate - new Date(dateArrived)) / (24 * 60 * 60 * 1000));
@@ -90,6 +90,11 @@ function displayNewPet(petDetails, petId) {
     typeCell.textContent = type;
     typeCell.style.display = 'flex';
     typeCell.style.alignItems = 'center';
+
+    const breedCell = document.createElement('td');
+    breedCell.textContent = breed;
+    breedCell.style.display = 'flex';
+    breedCell.style.alignItems = 'center';
 
     const statusCell = document.createElement('td');
     statusCell.textContent = mapStatusValueToString(status);
@@ -120,6 +125,7 @@ function displayNewPet(petDetails, petId) {
     tableRow.appendChild(daysCell);
     tableRow.appendChild(petNameCell);
     tableRow.appendChild(typeCell);
+    tableRow.appendChild(breedCell);
     tableRow.appendChild(statusCell);
     tableRow.appendChild(button1);
     tableRow.appendChild(button2);
@@ -139,11 +145,12 @@ function filterTable() {
         // Retrieve the text content of cells and convert to lowercase for case-insensitive comparison
         const dateAdded = row.cells[0].textContent.toLowerCase();
         const name = row.cells[1].textContent.toLowerCase(); 
-        const breed = row.cells[2].textContent.toLowerCase();
-        const status = row.cells[3].textContent.toLowerCase();
+        const type = row.cells[2].textContent.toLowerCase();
+        const breed = row.cells[3].textContent.toLowerCase();
+        const status = row.cells[4].textContent.toLowerCase();
 
         // Check if any of the fields match the search input
-        if (dateAdded.includes(searchInput) || name.includes(searchInput) || breed.includes(searchInput) || status.includes(searchInput)) {
+        if (dateAdded.includes(searchInput) || name.includes(searchInput) || type.includes(searchInput) || breed.includes(searchInput) || status.includes(searchInput)) {
             row.style.display = '';
         } else {
             row.style.display = 'none';

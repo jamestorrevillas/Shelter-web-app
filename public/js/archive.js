@@ -59,41 +59,40 @@ function getLoggedInShelterId() {
 function displayNewPet(petDetails, petId) {
     const tableBody = document.getElementById('table-body-below');
 
-    const { name, type, dateArrived, status, imageUrl } = petDetails;
-
-    const petName = name;
-    const petType = type;
-    const petDays = dateArrived;
-    const petStatus = status;
+    const { name, type, breed, dateArrived, status, imageUrl } = petDetails;
 
     // const currentDate = new Date();
-    // const daysAtShelter = Math.floor((currentDate - new Date(petDays)) / (24 * 60 * 60 * 1000));
-
+    // const daysAtShelter = Math.floor((currentDate - new Date(dateArrived)) / (24 * 60 * 60 * 1000));
 
     const tableRow = document.createElement('tr');
 
-    const nameCell = document.createElement('td');
-    nameCell.style.display = 'flex';
-    nameCell.style.alignItems = 'center';
+    const daysCell = document.createElement('td');
+    daysCell.textContent = dateArrived;
+    daysCell.style.display = 'flex';
+    daysCell.style.alignItems = 'center';
 
     const petImage = document.createElement('img');
-    petImage.src = imageUrl;
+    petImage.src = imageUrl; 
     petImage.style.width = '50px'; 
     petImage.style.height = '50px';
     petImage.style.marginRight = '10px';
 
-    nameCell.appendChild(petImage);
-    nameCell.appendChild(document.createTextNode(name));
+    const petNameCell = document.createElement('td');
+    petNameCell.style.display = 'flex';
+    petNameCell.style.alignItems = 'center';
+
+    petNameCell.appendChild(petImage);
+    petNameCell.appendChild(document.createTextNode(name));
 
     const typeCell = document.createElement('td');
     typeCell.textContent = type;
     typeCell.style.display = 'flex';
     typeCell.style.alignItems = 'center';
-    
-    const daysCell = document.createElement('td');
-    daysCell.textContent = dateArrived;
-    daysCell.style.display = 'flex';
-    daysCell.style.alignItems = 'center';
+
+    const breedCell = document.createElement('td');
+    breedCell.textContent = breed;
+    breedCell.style.display = 'flex';
+    breedCell.style.alignItems = 'center';
 
     const statusCell = document.createElement('td');
     statusCell.textContent = mapStatusValueToString(status);
@@ -123,8 +122,9 @@ function displayNewPet(petDetails, petId) {
 
     // Add table cells to the table row
     tableRow.appendChild(daysCell);
-    tableRow.appendChild(nameCell);
+    tableRow.appendChild(petNameCell);
     tableRow.appendChild(typeCell);
+    tableRow.appendChild(breedCell);
     tableRow.appendChild(statusCell);
     tableRow.appendChild(button2);
     tableRow.appendChild(button1);
@@ -144,11 +144,12 @@ function filterTable() {
         // Retrieve the text content of cells and convert to lowercase for case-insensitive comparison
         const dateAdded = row.cells[0].textContent.toLowerCase();
         const name = row.cells[1].textContent.toLowerCase(); 
-        const breed = row.cells[2].textContent.toLowerCase();
-        const status = row.cells[3].textContent.toLowerCase();
+        const type = row.cells[2].textContent.toLowerCase();
+        const breed = row.cells[3].textContent.toLowerCase();
+        const status = row.cells[4].textContent.toLowerCase();
 
         // Check if any of the fields match the search input
-        if (dateAdded.includes(searchInput) || name.includes(searchInput) || breed.includes(searchInput) || status.includes(searchInput)) {
+        if (dateAdded.includes(searchInput) || name.includes(searchInput) || type.includes(searchInput) || breed.includes(searchInput) || status.includes(searchInput)) {
             row.style.display = '';
         } else {
             row.style.display = 'none';

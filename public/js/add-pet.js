@@ -59,6 +59,7 @@ async function addPet() {
 
     const petName = document.getElementById('petName').value;
     const petType = document.getElementById('petType').value;
+    const petBreed = document.getElementById('petBreed').value;
     const petAge = document.getElementById('petAge').value;
     const petColor = document.getElementById('petColor').value;
     const petWeight = parseFloat(document.getElementById('petWeight').value);
@@ -95,6 +96,7 @@ async function addPet() {
             pet_id: petId,
             name: petName,
             type: petType,
+            breed: petBreed,
             age: petAge,
             color: petColor,
             weight: petWeight,

@@ -86,7 +86,7 @@ async function displayApplicationDetails(application, applicationId) {
     const petDetails = await fetchUserData(petsRef, application.pet_id);
 
     // Extract pet details
-    const { name, imageUrl } = petDetails;
+    const { name, imageUrl, type } = petDetails;
 
     // Extract adopter details
     const { first_name, last_name, address, profile_picture } = adopterDetails;
@@ -129,6 +129,11 @@ async function displayApplicationDetails(application, applicationId) {
     petNameCell.style.display = 'flex';
     petNameCell.style.alignItems = 'center';
 
+    const petTypeCell = document.createElement('td');
+    petTypeCell.textContent = type;
+    petTypeCell.style.display = 'flex';
+    petTypeCell.style.alignItems = 'center';
+
     petNameCell.appendChild(petImage);
     petNameCell.appendChild(document.createTextNode(name));
 
@@ -137,6 +142,7 @@ async function displayApplicationDetails(application, applicationId) {
     tableRow.appendChild(adopterNameCell);
     tableRow.appendChild(addressCell);
     tableRow.appendChild(petNameCell);
+    tableRow.appendChild(petTypeCell);
 
     tableRow.classList.add('colored-row');
 
@@ -180,13 +186,14 @@ function filterTable() {
 
     tableRows.forEach(row => {
         // Retrieve the text content of each column in the row
-        const dateApproved = row.cells[0].textContent.toLowerCase(); 
+        const dateApplied = row.cells[0].textContent.toLowerCase(); 
         const adopterName = row.cells[1].textContent.toLowerCase(); 
         const address = row.cells[2].textContent.toLowerCase(); 
         const petName = row.cells[3].textContent.toLowerCase(); 
+        const petType = row.cells[4].textContent.toLowerCase(); 
 
         // Check if the search input matches any of these text contents
-        if (dateApproved.includes(searchInput) || adopterName.includes(searchInput) || address.includes(searchInput) || petName.includes(searchInput)) {
+        if (dateApplied.includes(searchInput) || adopterName.includes(searchInput) || address.includes(searchInput) || petName.includes(searchInput) || petType.includes(searchInput)) {
             row.style.display = '';
         } else {
             row.style.display = 'none';

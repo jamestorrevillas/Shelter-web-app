@@ -31,10 +31,12 @@ editPetForm.addEventListener('submit', function (event) {
     imageUrl: document.getElementById('petPic').src,
     name: document.getElementById('editPetName').value,
     type: document.getElementById('editPetType').value,
+    breed: document.getElementById('editPetBreed').value,
     gender: document.getElementById('editPetGender').value,
     age: document.getElementById('editPetAge').value,
-    color: document.getElementById('editPetColor').value,
     weight: document.getElementById('editPetWeight').value,
+    dateArrived: document.getElementById('editPetDateArrived').value,
+    daysAtShelter: document.getElementById('editPetDays').value,
     description: document.getElementById('editPetDescription').value,
   };
 
@@ -67,17 +69,13 @@ async function preFillForm(petDetails) {
 
   document.getElementById('editPetName').value = petDetails.name || '';
   document.getElementById('editPetType').value = petDetails.type || '';
-  
-  document.getElementById('editPetGenderMale').checked = petDetails.gender === 'Male';
-  document.getElementById('editPetGenderFemale').checked = petDetails.gender === 'Female';
-
-
+  document.getElementById('editPetBreed').value = petDetails.breed || '';
+  document.getElementById('editPetGender').value = petDetails.gender || '';
   document.getElementById('editPetAge').value = petDetails.age || '';
-  document.getElementById('editPetColor').value = petDetails.color || '';
   document.getElementById('editPetWeight').value = petDetails.weight || '';
+  document.getElementById('editPetDateArrived').value = petDetails.dateArrived || '';
+  document.getElementById('editPetDays').value = petDetails.daysAtShelter || '';
   document.getElementById('editPetDescription').value = petDetails.description || '';
-  // document.getElementById('editPetStatus').value = petDetails.status || '';
-  // document.getElementById('editPetDays').value = petDetails.daysAtShelter || '';
 
   toggleEditMode(false);
 }
@@ -93,8 +91,7 @@ onValue(petRef, (snapshot) => {
 // Function to toggle edit mode
 function toggleEditMode(isEditMode) {
   const editFields = [
-    'editPetName', 'editPetType', 'editPetAge', 'editPetGender',
-    'editPetColor', 'editPetWeight', 'editPetDescription'
+    'editPetName', 'editPetType', 'editPetBreed', 'editPetAge', 'editPetGender', 'editPetWeight', 'editPetDateArrived', 'editPetDays', 'editPetDescription'
   ];
 
   editFields.forEach(fieldId => {
@@ -118,10 +115,12 @@ function saveChanges() {
   const updateData = {
     name: document.getElementById('editPetName').value,
     type: document.getElementById('editPetType').value,
+    breed: document.getElementById('editPetBreed').value,
     gender: document.getElementById('editPetGender').value,
     age: document.getElementById('editPetAge').value,
-    color: document.getElementById('editPetColor').value,
     weight: document.getElementById('editPetWeight').value,
+    dateArrived: document.getElementById('editPetDateArrived').value,
+    daysAtShelter: document.getElementById('editPetDateArrived').value,
     description: document.getElementById('editPetDescription').value,
   };
 

@@ -44,11 +44,12 @@ async function displayApplicationData(applicationId) {
         // Update the HTML elements with the application data
         document.getElementById('PetName').value = petData ? petData.name : '';
         document.getElementById('PetType').value = petData.type || '';
-        document.getElementById('PetColor').value = petData.color || '';
+        document.getElementById('PetType').value = petData.type || '';
         document.getElementById('PetGender').value = petData.gender || '';
         document.getElementById('PetType').value = petData.type || '';
+        document.getElementById('PetBreed').value = petData.breed || '';
         document.getElementById('PetAge').value = petData.age + ' year/s old' || '';
-        document.getElementById('PetWeight').value = petData.weight + ' kg' || '';
+        document.getElementById('PetWeight').value = petData.weight + ' kg/s' || '';
         document.getElementById('PetDateArrived').value = petData.dateArrived || '';
         document.getElementById('PetDaysAtShelter').value = petData.daysAtShelter + ' day/s' || '';
         document.getElementById('DateApplied').value = applicationData.date_applied || '';
