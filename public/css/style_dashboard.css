@@ -491,7 +491,6 @@ thead th {
     border-radius: 10px;
 }
 #settings_section {
-    top: 0px; 
     margin-left: 0px;
     background-color: #FCEEE2;
     border-radius: 20px;
@@ -612,25 +611,25 @@ thead th {
 #change-password_section input,
 #change-password_section textarea {
     float: center;
-    width: 600px;
+    width: 400px;
     height:45px;
     padding: 10px;
     margin-bottom: 15px;
-	margin-left: 70px;
+	margin-left: 170px;
     border: 1px solid #D9D9D9;
-    background-color: #D9D9D9;
+    background-color: #F3F1F1;
     border-radius: 20px;
     box-sizing: border-box;
 }
 
 #change-pass-btn {
     display: inline-block;
-    padding: 10px 20px;
+    padding: 15px 20px;
     background-color: #6868AE;
     color: white;
     text-decoration: none;
-    border-radius: 5px;
-    margin-top: 80px;
+    border-radius: 20px;
+    margin-top: 50px;
     margin-left: 285px;
     font-weight: bold;
     font-family:'Poppins', sans-serif;
@@ -1215,7 +1214,93 @@ thead th {
 }
 #editPetForm{
     margin-top: -90px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: thin;
+}
+#editPetForm textarea{
+    width: 700px;
+    margin-left: 10px;
 }
 #pendingdetails{
     height: 100%;
+}
+#left{
+    margin-right: 250px;
+    margin-left: 50px;
+}
+#left input[type="text"], 
+#left input[type="date"],
+#left input[type="number"] {
+    background-color: white;
+    border: 1px color lightgray;
+    width: 300px; 
+    text-align: center;
+    margin-top: 0px; /* Adjust the width as per your requirement */
+}
+#left label{
+    margin-left: -20px !important;
+    text-align:left;
+}
+#right{
+    margin-right: -400px;
+    margin-left: 450px;
+    margin-top: -315px;
+}
+#right input[type="text"], 
+#right input[type="date"],
+#right input[type="number"] {
+    background-color: white;
+    border: 1px color lightgray;
+    width: 300px; 
+    text-align: center;
+    margin-top: 0px; /* Adjust the width as per your requirement */
+}
+#right label{
+    margin-left: -20px !important;
+    text-align:left;
+}
+
+#leftsetting{
+    margin-right: 200px;
+    margin-left: 0px;
+}
+#leftsetting input[type="text"], 
+#leftsetting input[type="date"],
+#leftsetting input[type="number"] {
+    margin-right: 100px;
+    border: 2px solid #D9D9D9;
+    background-color: #F3F1F1;
+    width: 300px; 
+    text-align: center;
+    margin-top: 0px; /* Adjust the width as per your requirement */
+}
+#leftsetting label{
+    margin-left: 300px !important;
+    text-align:left;
+}
+#rightsetting{
+    /* margin-right: -500px; */
+    margin-left: 350px;
+    margin-top: -302px;
+}
+#rightsetting input[type="text"], 
+#rightsetting input[type="date"],
+#rightsetting input[type="number"] {
+    border: 2px solid #D9D9D9;
+    background-color: #F3F1F1;
+    width: 300px; 
+    text-align: center;
+    margin-top: 0px; 
+}
+#rightsetting label{
+    margin-left: 300px !important;
+    text-align:left;
+}
+#prof textarea{
+    margin-left: 280px;
+    border: 2px solid #D9D9D9 !important;
+    background-color: #F3F1F1;
+    border-radius: 20px;
+    border: none;
+    width: 645px;
 }
