@@ -1265,6 +1265,19 @@ thead th {
     text-align: center;
     margin-top: 0px; /* Adjust the width as per your requirement */
 }
+#right select,
+#right option{
+    background-color: white;
+    border: 1px color lightgray;
+    border-color: lightgray;
+    width: 300px; 
+    text-align: center;
+    margin-top: 0px; 
+    padding: 10px;
+    margin-left:-38px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+}
 #right label{
     margin-left: -20px !important;
     text-align:left;
@@ -1425,4 +1438,8 @@ thead th {
 } */
 #description label{
     margin-left: -325px !important;
+    
+}
+.description{
+    margin-top: 50px !important ; 
 }
