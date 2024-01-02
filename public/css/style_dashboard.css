@@ -170,13 +170,13 @@ nav ul li a:hover {
     border-radius: 5px;
 }
 .left-nav ul li a:hover {
-    background-color: #FCEEE2;
+    background-color: #FFF5E0;
 	color: #7C7CB6;
 	border-radius: 20px;
 	padding: 10px 30px; 
 }
 #left-nav-current{
-    background-color: #FCEEE2;
+    background-color: #FFF5E0;
 	color: #7C7CB6;
 	border-radius: 20px;
 	padding: 10px 30px; 
@@ -186,7 +186,7 @@ nav ul li a:hover {
     top: 0px;
     margin-left: 0px;
     padding: 10px;
-    background-color: #FCEEE2;
+    background-color: #FFF5E0;
     border-radius: 20px;
     /*width: 99%;*/
     height: 100px;
@@ -196,7 +196,7 @@ nav ul li a:hover {
     top: 0px; 
     margin-left: 0px; 
     padding: 10px;
-    background-color: #FCEEE2;
+    background-color: #FFF5E0;
     border-radius: 20px;
     height: 690px;
 	margin-top: 0px;
@@ -204,12 +204,19 @@ nav ul li a:hover {
 #addPet-section {
     overflow-y: auto;
     margin-left: 0px;
-    background-color: #FCEEE2;
+    background-color: #FFF5E0;
     border-radius: 20px;
 	width: 1163px;
     height: 770px;
     max-height: 80vh;
 	margin-top: 0px;
+}
+#addPet-section textarea{
+    width: 128%;
+    margin-left: 45px;
+}
+#addPet-section label{
+    margin-top: -5px;
 }
 
 .dropdown {
@@ -242,7 +249,7 @@ form {
 	float:center;
     margin-left: 200px;
     max-width: 500px;
-    background-color: #FCEEE2;
+    background-color: #FFF5E0;
     padding: 20px;
     border-radius: 10px;
 }
@@ -310,7 +317,7 @@ button:hover {
     top: 0px;
     margin-left: 0px;
     /*padding: 10px;*/
-    background-color: #FCEEE2;
+    background-color: #FFF5E0;
     border-radius: 20px;
     /*float: left;
     width: 99%; Set to 100% for full width */
@@ -350,7 +357,7 @@ button:hover {
     background-color: gray;
 }
 #add-pet-button {
-    background-color: #FCEEE2;
+    background-color: #FFF5E0;
 	font-weight: bold;
     color: #6868AE; 
     padding: 10px 10px; 
@@ -417,7 +424,7 @@ button:hover {
 #pets-table-top {
     display: inline-block;
 	margin-right:-10px;
-    margin-left: -350px;
+    margin-left: -230px;
 
 }
 #pets-table-top th {
@@ -429,7 +436,7 @@ button:hover {
 #archive-table-top {
     display: inline-block;
 	margin-right:-10px;
-    margin-left: -350px;
+    margin-left: -230px;
 
 }
 #archive-table-top th {
@@ -440,16 +447,15 @@ button:hover {
 }
 #application-table-top {
     display: inline-block;
-	margin-right: 0px;
-    margin-left: -180px;
+	margin-right: -250px;
+    margin-left: -280px;
   
-
 }
 
 #application-table-top th {
     text-align: right;
-    padding-right: 0px; /* Adjust the value as needed */
-    padding-left: 40px;
+    padding-right: -30px; /* Adjust the value as needed */
+    padding-left: -50px;
     font-family: 'Poppins-light', sans-serif;
 }
 #history-table-top {
@@ -492,7 +498,7 @@ thead th {
 }
 #settings_section {
     margin-left: 0px;
-    background-color: #FCEEE2;
+    background-color: #FFF5E0;
     border-radius: 20px;
 	float: left;
 	width: 1163px;
@@ -577,7 +583,7 @@ thead th {
 #change-password_section {
     top: 0px; 
     margin-left: 0px;
-    background-color: #FCEEE2;
+    background-color: #FFF5E0;
     border-radius: 20px;
 	float: left;
 	width: 1163px;
@@ -751,6 +757,11 @@ thead th {
     margin-left: -20px;
     padding-top: 20px;
 }
+/* #table-body-below td:nth-child(3) {
+    border-radius: 0px; 
+    margin-left: 80px;
+    padding-top: 20px;
+} */
 
 /* #table-body-below td:nth-child(5) {
     /* display: flex; */
@@ -795,14 +806,13 @@ thead th {
     margin-right:-50px;
 }
 
-#application-table-top th:nth-child(1){
-    margin-right:0px;
-    margin-left: 80px;
+#application-table-top th:nth-child(4){
+   margin-left: 30px;
     
 }
-#application-table-top th:nth-child(2){
-    margin-left:150px;
-    margin-right: 130px;
+
+#application-table-top th:nth-child(5){
+    margin-left: 30px;
     
 }
 
@@ -823,7 +833,7 @@ thead th {
     top: 0px; 
     margin-left: 0px; 
     padding: 10px;
-    background-color: #FCEEE2;
+    background-color: #FFF5E0;
     border-radius: 20px;
     height: 690px;
 	margin-top: 0px;
@@ -927,7 +937,7 @@ thead th {
 #settings-section {
     overflow-y: auto;
     margin-left: 0px;
-    background-color: #FCEEE2;
+    background-color: #FFF5E0;
     border-radius: 20px;
 	width: 1163px;
     height: 970px;
@@ -937,7 +947,7 @@ thead th {
 #setting-section {
     overflow-y: auto;
     margin-left: 0px;
-    background-color: #FCEEE2;
+    background-color: #FFF5E0;
     border-radius: 20px;
 	width: 1163px;
     height: 970px;
@@ -1188,9 +1198,11 @@ thead th {
 }
 
 #addpet-profile img{
-    width:120px;
-    height:120px;
-    margin-left:290px;
+    width:150px;
+    height:150px;
+    margin-top: 50px;
+    margin-left:280px;
+    border: 3px solid #6868AE;
 }
 #pet-profile {
     margin-left: 285px;
@@ -1202,6 +1214,8 @@ thead th {
 #change-petpic-btn{
     background-color: #6868AE;
     color:white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
     margin-bottom: 20px;
     margin-left: 300px;
 }
@@ -1214,13 +1228,15 @@ thead th {
     text-align:center;
 }
 #editPetForm{
-    margin-top: -90px;
+    margin-top: -60px;
     font-family: 'Poppins', sans-serif;
+    background-color: #FFF5E0;
     font-weight: thin;
 }
 #editPetForm textarea{
-    width: 700px;
-    margin-left: 10px;
+    width: 640px;
+    margin-left: 40px;
+    text-align: left;
 }
 .description label{
     margin-left: -328px !important;
@@ -1236,7 +1252,8 @@ thead th {
 }
 #left{
     margin-right: 250px;
-    margin-left: 50px;
+    margin-left: 80px;
+    margin-top:50px;
 }
 #left input[type="text"], 
 #left input[type="date"],
@@ -1253,7 +1270,12 @@ thead th {
 }
 #right{
     margin-right: -400px;
-    margin-left: 450px;
+    margin-left: 420px;
+    margin-top: -315px;
+}
+#right{
+    margin-right: -400px;
+    margin-left: 420px;
     margin-top: -315px;
 }
 #right input[type="text"], 
@@ -1281,6 +1303,45 @@ thead th {
 #right label{
     margin-left: -20px !important;
     text-align:left;
+}
+/* //////////////////////// */
+#rightrr{
+    margin-right: -400px;
+    margin-left: 820px;
+    /* margin-top: -500px; */
+    /* margin-bottom: -500px; */
+}
+#rightrr{
+    margin-right: -400px;
+    margin-left: 420px;
+    margin-top: -300px;
+}
+#rightrr input[type="text"], 
+#rightrr input[type="date"],
+#rightrr input[type="number"] {
+    background-color: white;
+    border: 1px color lightgray;
+    width: 300px; 
+    text-align: center;
+    margin-top: 0px; /* Adjust the width as per your requirement */
+}
+#rightrr select,
+#rightrr option{
+    background-color: white;
+    border: 1px color lightgray;
+    border-color: lightgray;
+    width: 300px; 
+    text-align: center;
+    margin-top: 0px; 
+    padding: 10px;
+    margin-left:-38px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+}
+#rightrr label{
+    margin-left: -20px !important;
+    text-align:left;
+    
 }
 
 #leftsetting{
@@ -1436,10 +1497,13 @@ thead th {
     margin-top:30px;
     margin-left: -200px;
 } */
-#description label{
-    margin-left: -325px !important;
-    
+.description label{
+    margin-left: -265px !important;
+
 }
+
+
 .description{
     margin-top: 50px !important ; 
+
 }

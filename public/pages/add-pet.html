@@ -44,39 +44,42 @@
             <section id="addPet-section">
                 <form action="pets.html" method="post" enctype="multipart/form-data">
 				
+                 <div id="addpet-profile">
+                    <img src="../images/default_profile_picture.png" id="petPic"></br>
 					<label for="petImage">IMAGE:</label>
 					<input type="file" id="petImage" name="petImage" accept="image/*" required>
-	
-                    <label for="petName">NAME:</label>
-                    <input type="text" id="petName" name="petName" required>
+                </div>
 
-                    <label for="petType">TYPE:</label>
-                    <input type="text" id="petType" name="petType" required>
+                      <div id="left">
+                        <label for="editPetName">NAME:</label>
+                        <input type="text" id="editPetName" name="editPetName" required>
+                        <label for="editPetType">TYPE:</label>
+                        <input type="text" id="editPetType" name="editPetType" required>
+                        <label for="editPetBreed">BREED:</label>
+                        <input type="text" id="editPetBreed" name="editPetBreed" required>
+                        <label for="editPetDateArrived">DATE ARRIVED:</label>
+                        <input type="text" id="editPetDateArrived" name="editPetDateArrived" required>
+                    </div>
 
-                    <label for="petBreed">BREED:</label>
-                    <input type="text" id="petBreed" name="petBreed" required>
-
-
-                    <label>GENDER:</label>
-                    <input type="radio" id="male" name="petGender" value="Male" required>
-                    <label for="male">Male</label>
-                    <input type="radio" id="female" name="petGender" value="Female" required>
-                    <label for="female">Female</label>
-                
-                    <label for="petAge">ESTIMATED AGE:</label>
-                    <input type="text" id="petAge" name="petAge" required>
+                    <div id="rightrr">
+                        <label for="editPetAge">AGE:</label>
+                        <input type="number" id="editPetAge" name="editPetAge" required>
+                        <label for="editPetGender">GENDER:</label>
+                        <select id="editPetGender" name="editPetGender" required>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                           
+                        </select>
+                        <label for="editPetWeight">WEIGHT:</label>
+                        <input type="number" id="editPetWeight" name="editPetWeight" required>
+                        <label for="editPetDays">DAYS AT SHELTER:</label>
+                        <input type="text" id="editPetDays" name="editPetDays" required>
+                    </div>
 					
-					<label for="petColor">COLOR:</label>
-                    <input type="text" id="petColor" name="petColor" required>
-
-					<label for="petWeight">WEIGHT (KG):</label>
-                    <input type="text" id="petWeight" name="petWeight" required>
-					
-					<label for="petDays">DATE ARRIVED:</label>
-                    <input type="date" id="petDays" name="petDays" required>
-					
-                    <label for="petDescription">DESCRIPTION:</label>
-                    <textarea id="petDescription" name="petDescription" rows="4" required></textarea>
+                    <div class="description">
+                        <label for="editPetDescription">DESCRIPTION:</label>
+                        <textarea id="editPetDescription" name="editPetDescription" rows="4" required></textarea>
+                    </div> 
 					
                     <button type="button" id="addPetBtn">ADD PET</button>
 
