@@ -46,9 +46,10 @@ function displayShelterProfile() {
                 if (shelterData) {
                     // Assuming you have HTML elements with corresponding IDs
                     document.getElementById('editShelterName').value = shelterData.shelter_name;
-                    document.getElementById('editAddress').value = shelterData.address;
-                    document.getElementById('editContactPerson').value = shelterData.contact_person;
-                    document.getElementById('editContactNumber').value = shelterData.contact_number;
+                    document.getElementById('editShelterAddress').value = shelterData.address;
+                    document.getElementById('editShelterContactPerson').value = shelterData.contact_person;
+                    document.getElementById('editShelterContactNumber').value = shelterData.contact_number;
+                    document.getElementById('editShelterEmail').value = shelterData.email;
 
                     // Update the profile picture
                     const profilePic = document.getElementById('profile-pic');
@@ -65,6 +66,11 @@ function displayShelterProfile() {
                     }
 
                     profilePic.src = profilePicURL;
+
+                    // Display description if available
+                    if (shelterData.description) {
+                        document.getElementById('editShelterDescription').value = shelterData.description;
+                    }
                 }
             });
         }
@@ -72,47 +78,48 @@ function displayShelterProfile() {
 }
 
 // Function to toggle edit mode
-function toggleEditMode() {
-    const editShelterName = document.getElementById('editShelterName');
-    const editAddress = document.getElementById('editAddress');
-    const editContactPerson = document.getElementById('editContactPerson');
-    const editContactNumber = document.getElementById('editContactNumber');
+function toggleEditMode(isEditMode) {
+    const editFields = [
+        'editShelterName', 'editShelterAddress', 'editShelterContactPerson', 
+        'editShelterContactNumber', 'editShelterDescription'
+    ];
+
+    editFields.forEach(fieldId => {
+        const field = document.getElementById(fieldId);
+        if (field) {
+            field.readOnly = !isEditMode;
+        }
+    });
+
     const saveProfileBtn = document.getElementById('save-profile-btn');
-
-    const isEditMode = editShelterName.readOnly;
-
-    // Toggle read-only state of text fields
-    editShelterName.readOnly = !isEditMode;
-    editAddress.readOnly = !isEditMode;
-    editContactPerson.readOnly = !isEditMode;
-    editContactNumber.readOnly = !isEditMode;
-
-    // Change button text based on edit mode
     saveProfileBtn.textContent = isEditMode ? 'SAVE CHANGES' : 'EDIT PROFILE';
 
-    // If entering edit mode, focus on the first editable field
-    if (!isEditMode) {
-        editShelterName.focus();
+    if (isEditMode) {
+        document.getElementById('editShelterName').focus();
     }
 }
 
+
 // Function to save changes to shelter profile
 function saveChanges() {
-    const editShelterName = document.getElementById('editShelterName');
-    const editAddress = document.getElementById('editAddress');
-    const editContactPerson = document.getElementById('editContactPerson');
-    const editContactNumber = document.getElementById('editContactNumber');
-
-    // Update the shelter profile data in the database
     const updateData = {
-        shelter_name: editShelterName.value,
-        address: editAddress.value,
-        contact_person: editContactPerson.value,
-        contact_number: editContactNumber.value
+        shelter_name: document.getElementById('editShelterName').value,
+        address: document.getElementById('editShelterAddress').value,
+        contact_person: document.getElementById('editShelterContactPerson').value,
+        contact_number: document.getElementById('editShelterContactNumber').value,
+        description: document.getElementById('editShelterDescription').value
     };
 
-    update(loggedInShelterRef, updateData);
+    update(loggedInShelterRef, updateData)
+        .then(() => {
+            alert('Shelter details updated successfully!');
+            toggleEditMode(false); // Switch back to view mode after saving
+        })
+        .catch((error) => {
+            console.error('Error updating shelter details:', error.message);
+        });
 }
+
 
 
 // Function to handle changing the profile picture
@@ -148,13 +155,14 @@ displayShelterProfile();
 
 // Add event listener to the "EDIT PROFILE" button
 document.getElementById('save-profile-btn').addEventListener('click', () => {
-    if (document.getElementById('save-profile-btn').textContent === 'EDIT PROFILE') {
-        toggleEditMode();
+    const isCurrentlyEdit = document.getElementById('save-profile-btn').textContent === 'EDIT PROFILE';
+    if (isCurrentlyEdit) {
+        toggleEditMode(true);
     } else {
         saveChanges();
-        toggleEditMode();
     }
 });
+
 
 // Add event listener to the "Change Profile Picture" button
 document.getElementById('change-profile-pic-btn').addEventListener('click', changeProfilePicture);

@@ -45,9 +45,13 @@ async function addPet() {
         return;
     }
 
-
     const petGenderSelect = document.getElementById('editPetGender');
     const petGender = petGenderSelect.value;
+
+    if (!petGender) {
+        alert('Error: Please select a pet gender.');
+        return;
+    }
 
     const petName = document.getElementById('editPetName').value;
     const petType = document.getElementById('editPetType').value;

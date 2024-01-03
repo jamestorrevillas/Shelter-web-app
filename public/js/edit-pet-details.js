@@ -66,6 +66,12 @@ async function preFillForm(petDetails) {
     }
   }
 
+  if (petDetails.gender) {
+    document.getElementById('editPetGender').value = petDetails.gender;
+  } else {
+      document.getElementById('editPetGender').selectedIndex = 0; // Reset to "Select"
+  }
+
   document.getElementById('editPetName').value = petDetails.name || '';
   document.getElementById('editPetType').value = petDetails.type || '';
   document.getElementById('editPetBreed').value = petDetails.breed || '';
@@ -99,6 +105,7 @@ function toggleEditMode(isEditMode) {
     }
   });
 
+  document.getElementById('editPetGender').disabled = !isEditMode;
   const savePetProfileBtn = document.getElementById('editPetBtn');
   savePetProfileBtn.textContent = isEditMode ? 'SAVE CHANGES' : 'EDIT PROFILE';
 
@@ -161,7 +168,11 @@ function changePetProfilePicture() {
 // Add event listener to the "EDIT PROFILE" button
 document.getElementById('editPetBtn').addEventListener('click', () => {
   const isCurrentlyEdit = document.getElementById('editPetBtn').textContent === 'EDIT PROFILE';
-  toggleEditMode(isCurrentlyEdit);
+  if (isCurrentlyEdit) {
+    toggleEditMode(true);
+} else {
+    saveChanges();
+}
 });
 
 // Add event listener to the "Change Profile Picture" button for pets
