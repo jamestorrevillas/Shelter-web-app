@@ -8,6 +8,10 @@
     ],
     "rewrites": [
       {
+        "source": "/archive-view.html",
+        "destination": "/pages/archive-view.html"
+      },
+      {
         "source": "/archive.html",
         "destination": "/pages/archive.html"
       },
