@@ -23,9 +23,8 @@
   const database = getDatabase(app);
   const auth = getAuth();
 
-  signUp.addEventListener('click', (e) => {
-
-
+  // Function to handle the registration process
+  function handleRegistration() {
     var email = document.getElementById('email').value;
     var password = document.getElementById('password').value;
     var sheltername = document.getElementById('sheltername').value;
@@ -49,28 +48,29 @@
                 contact_number: contactnum,
                 password: password,
                 profile_picture: profile_picture
-            })
+            });
             alert('user created!');
-            // window.location.href = 'login.html';
+            window.location.href = 'login.html';
         })    
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-
             alert(errorMessage);
-            // ..
         });
-  });   
+}
 
-  // Add keypress event listener to input fields
-  document.getElementById('email').addEventListener('keypress', function(event) {
+// Add click event listener to the signUp button
+signUp.addEventListener('click', handleRegistration);
+
+// Add keypress event listener to input fields
+document.getElementById('email').addEventListener('keypress', function(event) {
     if (event.keyCode === 13) {
         handleRegistration();
     }
-  });
+});
 
-  document.getElementById('password').addEventListener('keypress', function(event) {
+document.getElementById('password').addEventListener('keypress', function(event) {
     if (event.keyCode === 13) {
         handleRegistration();
     }
-  });
+});
