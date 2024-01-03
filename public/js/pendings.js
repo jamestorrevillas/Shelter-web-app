@@ -43,15 +43,13 @@ function displayApplicationsData() {
 
                 if (petDetails && petDetails.shelter_id === loggedInShelterId && application.status !== 1 && application.remarks === 1) {
                     const adopterDetails = await fetchUserData(adoptersRef, application.adopter_id);
-                    const daysAtPending = calculateDaysAtPending(application.date_applied);
-
-                    applicationsArray.push({ application, applicationId, adopterDetails, daysAtPending });
+                    applicationsArray.push({ application, applicationId, adopterDetails });
                 }
             }
         }
 
-        // Sort applications by days at pending in ascending order
-        applicationsArray.sort((a, b) => a.daysAtPending - b.daysAtPending);
+        // Sort applications by date_approved in descending order
+        applicationsArray.sort((a, b) => new Date(b.application.date_approved) - new Date(a.application.date_approved));
 
         // Display each application
         applicationsArray.forEach(({ application, applicationId, adopterDetails }) => {
@@ -186,14 +184,14 @@ function filterTable() {
 
     tableRows.forEach(row => {
         // Retrieve the text content of each column in the row
-        const dateApplied = row.cells[0].textContent.toLowerCase(); 
+        const dateApproved = row.cells[0].textContent.toLowerCase(); 
         const adopterName = row.cells[1].textContent.toLowerCase(); 
         const address = row.cells[2].textContent.toLowerCase(); 
         const petName = row.cells[3].textContent.toLowerCase(); 
         const petType = row.cells[4].textContent.toLowerCase(); 
 
         // Check if the search input matches any of these text contents
-        if (dateApplied.includes(searchInput) || adopterName.includes(searchInput) || address.includes(searchInput) || petName.includes(searchInput) || petType.includes(searchInput)) {
+        if (dateApproved.includes(searchInput) || adopterName.includes(searchInput) || address.includes(searchInput) || petName.includes(searchInput) || petType.includes(searchInput)) {
             row.style.display = '';
         } else {
             row.style.display = 'none';

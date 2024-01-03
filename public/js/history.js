@@ -50,8 +50,8 @@ function displayApplicationsData(remarkFilter = 'SHOW_ALL') {
             }
         }
 
-        // Sort the applicationsArray based on date_applied in ascending order
-        applicationsArray.sort((a, b) => new Date(a.application.date_applied) - new Date(b.application.date_applied));
+        // Sort applications by date_applied in descending order
+        applicationsArray.sort((a, b) => new Date(b.application.date_applied) - new Date(a.application.date_applied));
 
         // Now display each application
         applicationsArray.forEach(({ application, applicationId }) => {

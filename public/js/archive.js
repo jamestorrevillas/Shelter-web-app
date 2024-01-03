@@ -41,7 +41,7 @@ function displayPetData() {
             }
         }
         // Sort the petsArray based on dateArrived in ascending order
-        petsArray.sort((a, b) => new Date(a.pet.dateArrived) - new Date(b.pet.dateArrived));
+        petsArray.sort((a, b) => new Date(b.pet.dateArrived) - new Date(a.pet.dateArrived));
 
         // Now display each pet
         petsArray.forEach(({ pet, petId }) => {

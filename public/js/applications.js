@@ -32,20 +32,27 @@ function displayApplicationsData() {
         applicationsTableBody.innerHTML = '';
 
         const loggedInShelterId = getLoggedInShelterId();
+        let applicationsArray = [];
 
         for (const applicationId in applicationsData) {
-            if (Object.hasOwnProperty.call(applicationsData, applicationId)) {
+            if (applicationsData.hasOwnProperty(applicationId)) {
                 const application = applicationsData[applicationId];
-
-                // Fetch pet details to get the shelter_id associated with the pet
                 const petDetails = await fetchPetData(application.pet_id);
 
-                // Check if the pet belongs to the logged-in shelter
-                if (petDetails && petDetails.shelter_id === loggedInShelterId && application.status !== 1 && application.remarks !== 1 && application.remarks !== -1) {
-                    displayApplicationDetails(application, applicationId);
+                if (petDetails && petDetails.shelter_id === loggedInShelterId && application.status !== 1 && application.remarks === 1) {
+                    const adopterDetails = await fetchUserData(adoptersRef, application.adopter_id);
+                    applicationsArray.push({ application, applicationId, adopterDetails });
                 }
             }
         }
+
+        // Sort applications by date_applied in descending order
+        applicationsArray.sort((a, b) => new Date(b.application.date_applied) - new Date(a.application.date_applied));
+
+        // Display each application
+        applicationsArray.forEach(({ application, applicationId, adopterDetails }) => {
+            displayApplicationDetails(application, applicationId, adopterDetails);
+        });
     });
 }
 
@@ -102,7 +109,7 @@ async function displayApplicationDetails(application, applicationId) {
 
     adopterNameCell.appendChild(profilePicture);
     adopterNameCell.appendChild(document.createTextNode(first_name + ' ' + last_name));
-
+    
     const addressCell = document.createElement('td');
     addressCell.textContent = address;
     addressCell.style.display = 'flex';
@@ -141,7 +148,7 @@ async function displayApplicationDetails(application, applicationId) {
     rowAnchor.style.textDecoration = 'none'; // Remove underline
     rowAnchor.style.color = 'inherit'; // Keep text color consistent
     rowAnchor.addEventListener('click', function() {
-        window.location.href = `response.html?applicationId=${applicationId}`;
+        window.location.href = `pending-application-details.html?applicationId=${applicationId}`;
     });
 
     // Append the table row to the anchor element
@@ -188,16 +195,6 @@ function filterTable() {
             row.style.display = 'none';
         }
     });
-}
-
-
-// Function to calculate the number of days between the application date and the current date
-function calculateDaysAtPending(dateApplied) {
-    const currentDate = new Date();
-    const applicationDate = new Date(dateApplied);
-    const timeDiff = currentDate.getTime() - applicationDate.getTime();
-    const daysDiff = Math.floor(timeDiff / (1000 * 3600 * 24));
-    return daysDiff;
 }
 
 displayApplicationsData();
