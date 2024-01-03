@@ -51,6 +51,7 @@ async function displayApplicationData(applicationId) {
         document.getElementById('AdopterResidenceStatus').value = applicationData.own_rent || '';
         document.getElementById('AdopterEmploymentStatus').value = applicationData.employment_status || '';
         document.getElementById('AdopterLivingEnvironment').value = applicationData.living_environment || '';
+        document.getElementById('shelterFeedback').value = applicationData.feedback || '';
 
         // Fetch and display pet image
         if (petData && adopterData && petData.imageUrl && adopterData.profile_picture) {
@@ -79,7 +80,7 @@ async function confirmApplication() {
     }
 
     const updates = {};
-    updates[`/applicationform/${applicationId}/send_confirmation`] = 1;
+    updates[`/applicationform/${applicationId}/remarks`] = 2;
 
     try {
         await update(ref(database), updates);
