@@ -66,6 +66,7 @@ function mapRemarkValueToString(remarkValue) {
         case -1: return "CANCELLED";
         case 0: return "DISAPPROVED";
         case 1: return "APPROVED";
+        case 2: return "APPROVED";
         default: return "SHOW_ALL";
     }
 }

@@ -36,7 +36,6 @@ editPetForm.addEventListener('submit', function (event) {
     age: document.getElementById('editPetAge').value,
     weight: document.getElementById('editPetWeight').value,
     dateArrived: document.getElementById('editPetDateArrived').value,
-    daysAtShelter: document.getElementById('editPetDays').value,
     description: document.getElementById('editPetDescription').value,
   };
 
@@ -74,7 +73,6 @@ async function preFillForm(petDetails) {
   document.getElementById('editPetAge').value = petDetails.age || '';
   document.getElementById('editPetWeight').value = petDetails.weight || '';
   document.getElementById('editPetDateArrived').value = petDetails.dateArrived || '';
-  document.getElementById('editPetDays').value = petDetails.daysAtShelter || '';
   document.getElementById('editPetDescription').value = petDetails.description || '';
 
   toggleEditMode(false);
@@ -91,7 +89,7 @@ onValue(petRef, (snapshot) => {
 // Function to toggle edit mode
 function toggleEditMode(isEditMode) {
   const editFields = [
-    'editPetName', 'editPetType', 'editPetBreed', 'editPetAge', 'editPetGender', 'editPetWeight', 'editPetDateArrived', 'editPetDays', 'editPetDescription'
+    'editPetName', 'editPetType', 'editPetBreed', 'editPetAge', 'editPetGender', 'editPetWeight', 'editPetDateArrived', 'editPetDescription'
   ];
 
   editFields.forEach(fieldId => {
@@ -120,7 +118,6 @@ function saveChanges() {
     age: document.getElementById('editPetAge').value,
     weight: document.getElementById('editPetWeight').value,
     dateArrived: document.getElementById('editPetDateArrived').value,
-    daysAtShelter: document.getElementById('editPetDateArrived').value,
     description: document.getElementById('editPetDescription').value,
   };
 

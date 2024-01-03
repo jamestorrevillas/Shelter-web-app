@@ -46,25 +46,16 @@ async function addPet() {
     }
 
 
-    const petGenderMale = document.getElementById('male');
-    const petGenderFemale = document.getElementById('female');
-    
-    const petGender = petGenderMale.checked ? petGenderMale.value : petGenderFemale.value;
-    
-    if (!petGender) {
-        alert('Error: Please select a pet gender.');
-        return;
-    }
+    const petGenderSelect = document.getElementById('editPetGender');
+    const petGender = petGenderSelect.value;
 
-
-    const petName = document.getElementById('petName').value;
-    const petType = document.getElementById('petType').value;
-    const petBreed = document.getElementById('petBreed').value;
-    const petAge = document.getElementById('petAge').value;
-    const petColor = document.getElementById('petColor').value;
-    const petWeight = parseFloat(document.getElementById('petWeight').value);
-    const petDays = document.getElementById('petDays').value;
-    const petDescription = document.getElementById('petDescription').value;
+    const petName = document.getElementById('editPetName').value;
+    const petType = document.getElementById('editPetType').value;
+    const petBreed = document.getElementById('editPetBreed').value;
+    const petAge = document.getElementById('editPetAge').value;
+    const petDateArrived = document.getElementById('editPetDateArrived').value;
+    const petWeight = parseFloat(document.getElementById('editPetWeight').value);
+    const petDescription = document.getElementById('editPetDescription').value;
     const petStatus = 0;
 
     // Retrieve the logged-in user's shelter ID
@@ -89,8 +80,8 @@ async function addPet() {
         // Generate a unique ID for the pet
         const petId = push(ref(database, 'pets')).key;
 
-        const currentDate = new Date();
-        const daysAtShelter = Math.floor((currentDate - new Date(petDays)) / (24 * 60 * 60 * 1000));
+        // const currentDate = new Date();
+        // const daysAtShelter = Math.floor((currentDate - new Date(petDays)) / (24 * 60 * 60 * 1000));
         // Save pet data to the Firebase Realtime Database
         const petData = {
             pet_id: petId,
@@ -98,10 +89,8 @@ async function addPet() {
             type: petType,
             breed: petBreed,
             age: petAge,
-            color: petColor,
             weight: petWeight,
-            dateArrived: petDays,
-            daysAtShelter: daysAtShelter,
+            dateArrived: petDateArrived,
             description: petDescription,
             imageUrl: downloadURL,
             status: petStatus,
@@ -133,5 +122,24 @@ async function doesPetExist(petName, shelterId) {
 
     return false;
 }
+
+// Function to preview image before uploading
+function previewImage() {
+    const petImageInput = document.getElementById('petImage');
+    const petPic = document.getElementById('petPic');
+
+    if (petImageInput.files && petImageInput.files[0]) {
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            petPic.src = e.target.result;
+        };
+
+        reader.readAsDataURL(petImageInput.files[0]);
+    }
+}
+
+// Add event listener to petImage input for change event
+document.getElementById('petImage').addEventListener('change', previewImage);
 
 document.getElementById('addPetBtn').addEventListener('click', addPet);
