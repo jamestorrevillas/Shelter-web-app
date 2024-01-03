@@ -61,3 +61,16 @@
             // ..
         });
   });   
+
+  // Add keypress event listener to input fields
+  document.getElementById('email').addEventListener('keypress', function(event) {
+    if (event.keyCode === 13) {
+        handleRegistration();
+    }
+  });
+
+  document.getElementById('password').addEventListener('keypress', function(event) {
+    if (event.keyCode === 13) {
+        handleRegistration();
+    }
+  });
