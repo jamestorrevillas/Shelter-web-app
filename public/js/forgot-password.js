@@ -35,9 +35,22 @@ function sendPasswordReset(email) {
         });
 }
 
-// Event listener for the password reset form
-document.getElementById("password-reset-form").addEventListener("submit", function (event) {
-    event.preventDefault();
+// Function to handle the password reset process
+function handlePasswordReset() {
     const email = document.getElementById("email").value.trim();
     sendPasswordReset(email);
+}
+
+// Attach event listener to the form submission
+document.getElementById("password-reset-form").addEventListener("submit", function (event) {
+    event.preventDefault();
+    handlePasswordReset();
+});
+
+// Attach keypress event listener to the email input field
+document.getElementById("email").addEventListener("keypress", function (event) {
+    if (event.keyCode === 13) {
+        event.preventDefault(); // Prevent the default form submission on enter key
+        handlePasswordReset();
+    }
 });
