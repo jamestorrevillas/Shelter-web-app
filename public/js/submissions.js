@@ -39,7 +39,7 @@ function displayApplicationsData() {
                 const application = applicationsData[applicationId];
                 const petDetails = await fetchPetData(application.pet_id);
 
-                if (petDetails && petDetails.shelter_id === loggedInShelterId && application.status !== 1 && application.remarks === 1) {
+                if (petDetails && petDetails.shelter_id === loggedInShelterId && application.status === 0 && application.remarks === 0) {
                     const adopterDetails = await fetchUserData(adoptersRef, application.adopter_id);
                     applicationsArray.push({ application, applicationId, adopterDetails });
                 }
