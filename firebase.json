@@ -48,16 +48,12 @@
         "destination": "/pages/settings.html"
       },
       {
-        "source": "/edit-pet-details.html",
-        "destination": "/pages/edit-pet-details.html"
-      },
-      {
         "source": "/add-pet.html",
         "destination": "/pages/add-pet.html"
       },
       {
-        "source": "/pets.html",
-        "destination": "/pages/pets.html"
+        "source": "/pet-view.html",
+        "destination": "/pages/pet-view.html"
       },
       {
         "source": "/pets.html",

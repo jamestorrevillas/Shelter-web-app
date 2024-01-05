@@ -111,7 +111,7 @@ function displayNewPet(petDetails, petId) {
     image1.src = "../images/pen_icon.png"; 
 
     image1.addEventListener('click', function() {
-        window.location.href = `edit-pet-details.html?id=${petId}&imageURL=${petDetails.imageURL}`;
+        window.location.href = `pet-view.html?id=${petId}&imageURL=${petDetails.imageURL}`;
     });
     button1.appendChild(image1);    
 
