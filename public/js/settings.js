@@ -67,6 +67,11 @@ function displayShelterProfile() {
 
                     profilePic.src = profilePicURL;
 
+                    // Display date established if available
+                    if (shelterData.date_established) {
+                        document.getElementById('editShelterDateEstablished').value = shelterData.date_established;
+                    }
+
                     // Display description if available
                     if (shelterData.description) {
                         document.getElementById('editShelterDescription').value = shelterData.description;
@@ -81,7 +86,7 @@ function displayShelterProfile() {
 function toggleEditMode(isEditMode) {
     const editFields = [
         'editShelterName', 'editShelterAddress', 'editShelterContactPerson', 
-        'editShelterContactNumber', 'editShelterDescription'
+        'editShelterContactNumber', 'editShelterDateEstablished', 'editShelterDescription'
     ];
 
     editFields.forEach(fieldId => {
@@ -107,6 +112,7 @@ function saveChanges() {
         address: document.getElementById('editShelterAddress').value,
         contact_person: document.getElementById('editShelterContactPerson').value,
         contact_number: document.getElementById('editShelterContactNumber').value,
+        date_established: document.getElementById('editShelterDateEstablished').value,
         description: document.getElementById('editShelterDescription').value
     };
 

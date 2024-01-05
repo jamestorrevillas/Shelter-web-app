@@ -22,7 +22,7 @@ const auth = getAuth();
 
 const petsRef = ref(database, 'pets');
 
-function displayPetData() {
+function displayPetData(statusFilter = 'SHOW_ALL') {
     onValue(petsRef, (snapshot) => {
         const petsData = snapshot.val();
         const petsTableBody = document.getElementById('table-body-below');
@@ -35,7 +35,11 @@ function displayPetData() {
             if (Object.hasOwnProperty.call(petsData, petId)) {
                 const pet = petsData[petId];
 
-                if (pet.shelter_id && pet.shelter_id === loggedInShelterId && pet.status !== -1) {
+                // Convert the numeric status value to a string for comparison
+                const statusDisplay = mapStatusValueToString(pet.status);
+
+                if (pet.shelter_id && pet.shelter_id === loggedInShelterId && pet.status !== -1 &&
+                    (statusFilter === 'SHOW_ALL' || statusDisplay === statusFilter)) {
                     petsArray.push({ pet, petId });
                 }
             }
@@ -173,7 +177,7 @@ function calculateCurrentEstimatedAge(estimatedAgeAtEntry) {
 function mapStatusValueToString(statusValue) {
     switch (statusValue) {
         case -1: return "ARCHIVED";
-        case 0: return "IN SHELTER";
+        case 0: return "IN_SHELTER";
         case 1: return "ADOPTED";
         default: return "Unknown";
     }
@@ -211,4 +215,15 @@ function archivePet(petId) {
 
 updateDaysAtShelter();
 setInterval(updateDaysAtShelter, 86400000);
-displayPetData();
+
+document.addEventListener('DOMContentLoaded', () => {
+    const remarksFilter = document.getElementById('remarks-filter');
+
+    if (remarksFilter) {
+        remarksFilter.addEventListener('change', function() {
+            displayPetData(this.value);
+        });
+    }
+
+    displayPetData();
+});

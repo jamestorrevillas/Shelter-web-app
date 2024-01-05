@@ -463,3 +463,16 @@ input::placeholder {
     cursor: pointer;
     background-color: transparent;
 }
+#about{
+    margin-left:800px;
+    margin-top:-550px;
+    margin-right: 50px;
+    height: 500px;
+    overflow-y: auto;
+    display: flex;
+}
+#about h2{
+    color: #6868AE;
+    font-size: medium;
+    font-weight: 500;
+}
