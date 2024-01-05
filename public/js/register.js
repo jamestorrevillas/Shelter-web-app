@@ -35,28 +35,26 @@
     var profile_picture = "NOT SET";
 
     createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            // Signed up 
-            const user = userCredential.user;
-
-            set(ref(database, 'shelters/' + user.uid),{
-                shelter_id: user.uid,
-                email: email,
-                shelter_name: sheltername,
-                address: address,
-                contact_person: contactPerson,
-                contact_number: contactnum,
-                password: password,
-                profile_picture: profile_picture
-            });
-            alert('user created!');
-            window.location.href = 'login.html';
-        })    
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            alert(errorMessage);
+    .then((userCredential) => {
+        const user = userCredential.user;
+        return set(ref(database, 'shelters/' + user.uid), {
+            shelter_id: user.uid,
+            email: email,
+            shelter_name: sheltername,
+            address: address,
+            contact_person: contactPerson,
+            contact_number: contactnum,
+            password: password,
+            profile_picture: profile_picture
         });
+    })
+    .then(() => {
+        alert('User and shelter created!');
+        window.location.href = 'login.html';
+    })
+    .catch((error) => {
+        alert('Failed to create user or shelter: ' + error.message);
+    });
 }
 
 // Add click event listener to the signUp button

@@ -32,24 +32,22 @@ function displayApplicationsData() {
         applicationsTableBody.innerHTML = '';
 
         const loggedInShelterId = getLoggedInShelterId();
-
         let applicationsArray = [];
 
         for (const applicationId in applicationsData) {
             if (applicationsData.hasOwnProperty(applicationId)) {
                 const application = applicationsData[applicationId];
-
                 const petDetails = await fetchPetData(application.pet_id);
 
-                if (petDetails && petDetails.shelter_id === loggedInShelterId && application.status !== 1 && application.remarks === 1) {
+                if (petDetails && petDetails.shelter_id === loggedInShelterId && application.status === 0 && application.remarks === 0) {
                     const adopterDetails = await fetchUserData(adoptersRef, application.adopter_id);
                     applicationsArray.push({ application, applicationId, adopterDetails });
                 }
             }
         }
 
-        // Sort applications by date_approved in descending order
-        applicationsArray.sort((a, b) => new Date(b.application.date_approved) - new Date(a.application.date_approved));
+        // Sort applications by date_applied in descending order
+        applicationsArray.sort((a, b) => new Date(b.application.date_applied) - new Date(a.application.date_applied));
 
         // Display each application
         applicationsArray.forEach(({ application, applicationId, adopterDetails }) => {
@@ -90,14 +88,14 @@ async function displayApplicationDetails(application, applicationId) {
     const { first_name, last_name, address, profile_picture } = adopterDetails;
 
     // Extract other application details
-    const { date_approved } = application;
+    const { date_applied } = application;
 
     const tableRow = document.createElement('tr');
 
-    const dateApprovedCell = document.createElement('td');
-    dateApprovedCell.textContent = date_approved;
-    dateApprovedCell.style.display = 'flex';
-    dateApprovedCell.style.alignItems = 'center';
+    const dateAppliedCell = document.createElement('td');
+    dateAppliedCell.textContent = date_applied;
+    dateAppliedCell.style.display = 'flex';
+    dateAppliedCell.style.alignItems = 'center';
 
     const profilePicture = document.createElement('img');
     profilePicture.src = profile_picture; 
@@ -136,7 +134,7 @@ async function displayApplicationDetails(application, applicationId) {
     petNameCell.appendChild(document.createTextNode(name));
 
     // Add table cells to the table row
-    tableRow.appendChild(dateApprovedCell);
+    tableRow.appendChild(dateAppliedCell);
     tableRow.appendChild(adopterNameCell);
     tableRow.appendChild(addressCell);
     tableRow.appendChild(petNameCell);
@@ -150,7 +148,7 @@ async function displayApplicationDetails(application, applicationId) {
     rowAnchor.style.textDecoration = 'none'; // Remove underline
     rowAnchor.style.color = 'inherit'; // Keep text color consistent
     rowAnchor.addEventListener('click', function() {
-        window.location.href = `pending-application-details.html?applicationId=${applicationId}`;
+        window.location.href = `submission-view.html?applicationId=${applicationId}`;
     });
 
     // Append the table row to the anchor element
@@ -184,28 +182,19 @@ function filterTable() {
 
     tableRows.forEach(row => {
         // Retrieve the text content of each column in the row
-        const dateApproved = row.cells[0].textContent.toLowerCase(); 
+        const dateApplied = row.cells[0].textContent.toLowerCase(); 
         const adopterName = row.cells[1].textContent.toLowerCase(); 
         const address = row.cells[2].textContent.toLowerCase(); 
         const petName = row.cells[3].textContent.toLowerCase(); 
         const petType = row.cells[4].textContent.toLowerCase(); 
 
         // Check if the search input matches any of these text contents
-        if (dateApproved.includes(searchInput) || adopterName.includes(searchInput) || address.includes(searchInput) || petName.includes(searchInput) || petType.includes(searchInput)) {
+        if (dateApplied.includes(searchInput) || adopterName.includes(searchInput) || address.includes(searchInput) || petName.includes(searchInput) || petType.includes(searchInput)) {
             row.style.display = '';
         } else {
             row.style.display = 'none';
         }
     });
-}
-
-// Function to calculate the number of days between the application date and the current date
-function calculateDaysAtPending(dateApplied) {
-    const currentDate = new Date();
-    const applicationDate = new Date(dateApplied);
-    const timeDiff = currentDate.getTime() - applicationDate.getTime();
-    const daysDiff = Math.floor(timeDiff / (1000 * 3600 * 24));
-    return daysDiff;
 }
 
 displayApplicationsData();

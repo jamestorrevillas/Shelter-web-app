@@ -16,28 +16,28 @@
         "destination": "/pages/archive.html"
       },
       {
-        "source": "/history-application-details.html",
-        "destination": "/pages/history-application-details.html"
+        "source": "/history-application-view.html",
+        "destination": "/pages/history-application-view.html"
       },
       {
         "source": "/history.html",
         "destination": "/pages/history.html"
       },
       {
-        "source": "/pending-application-details.html",
-        "destination": "/pages/pending-application-details.html"
+        "source": "/approved-application-view.html",
+        "destination": "/pages/approved-application-view.html"
       },
       {
-        "source": "/pendings.html",
-        "destination": "/pages/pendings.html"
+        "source": "/approved-applications.html",
+        "destination": "/pages/approved-applications.html"
       },
       {
-        "source": "/response.html",
-        "destination": "/pages/response.html"
+        "source": "/submission-view.html",
+        "destination": "/pages/submission-view.html"
       },
       {
-        "source": "/applications.html",
-        "destination": "/pages/applications.html"
+        "source": "/submissions.html",
+        "destination": "/pages/submissions.html"
       },
       {
         "source": "/change-password.html",
