@@ -150,7 +150,7 @@ async function displayApplicationDetails(application, applicationId) {
     rowAnchor.style.textDecoration = 'none'; // Remove underline
     rowAnchor.style.color = 'inherit'; // Keep text color consistent
     rowAnchor.addEventListener('click', function() {
-        window.location.href = `pending-application-details.html?applicationId=${applicationId}`;
+        window.location.href = `approved-application-view.html?applicationId=${applicationId}`;
     });
 
     // Append the table row to the anchor element

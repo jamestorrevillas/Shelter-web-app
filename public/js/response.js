@@ -101,7 +101,7 @@ function updateApplicationStatus(applicationId, status) {
     .then(() => {
         let remarks = status === 0 ? "disapproved" : "approved";
         alert(`Application has been ${remarks}.`);
-        window.location.href = './applications.html';
+        window.location.href = './submissions.html';
     })
     .catch(error => {
         console.error('Error updating application:', error);
