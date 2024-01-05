@@ -32,8 +32,8 @@
         "destination": "/pages/approved-applications.html"
       },
       {
-        "source": "/response.html",
-        "destination": "/pages/response.html"
+        "source": "/submission-view.html",
+        "destination": "/pages/submission-view.html"
       },
       {
         "source": "/submissions.html",
