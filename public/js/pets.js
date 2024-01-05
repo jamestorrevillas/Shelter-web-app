@@ -22,7 +22,7 @@ const auth = getAuth();
 
 const petsRef = ref(database, 'pets');
 
-function displayPetData(statusFilter = 'SHOW_ALL') {
+function displayPetData(statusFilter = 'SHOW ALL') {
     onValue(petsRef, (snapshot) => {
         const petsData = snapshot.val();
         const petsTableBody = document.getElementById('table-body-below');
@@ -39,7 +39,7 @@ function displayPetData(statusFilter = 'SHOW_ALL') {
                 const statusDisplay = mapStatusValueToString(pet.status);
 
                 if (pet.shelter_id && pet.shelter_id === loggedInShelterId && pet.status !== -1 &&
-                    (statusFilter === 'SHOW_ALL' || statusDisplay === statusFilter)) {
+                    (statusFilter === 'SHOW ALL' || statusDisplay === statusFilter)) {
                     petsArray.push({ pet, petId });
                 }
             }
@@ -177,7 +177,7 @@ function calculateCurrentEstimatedAge(estimatedAgeAtEntry) {
 function mapStatusValueToString(statusValue) {
     switch (statusValue) {
         case -1: return "ARCHIVED";
-        case 0: return "IN_SHELTER";
+        case 0: return "IN SHELTER";
         case 1: return "ADOPTED";
         default: return "Unknown";
     }
