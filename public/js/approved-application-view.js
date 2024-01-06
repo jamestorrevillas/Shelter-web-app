@@ -37,8 +37,8 @@ async function displayApplicationData(applicationId) {
         document.getElementById('PetBreed').value = petData.breed || '';
         document.getElementById('PetGender').value = petData.gender || '';
         document.getElementById('PetType').value = petData.type || '';
-        document.getElementById('PetAge').value = petData.age + ' year/s old' || '';
-        document.getElementById('PetWeight').value = petData.weight + ' kg/s' || '';
+        document.getElementById('PetAge').value = petData.age || '';
+        document.getElementById('PetWeight').value = petData.weight || '';
         document.getElementById('PetDateArrived').value = petData.dateArrived || '';
         document.getElementById('PetDaysAtShelter').value = petData.daysAtShelter + ' day/s' || '';
         document.getElementById('DateApproved').value = applicationData.date_approved || '';

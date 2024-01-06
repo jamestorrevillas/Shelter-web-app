@@ -58,7 +58,7 @@ async function addPet() {
     const petBreed = document.getElementById('editPetBreed').value;
     const petAge = document.getElementById('editPetAge').value;
     const petDateArrived = document.getElementById('editPetDateArrived').value;
-    const petWeight = parseFloat(document.getElementById('editPetWeight').value);
+    const petWeight = document.getElementById('editPetWeight').value;
     const petDescription = document.getElementById('editPetDescription').value;
     const petStatus = 0;
 
