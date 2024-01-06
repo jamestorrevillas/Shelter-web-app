@@ -78,29 +78,32 @@ async function displayApplicationData(applicationId) {
     }
 }
 
-function updateApplicationStatus(applicationId, status) {
+function updateApplicationStatus(applicationId, remarks) {
     const feedback = document.getElementById('shelterFeedback').value;
     let updateData = {
-        remarks: status,
+        remarks: remarks,
         feedback: feedback
     };
 
     // If approving, set the date_approved to the current date
-    if (status === 1) {
+    if (remarks === 1) {
         const currentDate = new Date();
         currentDate.setMinutes(currentDate.getMinutes() - currentDate.getTimezoneOffset()); // Adjust for local timezone
         updateData.date_approved = currentDate.toISOString().split('T')[0]; // Format: YYYY-MM-DD
     }
 
     // If disapproving, also set the status to "COMPLETED"
-    if (status === 0) {
+    if (remarks === 0) {
+        const currentDate = new Date();
+        currentDate.setMinutes(currentDate.getMinutes() - currentDate.getTimezoneOffset()); // Adjust for local timezone
+        updateData.date_disapproved = currentDate.toISOString().split('T')[0]; // Format: YYYY-MM-DD
         updateData.status = 1; // Assuming '1' signifies 'COMPLETED'
     }
 
     update(ref(database, `applicationform/${applicationId}`), updateData)
     .then(() => {
-        let remarks = status === 0 ? "disapproved" : "approved";
-        alert(`Application has been ${remarks}.`);
+        let remarksStatus = remarks === 0 ? "disapproved" : "approved";
+        alert(`Application has been ${remarksStatus}.`);
         window.location.href = './submissions.html';
     })
     .catch(error => {

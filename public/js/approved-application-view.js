@@ -80,6 +80,9 @@ async function confirmApplication() {
     }
 
     const updates = {};
+    const currentDate = new Date();
+    currentDate.setMinutes(currentDate.getMinutes() - currentDate.getTimezoneOffset()); // Adjust for local timezone
+    updates[`/applicationform/${applicationId}/date_confirmation_sent`] = currentDate.toISOString().split('T')[0]; // Format: YYYY-MM-DD
     updates[`/applicationform/${applicationId}/remarks`] = 2;
 
     try {
@@ -99,8 +102,11 @@ async function cancelApplication() {
     }
 
     const updates = {};
-    updates[`/applicationform/${applicationId}/remarks`] = -1;
-    updates[`/applicationform/${applicationId}/status`] = 1;
+        const currentDate = new Date();
+        currentDate.setMinutes(currentDate.getMinutes() - currentDate.getTimezoneOffset()); // Adjust for local timezone
+        updates[`/applicationform/${applicationId}/date_cancelled`] = currentDate.toISOString().split('T')[0]; // Format: YYYY-MM-DD
+        updates[`/applicationform/${applicationId}/remarks`] = -1;
+        updates[`/applicationform/${applicationId}/status`] = 1;
 
     try {
         await update(ref(database), updates);
