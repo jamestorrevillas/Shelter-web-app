@@ -53,7 +53,7 @@ function displayShelterProfile() {
 
                     // Update the profile picture
                     const profilePic = document.getElementById('profile-pic');
-                    let profilePicURL = '';
+                    let profilePicURL = ''; 
 
                     if (shelterData.profile_picture) {
                         if (shelterData.profile_picture === 'NOT SET') {
