@@ -82,7 +82,8 @@ function updateApplicationStatus(applicationId, remarks) {
     const feedback = document.getElementById('shelterFeedback').value;
     let updateData = {
         remarks: remarks,
-        feedback: feedback
+        feedback: feedback,
+        is_read: 0
     };
 
     // If approving, set the date_approved to the current date

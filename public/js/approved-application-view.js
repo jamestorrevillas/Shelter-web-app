@@ -84,6 +84,7 @@ async function confirmApplication() {
     currentDate.setMinutes(currentDate.getMinutes() - currentDate.getTimezoneOffset()); // Adjust for local timezone
     updates[`/applicationform/${applicationId}/date_confirmation_sent`] = currentDate.toISOString().split('T')[0]; // Format: YYYY-MM-DD
     updates[`/applicationform/${applicationId}/remarks`] = 2;
+    updates[`/applicationform/${applicationId}/is_read`] = 0;
 
     try {
         await update(ref(database), updates);
@@ -116,6 +117,7 @@ async function cancelApplication() {
     updates[`/applicationform/${applicationId}/date_cancelled`] = currentDate.toISOString().split('T')[0]; // Format: YYYY-MM-DD
     updates[`/applicationform/${applicationId}/remarks`] = -1;
     updates[`/applicationform/${applicationId}/status`] = 1;
+    updates[`/applicationform/${applicationId}/is_read`] = 0;
     updates[`/pets/${petId}/remarks`] = 0; 
 
     try {
