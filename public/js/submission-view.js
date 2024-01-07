@@ -82,7 +82,8 @@ function updateApplicationStatus(applicationId, remarks) {
     const feedback = document.getElementById('shelterFeedback').value;
     let updateData = {
         remarks: remarks,
-        feedback: feedback
+        feedback: feedback,
+        is_read: 0
     };
 
     // If approving, set the date_approved to the current date
@@ -90,6 +91,19 @@ function updateApplicationStatus(applicationId, remarks) {
         const currentDate = new Date();
         currentDate.setMinutes(currentDate.getMinutes() - currentDate.getTimezoneOffset()); // Adjust for local timezone
         updateData.date_approved = currentDate.toISOString().split('T')[0]; // Format: YYYY-MM-DD
+
+        // Update pet status as well
+        get(ref(database, `applicationform/${applicationId}/pet_id`)).then((snapshot) => {
+            const petId = snapshot.val();
+            if (petId) {
+                const petUpdateData = { status: 1 };
+                update(ref(database, `pets/${petId}`), petUpdateData).catch(error => {
+                    console.error('Error updating pet status:', error);
+                });
+            }
+        }).catch(error => {
+            console.error('Error fetching pet ID:', error);
+        });
     }
 
     // If disapproving, also set the status to "COMPLETED"

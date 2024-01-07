@@ -83,10 +83,12 @@ async function confirmApplication() {
     currentDate.setMinutes(currentDate.getMinutes() - currentDate.getTimezoneOffset()); // Adjust for local timezone
     updates[`/applicationform/${applicationId}/date_confirmation_sent`] = currentDate.toISOString().split('T')[0]; // Format: YYYY-MM-DD
     updates[`/applicationform/${applicationId}/remarks`] = 2;
+    updates[`/applicationform/${applicationId}/is_read`] = 0;
 
     try {
         await update(ref(database), updates);
         alert("Confirmation sent successfully.");
+        window.location.href = './approved-applications.html';
     } catch (error) {
         console.error('Error sending confirmation:', error);
         alert("Failed to send confirmation.");
@@ -100,16 +102,28 @@ async function cancelApplication() {
         return;
     }
 
+    // Fetch the pet_id from the application data
+    const applicationSnapshot = await get(ref(database, `applicationform/${applicationId}/pet_id`));
+    const petId = applicationSnapshot.val();
+
+    if (!petId) {
+        console.error('Pet ID not found in application data');
+        return;
+    }
+
     const updates = {};
-        const currentDate = new Date();
-        currentDate.setMinutes(currentDate.getMinutes() - currentDate.getTimezoneOffset()); // Adjust for local timezone
-        updates[`/applicationform/${applicationId}/date_cancelled`] = currentDate.toISOString().split('T')[0]; // Format: YYYY-MM-DD
-        updates[`/applicationform/${applicationId}/remarks`] = -1;
-        updates[`/applicationform/${applicationId}/status`] = 1;
+    const currentDate = new Date();
+    currentDate.setMinutes(currentDate.getMinutes() - currentDate.getTimezoneOffset()); // Adjust for local timezone
+    updates[`/applicationform/${applicationId}/date_cancelled`] = currentDate.toISOString().split('T')[0]; // Format: YYYY-MM-DD
+    updates[`/applicationform/${applicationId}/remarks`] = -1;
+    updates[`/applicationform/${applicationId}/status`] = 1;
+    updates[`/applicationform/${applicationId}/is_read`] = 0;
+    updates[`/pets/${petId}/remarks`] = 0; 
 
     try {
         await update(ref(database), updates);
         alert("Application approval cancelled successfully.");
+        window.location.href = './approved-applications.html';
 
         // Redirect to another page after successful cancellation
         window.location.href = "approved-applications.html";
