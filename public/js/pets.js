@@ -178,7 +178,8 @@ function mapStatusValueToString(statusValue) {
     switch (statusValue) {
         case -1: return "ARCHIVED";
         case 0: return "IN SHELTER";
-        case 1: return "ADOPTED";
+        case 1: return "APPROVED";
+        case 2: return "ADOPTED";
         default: return "Unknown";
     }
 }
