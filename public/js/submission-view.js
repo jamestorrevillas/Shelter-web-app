@@ -81,7 +81,7 @@ async function displayApplicationData(applicationId) {
 async function updateApplicationStatus(applicationId, remarks) {
     const feedback = document.getElementById('shelterFeedback').value;
     let updateData = {
-        remarks: remarks,
+        status: remarks,
         feedback: feedback
     };
 
