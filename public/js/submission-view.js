@@ -78,27 +78,31 @@ async function displayApplicationData(applicationId) {
     }
 }
 
-async function updateApplicationStatus(applicationId, remarks) {
+function updateApplicationStatus(applicationId, remarks) {
     const feedback = document.getElementById('shelterFeedback').value;
     let updateData = {
-        status: remarks,
+        remarks: remarks,
         feedback: feedback
     };
 
-    // If approving, set the date_approved to the current date and update pet status
+    // If approving, set the date_approved to the current date
     if (remarks === 1) {
         const currentDate = new Date();
         currentDate.setMinutes(currentDate.getMinutes() - currentDate.getTimezoneOffset()); // Adjust for local timezone
         updateData.date_approved = currentDate.toISOString().split('T')[0]; // Format: YYYY-MM-DD
 
-        // Get pet_id from application data
-        const applicationSnapshot = await get(ref(database, `applicationform/${applicationId}`));
-        const applicationData = applicationSnapshot.val();
-        const petId = applicationData.pet_id;
-
-        // Update pet status
-        const petUpdateData = { status: 1 }; // Assuming '1' signifies 'ADOPTED' or 'NOT AVAILABLE'
-        await update(ref(database, `pets/${petId}`), petUpdateData);
+        // Update pet status as well
+        get(ref(database, `applicationform/${applicationId}/pet_id`)).then((snapshot) => {
+            const petId = snapshot.val();
+            if (petId) {
+                const petUpdateData = { status: 1 };
+                update(ref(database, `pets/${petId}`), petUpdateData).catch(error => {
+                    console.error('Error updating pet status:', error);
+                });
+            }
+        }).catch(error => {
+            console.error('Error fetching pet ID:', error);
+        });
     }
 
     // If disapproving, also set the status to "COMPLETED"
