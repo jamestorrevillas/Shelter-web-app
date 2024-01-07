@@ -85,21 +85,24 @@ function updateApplicationStatus(applicationId, remarks) {
         feedback: feedback
     };
 
-    // If approving, set the date_approved to the current date
+    // If approving, set the date_approved to the current date and update pet's remarks
     if (remarks === 1) {
         const currentDate = new Date();
         currentDate.setMinutes(currentDate.getMinutes() - currentDate.getTimezoneOffset()); // Adjust for local timezone
         updateData.date_approved = currentDate.toISOString().split('T')[0]; // Format: YYYY-MM-DD
+
+        // Update pet's remarks
+        get(ref(database, `applicationform/${applicationId}/pet_id`)).then((petIdSnapshot) => {
+            if (petIdSnapshot.exists()) {
+                const petId = petIdSnapshot.val();
+                update(ref(database, `pets/${petId}`), { remarks: 1 });
+            }
+        }).catch((error) => {
+            console.error('Error fetching pet ID:', error);
+        });
     }
 
-    // If disapproving, also set the status to "COMPLETED"
-    if (remarks === 0) {
-        const currentDate = new Date();
-        currentDate.setMinutes(currentDate.getMinutes() - currentDate.getTimezoneOffset()); // Adjust for local timezone
-        updateData.date_disapproved = currentDate.toISOString().split('T')[0]; // Format: YYYY-MM-DD
-        updateData.status = 1; // Assuming '1' signifies 'COMPLETED'
-    }
-
+    // Update application data
     update(ref(database, `applicationform/${applicationId}`), updateData)
     .then(() => {
         let remarksStatus = remarks === 0 ? "disapproved" : "approved";

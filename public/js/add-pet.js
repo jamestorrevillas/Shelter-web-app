@@ -61,6 +61,7 @@ async function addPet() {
     const petWeight = document.getElementById('editPetWeight').value;
     const petDescription = document.getElementById('editPetDescription').value;
     const petStatus = 0;
+    const petRemarks = 0;
 
     // Retrieve the logged-in user's shelter ID
     const loggedInShelterId = getLoggedInShelterId();
@@ -98,6 +99,7 @@ async function addPet() {
             description: petDescription,
             imageUrl: downloadURL,
             status: petStatus,
+            remarks: petRemarks,
             shelter_id: loggedInShelterId,
             gender: petGender
         };

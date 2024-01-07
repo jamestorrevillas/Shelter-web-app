@@ -101,12 +101,22 @@ async function cancelApplication() {
         return;
     }
 
+    // Fetch the pet_id from the application data
+    const applicationSnapshot = await get(ref(database, `applicationform/${applicationId}/pet_id`));
+    const petId = applicationSnapshot.val();
+
+    if (!petId) {
+        console.error('Pet ID not found in application data');
+        return;
+    }
+
     const updates = {};
-        const currentDate = new Date();
-        currentDate.setMinutes(currentDate.getMinutes() - currentDate.getTimezoneOffset()); // Adjust for local timezone
-        updates[`/applicationform/${applicationId}/date_cancelled`] = currentDate.toISOString().split('T')[0]; // Format: YYYY-MM-DD
-        updates[`/applicationform/${applicationId}/remarks`] = -1;
-        updates[`/applicationform/${applicationId}/status`] = 1;
+    const currentDate = new Date();
+    currentDate.setMinutes(currentDate.getMinutes() - currentDate.getTimezoneOffset()); // Adjust for local timezone
+    updates[`/applicationform/${applicationId}/date_cancelled`] = currentDate.toISOString().split('T')[0]; // Format: YYYY-MM-DD
+    updates[`/applicationform/${applicationId}/remarks`] = -1;
+    updates[`/applicationform/${applicationId}/status`] = 1;
+    updates[`/pets/${petId}/remarks`] = 0; 
 
     try {
         await update(ref(database), updates);
