@@ -89,6 +89,7 @@ async function confirmApplication() {
     try {
         await update(ref(database), updates);
         alert("Confirmation sent successfully.");
+        window.location.href = './approved-applications.html';
     } catch (error) {
         console.error('Error sending confirmation:', error);
         alert("Failed to send confirmation.");
@@ -123,6 +124,7 @@ async function cancelApplication() {
     try {
         await update(ref(database), updates);
         alert("Application approval cancelled successfully.");
+        window.location.href = './approved-applications.html';
 
         // Redirect to another page after successful cancellation
         window.location.href = "approved-applications.html";
