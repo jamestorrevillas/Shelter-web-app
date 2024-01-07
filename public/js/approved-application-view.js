@@ -78,7 +78,6 @@ async function confirmApplication() {
         console.error('No application ID available for confirmation');
         return;
     }
-
     const updates = {};
     const currentDate = new Date();
     currentDate.setMinutes(currentDate.getMinutes() - currentDate.getTimezoneOffset()); // Adjust for local timezone

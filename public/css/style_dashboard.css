@@ -428,7 +428,7 @@ button:hover {
 
 }
 #pets-table-top th:nth-child(1){
-    margin-left: 50px;
+    margin-left: 0px;
     margin-right: 20px;
  }
 
@@ -723,7 +723,7 @@ thead th {
 #archive-table-below {
     table-layout: fixed;
     width: 100%; 
-    margin-top: 20px;
+    margin-top:-10px;
     border-radius:30px;
 }
 #archive-table-below td {
@@ -769,27 +769,33 @@ thead th {
     padding-top: 20px;
 }
 #table-body-below td:nth-child(3) {
-   
+
     border-radius: 0px; 
-    margin-left: 100px;
+    margin-left: 80px;
     padding-right:0px;
     padding-top: 20px;
     float: left;
 }
+#table-body-below td:nth-child(2) {
+    margin-left: 70px;
+}
 #table-body-below td:nth-child(5) {
-   
+    /* border: 1px solid black; */
     border-radius: 0px; 
-    margin-left: 100px;
-    margin-right: 20px;
+    margin-left: 90px;
+    margin-right: 40px;
     padding-top: 20px;
 }
 #table-body-below td:nth-child(1) {
-   
+   /* border: 1px solid black; */
     border-radius: 0px; 
-    margin-left: -10px;
+    margin-left: 0px;
     margin-right:-20px;
     padding-right:0px;
     padding-top: 20px;
+}
+#table-body-below td:nth-child(4) {
+    margin-left: 100px;
 }
 /* #table-body-below td:nth-child(3) {
     border-radius: 0px; 
@@ -807,6 +813,7 @@ thead th {
 #table-body-below {
     display: block;
     /* height: 1200px !important; */
+    padding-bottom: 150px;
     height: auto;
     max-height: 100%; 
 }
@@ -1552,6 +1559,6 @@ thead th {
 
 
 .description{
-    margin-top: 50px !important ; 
+    margin-top: 100px !important ; 
 
 }
