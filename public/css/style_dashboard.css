@@ -806,7 +806,7 @@ thead th {
 
 #table-body-below {
     display: block;
-    height: 1200px !important;
+    /* height: 1200px !important; */
     height: auto;
     max-height: 100%; 
 }
