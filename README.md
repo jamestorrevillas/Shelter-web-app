@@ -21,7 +21,7 @@ The FurryFound shelter website includes features designed to:
 - Provide educational resources to the community about pet care and adoption benefits.
 
 ## Contributing
-We welcome contributions from developers and volunteers who share our passion for animal welfare. Whether you're helping improve the website's functionality or spreading the word about our cause, your support is invaluable. Check out our `CONTRIBUTING.md` for more information on how to get involved.
+We welcome contributions from developers and volunteers who share our passion for animal welfare. Whether you're helping improve the website's functionality or spreading the word about our cause, your support is invaluable. 
 
 ## Support
 Join us in our mission to make a positive impact on the lives of pets and the families that adopt them. Your support through code contributions, donations, or volunteer work helps us continue our work at FurryFound.
@@ -29,6 +29,3 @@ Join us in our mission to make a positive impact on the lives of pets and the fa
 Thank you for visiting the FurryFound shelter website repository. Together, let's create a world where every pet finds the love and care they deserve.
 
 "Where every tail has a tale to tell, and every paw leaves a print on our hearts."
-
-## License
-This project is licensed under the [LICENSE TYPE]. See the `LICENSE` file for more details.
